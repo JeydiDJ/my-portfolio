@@ -1,0 +1,12 @@
+.blob-image {
+  transform-origin: center;
+  animation: float-tilt 8s ease-in-out infinite alternate;
+}
+
+@keyframes float-tilt {
+  0%   { transform: translateY(0px) rotate(0deg); }
+  25%  { transform: translateY(-10px) rotate(1deg); }
+  50%  { transform: translateY(5px) rotate(-1deg); }
+  75%  { transform: translateY(-5px) rotate(1deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}

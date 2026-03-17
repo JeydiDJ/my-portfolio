@@ -10,3 +10,7 @@
 @keyframes blinkCaret {
   50% { border-color: transparent; }
 }
+
+html {
+  scroll-behavior: smooth;
+}
