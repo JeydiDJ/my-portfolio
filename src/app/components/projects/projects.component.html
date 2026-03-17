@@ -3,39 +3,25 @@
 
   <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl mx-auto">
     <!-- PHinder Card -->
-    <div class="project-card group animate-fade-up">
-      <h3 class="text-2xl font-bold mb-2">PHinder</h3>
-      <p class="text-gray-300 mb-4">
-        A community-driven PWA to help locate missing persons in Pampanga. Interactive Mapbox map with verified reports and real-time updates.
-      </p>
-      <div class="flex flex-wrap gap-3">
-        <a href="https://your-phinder-link.com" target="_blank"
-           class="px-6 py-3 bg-blue-500 rounded-full shadow-lg transition transform hover:scale-105 hover:bg-blue-600">
-          View Live
-        </a>
-        <a href="https://github.com/JeydiDJ/phinder" target="_blank"
-           class="px-6 py-3 border border-blue-500 rounded-full transition transform hover:scale-105 hover:bg-blue-500">
-          GitHub
-        </a>
-      </div>
-    </div>
+    <app-project-card
+      [name]="'PHinder'"
+      [logo]="'assets/project-icons/phinder-logo.png'"
+      [description]="'Community-driven PWA to help locate missing persons in Pampanga. Interactive Mapbox map with verified reports and real-time updates.'"
+      [techStack]="['Vue.js','HTML','CSS','Javascript', 'Firebase', 'Mapbox']"
+      [screenshots]="['assets/phinder-pics/phinder1.png','assets/phinder-pics/phinder2.png','assets/phinder-pics/phinder3.png','assets/phinder-pics/phinder4.png','assets/phinder-pics/phinder5.png','assets/phinder-pics/phinder6.png','assets/phinder-pics/phinder7.png','assets/phinder-pics/phinder8.png']"
+      [liveLink]="'https://missing-persons-tracker.web.app/'"
+      [githubLink]="'https://github.com/JeydiDJ/phinder'"
+    ></app-project-card>
 
     <!-- TaskDone Card -->
-    <div class="project-card group animate-fade-up delay-200">
-      <h3 class="text-2xl font-bold mb-2">TaskDone</h3>
-      <p class="text-gray-300 mb-4">
-        Modern task management PWA with visual progress charts, offline support, and mobile-first design. Helps users stay organized and focused.
-      </p>
-      <div class="flex flex-wrap gap-3">
-        <a href="https://your-taskdone-link.com" target="_blank"
-           class="px-6 py-3 bg-green-500 rounded-full shadow-lg transition transform hover:scale-105 hover:bg-green-600">
-          View Live
-        </a>
-        <a href="https://github.com/JeydiDJ/taskdone" target="_blank"
-           class="px-6 py-3 border border-green-500 rounded-full transition transform hover:scale-105 hover:bg-green-500">
-          GitHub
-        </a>
-      </div>
-    </div>
+    <app-project-card
+      [name]="'TaskDone'"
+      [logo]="'assets/project-icons/taskdone-logo.png'"
+      [description]="'Modern task management PWA with visual progress charts, offline support, and mobile-first design. Helps users stay organized and focused.'"
+      [techStack]="['Angular','HTML','Tailwind','TypeScript','MongoDB']"
+      [screenshots]="['assets/taskdone1.png','assets/taskdone2.png','assets/taskdone3.png']"
+      [liveLink]="'https://taskdone.digital'"
+      [githubLink]="'https://github.com/JeydiDJ/TaskDone/tree/main'"
+    ></app-project-card>
   </div>
 </section>

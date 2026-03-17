@@ -1,1 +1,50 @@
-<p>skills works!</p>
+<section id="skills" class="relative min-h-screen bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700 text-white px-6 py-20 overflow-hidden">
+
+  <!-- Background animated shapes (unique for Skills) -->
+  <div class="absolute top-0 left-0 w-full h-full overflow-hidden">
+    <!-- Large semi-transparent circle -->
+    <span class="absolute w-64 h-64 bg-gray-500 rounded-full opacity-15 animate-float-slow -top-32 -right-16"></span>
+
+    <!-- Blob / polygon -->
+    <span class="absolute w-72 h-72 bg-gray-400 opacity-10 blob animate-float-slow top-1/3 left-1/4"></span>
+
+    <!-- Small square -->
+    <span class="absolute w-36 h-36 bg-gray-600 opacity-10 rounded-lg animate-float-slow bottom-12 right-12"></span>
+
+    <!-- Triangle -->
+    <span class="absolute w-28 h-28 bg-gray-500 opacity-8 animate-float-slow top-2/3 right-1/3" 
+          style="clip-path: polygon(50% 0%, 0% 100%, 100% 100%);"></span>
+
+    <!-- Vertical line -->
+    <span class="absolute w-px h-64 bg-gray-400 opacity-10 animate-float-slow top-1/4 left-2/3"></span>
+  </div>
+
+  <!-- Section Heading -->
+  <h2 class="text-4xl font-bold text-center mb-12 animate-fade-up">
+    My Skills
+  </h2>
+
+  <!-- Skill Cards Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto relative z-10">
+    <div *ngFor="let category of skillCategories"
+         class="skill-card relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-lg transition-transform duration-300 cursor-pointer hover:scale-105 hover:shadow-2xl animate-fade-up">
+      
+      <!-- Category Name -->
+      <h3 class="text-xl font-bold mb-4 text-center">{{ category.name }}</h3>
+
+      <!-- Skills Grid -->
+      <div class="grid grid-cols-3 gap-4 justify-items-center">
+        <div *ngFor="let skill of category.skills" class="flex flex-col items-center group relative">
+          <img [src]="techIconMap[skill.name]" [alt]="skill.name" class="w-12 h-12 object-contain transition-transform duration-300 group-hover:scale-110" />
+          <span class="absolute bottom-0 translate-y-12 opacity-0 group-hover:opacity-100 bg-white/10 backdrop-blur-md text-xs rounded px-2 py-1 text-black transition-all duration-300">
+            {{ skill.name }} - {{ skill.level }}
+          </span>
+          <div class="w-12 h-1 rounded-full bg-white/20 mt-2 overflow-hidden">
+            <div class="h-full bg-blue-500 rounded-full transition-all duration-500"
+                 [style.width]="skill.levelPercentage + '%'"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
