@@ -19,38 +19,50 @@
     <!-- Glass Card -->
     <div class="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-8 shadow-xl animate-fade-up delay-200">
 
-      <form class="grid md:grid-cols-2 gap-6">
+     <form (submit)="sendEmail($event)" class="grid md:grid-cols-2 gap-6">
 
-        <!-- Name -->
-        <input 
-          type="text" 
-          placeholder="Your Name"
-          class="col-span-1 p-3 rounded-lg bg-gray-900/60 border border-gray-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition"
-        />
+  <!-- Name -->
+  <input 
+    type="text" 
+    name="user_name"
+    placeholder="Your Name"
+    required
+    class="col-span-1 p-3 rounded-lg bg-gray-900/60 border border-gray-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition"
+  />
 
-        <!-- Email -->
-        <input 
-          type="email" 
-          placeholder="Your Email"
-          class="col-span-1 p-3 rounded-lg bg-gray-900/60 border border-gray-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition"
-        />
+  <!-- Email -->
+  <input 
+    type="email" 
+    name="user_email"
+    placeholder="Your Email"
+    required
+    class="col-span-1 p-3 rounded-lg bg-gray-900/60 border border-gray-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition"
+  />
 
-        <!-- Message -->
-        <textarea 
-          rows="5"
-          placeholder="Your Message"
-          class="md:col-span-2 p-3 rounded-lg bg-gray-900/60 border border-gray-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition"
-        ></textarea>
+  <!-- Message -->
+  <textarea 
+    name="message"
+    rows="5"
+    placeholder="Your Message"
+    required
+    class="md:col-span-2 p-3 rounded-lg bg-gray-900/60 border border-gray-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition"
+  ></textarea>
 
-        <!-- Button -->
-        <button 
-          type="submit"
-          class="md:col-span-2 bg-gradient-to-r from-cyan-400 to-indigo-500 hover:opacity-90 transition p-3 rounded-lg font-semibold shadow-lg hover:shadow-cyan-500/30"
-        >
-          Send Message
-        </button>
+  <!-- Button -->
+  <button 
+    type="submit"
+    [disabled]="isLoading"
+    class="md:col-span-2 bg-gradient-to-r from-cyan-400 to-indigo-500 hover:opacity-90 transition p-3 rounded-lg font-semibold shadow-lg hover:shadow-cyan-500/30"
+  >
+    {{ isLoading ? 'Sending...' : 'Send Message' }}
+  </button>
 
-      </form>
+</form>
+
+<!-- Success Message -->
+<p *ngIf="isSent" class="text-green-400 text-center mt-6">
+  Message sent! I’ll get back to you soon.
+</p>
 
       <!-- Divider -->
       <div class="my-8 border-t border-white/10"></div>
