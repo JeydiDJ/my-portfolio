@@ -13,13 +13,17 @@ export class SkillsComponent {
     'JavaScript': 'assets/tech-icons/javascript-icon.svg',
     'TypeScript': 'assets/tech-icons/typescriptlang-icon.svg',
     'Angular': 'assets/tech-icons/angular-icon.svg',
-    'Vue.js': 'assets/tech-icons/vue-icon.svg',
-    'React': 'assets/tech-icons/react-icon.svg',
+    'Vue.js': 'assets/tech-icons/vuejs-icon.svg',
+    'React': 'assets/tech-icons/reactjs-icon.svg',
     'Firebase': 'assets/tech-icons/firebase-icon.svg',
     'MongoDB': 'assets/tech-icons/mongodb-icon.svg',
     'Tailwind': 'assets/tech-icons/tailwindcss-icon.svg',
     'Node.js': 'assets/tech-icons/nodejs-icon.svg',
-    'Git': 'assets/tech-icons/git-icon.svg',
+    'Git': 'assets/tech-icons/git-scm-icon.svg',
+    'Nodejs': 'assets/tech-icons/nodejs-icon.svg',
+    'Github': 'assets/tech-icons/github-tile.svg',
+    'Python': 'assets/tech-icons/python-icon.svg',
+    'Django': 'assets/tech-icons/djangoproject-icon.svg',
   };
 
   // Skill categories
@@ -33,7 +37,7 @@ export class SkillsComponent {
         { name: 'TypeScript', level: 'Advanced', levelPercentage: 85 },
         { name: 'Angular', level: 'Advanced', levelPercentage: 85 },
         { name: 'Vue.js', level: 'Intermediate', levelPercentage: 75 },
-        { name: 'React', level: 'Intermediate', levelPercentage: 70 },
+        { name: 'React', level: 'Intermediate', levelPercentage: 60 },
         { name: 'Tailwind', level: 'Advanced', levelPercentage: 90 },
       ],
     },
@@ -43,12 +47,15 @@ export class SkillsComponent {
         { name: 'Node.js', level: 'Advanced', levelPercentage: 85 },
         { name: 'Firebase', level: 'Advanced', levelPercentage: 90 },
         { name: 'MongoDB', level: 'Intermediate', levelPercentage: 75 },
+        { name: 'Python', level: 'Intermediate', levelPercentage: 70 },
+        { name: 'Django', level: 'Beginner', levelPercentage: 30 },
       ],
     },
     {
       name: 'Tools & Others',
       skills: [
         { name: 'Git', level: 'Advanced', levelPercentage: 90 },
+        { name: 'Github', level: 'Advanced', levelPercentage: 90 },
       ],
     },
   ];
