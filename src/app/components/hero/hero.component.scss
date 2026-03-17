@@ -1,0 +1,24 @@
+/* Existing animations */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+.animate-fade-up { animation: fadeUp 1s ease forwards; }
+.animate-fade-up.delay-200 { animation-delay: 0.2s; }
+.animate-fade-up.delay-400 { animation-delay: 0.4s; }
+
+@keyframes floatSlow {
+  0%,100% { transform: translateY(0) translateX(0) rotate(0deg); }
+  25% { transform: translateY(-20px) translateX(10px) rotate(15deg); }
+  50% { transform: translateY(-40px) translateX(-10px) rotate(-15deg); }
+  75% { transform: translateY(-20px) translateX(10px) rotate(15deg); }
+}
+.animate-float-slow { animation: floatSlow 12s ease-in-out infinite; }
+
+/* Typing animation */
+@keyframes typing { from { width: 0 } to { width: 12ch } }
+@keyframes blink { 50% { border-color: transparent; } }
+.animate-typing { display:inline-block; animation: typing 3s steps(12) 1s forwards, blink 0.75s step-end infinite alternate; }
+
+/* Blob shape using clip-path */
+.blob {
+  clip-path: polygon(40% 0%, 60% 0%, 100% 30%, 80% 100%, 20% 100%, 0% 30%);
+  border-radius: 30%;
+}
