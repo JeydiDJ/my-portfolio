@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener, Renderer2, Input, OnInit } from '@angular/core';
+import { Directive, ElementRef, Renderer2, Input, OnInit, HostListener } from '@angular/core';
 
 @Directive({
   selector: '[appScrollAnimate]'
@@ -14,7 +14,6 @@ export class ScrollAnimateDirective implements OnInit {
   private elHeight = 0;
   private windowHeight = window.innerHeight;
 
-  // current transform values for smoothing
   private currentTranslateY = 0;
   private currentRotate = 0;
 
@@ -22,17 +21,18 @@ export class ScrollAnimateDirective implements OnInit {
 
   ngOnInit() {
     this.updateElementMetrics();
-    this.animate(); // start RAF loop
+
+    // Set initial transform and background to prevent white space
+    this.renderer.setStyle(this.el.nativeElement, 'transform', `translateY(0px) rotate${this.rotateAxis}(0deg)`);
+    this.renderer.setStyle(this.el.nativeElement, 'background-color', 'rgba(20,20,20,0)');
+
+    // small timeout ensures layout is fully rendered before first RAF
+    setTimeout(() => this.animate(), 50);
   }
 
   @HostListener('window:resize')
   onResize() {
     this.updateElementMetrics();
-  }
-
-  @HostListener('window:scroll')
-  onScroll() {
-    // nothing needed here, RAF handles smooth updates
   }
 
   private updateElementMetrics() {
@@ -41,7 +41,7 @@ export class ScrollAnimateDirective implements OnInit {
     this.elHeight = rect.height;
     this.windowHeight = window.innerHeight;
 
-    // Enable 3D perspective
+    // enable smooth 3D
     this.renderer.setStyle(this.el.nativeElement, 'transform-style', 'preserve-3d');
     this.renderer.setStyle(this.el.nativeElement, 'backface-visibility', 'hidden');
     this.renderer.setStyle(this.el.nativeElement, 'transition', 'background-color 0.3s ease-out');
@@ -52,15 +52,14 @@ export class ScrollAnimateDirective implements OnInit {
     const centerViewport = scrollY + this.windowHeight / 2;
     const distance = centerViewport - (this.elTop + this.elHeight / 2);
 
-    // normalized offset -1 to 1
     const offset = distance / (this.windowHeight / 2);
     const clamped = Math.max(Math.min(offset, 1), -1);
 
-    // target translation
-    const maxTranslate = this.windowHeight / 2; // limit translation
+    // translation
+    const maxTranslate = this.windowHeight / 2;
     const targetTranslateY = Math.max(Math.min(clamped * this.elHeight * this.speed, maxTranslate), -maxTranslate);
 
-    // target rotation
+    // rotation
     const targetRotate = clamped * this.maxRotation;
 
     // smooth interpolation
@@ -82,7 +81,6 @@ export class ScrollAnimateDirective implements OnInit {
       `rgba(20,20,20,${fadeAmount})`
     );
 
-    // request next frame
     requestAnimationFrame(() => this.animate());
   }
 }
