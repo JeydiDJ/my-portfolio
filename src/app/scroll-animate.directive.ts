@@ -1,38 +1,32 @@
-import { Directive, ElementRef, Renderer2, Input, OnInit, HostListener } from '@angular/core';
+import { Directive, ElementRef, HostListener, Renderer2, Input, OnInit } from '@angular/core';
 
 @Directive({
   selector: '[appScrollAnimate]'
 })
 export class ScrollAnimateDirective implements OnInit {
-  @Input() speed = 0.2; // vertical slide factor
-  @Input() darkColor = 'rgba(20,20,20,1)'; // fade-to-dark color
-  @Input() rotateAxis: 'X' | 'Y' = 'X'; // axis to rotate
-  @Input() maxRotation = 25; // max degrees rotation
-  @Input() smoothFactor = 0.2; // smoothing for fast scroll
+  @Input() speed = 0.2; // slide speed factor
+  @Input() darkColor = 'rgba(20,20,20,1)'; // color to fade into
 
   private elTop = 0;
   private elHeight = 0;
   private windowHeight = window.innerHeight;
 
-  private currentTranslateY = 0;
-  private currentRotate = 0;
-
   constructor(private el: ElementRef, private renderer: Renderer2) {}
 
   ngOnInit() {
     this.updateElementMetrics();
-
-    // Set initial transform and background to prevent white space
-    this.renderer.setStyle(this.el.nativeElement, 'transform', `translateY(0px) rotate${this.rotateAxis}(0deg)`);
-    this.renderer.setStyle(this.el.nativeElement, 'background-color', 'rgba(20,20,20,0)');
-
-    // small timeout ensures layout is fully rendered before first RAF
-    setTimeout(() => this.animate(), 50);
+    this.applyAnimation();
   }
 
   @HostListener('window:resize')
   onResize() {
     this.updateElementMetrics();
+    this.applyAnimation();
+  }
+
+  @HostListener('window:scroll')
+  onScroll() {
+    this.applyAnimation();
   }
 
   private updateElementMetrics() {
@@ -40,47 +34,37 @@ export class ScrollAnimateDirective implements OnInit {
     this.elTop = rect.top + window.scrollY;
     this.elHeight = rect.height;
     this.windowHeight = window.innerHeight;
-
-    // enable smooth 3D
-    this.renderer.setStyle(this.el.nativeElement, 'transform-style', 'preserve-3d');
-    this.renderer.setStyle(this.el.nativeElement, 'backface-visibility', 'hidden');
-    this.renderer.setStyle(this.el.nativeElement, 'transition', 'background-color 0.3s ease-out');
   }
 
-  private animate() {
+  private applyAnimation() {
     const scrollY = window.scrollY;
     const centerViewport = scrollY + this.windowHeight / 2;
     const distance = centerViewport - (this.elTop + this.elHeight / 2);
 
+    // normalize -1 to 1
     const offset = distance / (this.windowHeight / 2);
     const clamped = Math.max(Math.min(offset, 1), -1);
 
-    // translation
-    const maxTranslate = this.windowHeight / 2;
-    const targetTranslateY = Math.max(Math.min(clamped * this.elHeight * this.speed, maxTranslate), -maxTranslate);
-
-    // rotation
-    const targetRotate = clamped * this.maxRotation;
-
-    // smooth interpolation
-    this.currentTranslateY += (targetTranslateY - this.currentTranslateY) * this.smoothFactor;
-    this.currentRotate += (targetRotate - this.currentRotate) * this.smoothFactor;
-
-    // apply transform
+    // translate element vertically
+    const translateY = clamped * this.elHeight * this.speed;
     this.renderer.setStyle(
       this.el.nativeElement,
       'transform',
-      `translateY(${this.currentTranslateY}px) rotate${this.rotateAxis}(${this.currentRotate}deg)`
+      `translateY(${translateY}px)`
     );
 
-    // fade to dark
-    const fadeAmount = Math.min(Math.abs(clamped), 1);
+    // fade to dark: interpolate based on distance
+    const fadeAmount = Math.min(Math.abs(clamped), 1); // 0 center → 1 far away
     this.renderer.setStyle(
       this.el.nativeElement,
       'background-color',
-      `rgba(20,20,20,${fadeAmount})`
+      `rgba(20, 20, 20, ${fadeAmount})`
     );
 
-    requestAnimationFrame(() => this.animate());
+    this.renderer.setStyle(
+      this.el.nativeElement,
+      'transition',
+      'transform 0.3s, background-color 0.3s'
+    );
   }
 }
