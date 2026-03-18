@@ -87,10 +87,13 @@
       </div>
     </div>
 
-    <!-- Action Buttons with Ghost → Color on Hover -->
+  <!-- Action Buttons -->
 <div class="flex flex-wrap gap-4 mt-4">
+
   <!-- View Live Button -->
-  <a [href]="liveLink" target="_blank"
+  <a *ngIf="liveLink"
+     [href]="liveLink"
+     target="_blank"
      class="flex items-center gap-2 px-6 py-3 border border-blue-500 rounded-full transition hover:bg-white hover:text-black"
   >
     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -100,7 +103,9 @@
   </a>
 
   <!-- GitHub Button -->
-  <a [href]="githubLink" target="_blank"
+  <a *ngIf="githubLink"
+     [href]="githubLink"
+     target="_blank"
      class="flex items-center gap-2 px-6 py-3 border border-white rounded-full transition hover:bg-gray-900 hover:text-white"
   >
     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 transition-colors duration-300" viewBox="0 0 24 24" fill="currentColor">
@@ -108,6 +113,7 @@
     </svg>
     GitHub
   </a>
+
 </div>
   </div>
 </div>
