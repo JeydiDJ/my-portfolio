@@ -1,7 +1,11 @@
-<section id="projects" class="min-h-screen bg-gray-900 text-white px-6 py-20">
-  <h2 class="text-4xl font-bold text-center mb-12 animate-fade-up">My Projects</h2>
+<section id="projects" class="relative min-h-screen bg-gradient-to-tr from-gray-900 via-gray-800 to-gray-700 text-white px-6 py-20 overflow-hidden">
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl mx-auto">
+  <!-- Particle Background -->
+  <canvas #particleCanvas class="absolute inset-0 z-0 pointer-events-none"></canvas>
+
+  <h2 class="text-4xl font-bold text-center mb-12 relative z-10">My Projects</h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl mx-auto relative z-10">
     <!-- PHinder Card -->
     <app-project-card
       [name]="'PHinder'"

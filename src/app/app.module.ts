@@ -9,6 +9,7 @@ import { SkillsComponent } from './components/skills/skills.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ProjectCardComponent } from './components/project-card/project-card.component';
 import { AboutComponent } from './components/about/about.component';
+import { ScrollAnimateDirective } from './scroll-animate.directive';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AboutComponent } from './components/about/about.component';
     SkillsComponent,
     ContactComponent,
     ProjectCardComponent,
-    AboutComponent
+    AboutComponent,
+    ScrollAnimateDirective
   ],
   imports: [
     BrowserModule,

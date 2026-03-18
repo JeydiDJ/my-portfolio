@@ -1,5 +1,12 @@
-<section class="relative min-h-screen flex flex-col justify-center items-center bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700 text-white px-6 overflow-hidden">
-
+<section
+  class="relative min-h-screen flex flex-col justify-center items-center bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700 text-white px-6 overflow-hidden"
+   appScrollAnimate
+  [speed]="0.15"
+  [darkColor]="'rgba(20,20,20,1)'"
+  [rotateAxis]="'X'"
+  [maxRotation]="10"
+  [smoothFactor]="0.2"
+>
   <!-- Background animated shapes -->
   <div class="absolute top-0 left-0 w-full h-full overflow-hidden">
     <!-- Circle -->
@@ -12,52 +19,42 @@
     <span class="absolute w-48 h-48 bg-gray-400 opacity-15 rounded-lg animate-float-slow -bottom-24 -right-24"></span>
 
     <!-- Triangle (using clip-path) -->
-    <span class="absolute w-40 h-40 bg-gray-500 opacity-10 animate-float-slow top-1/2 left-1/4" 
-          style="clip-path: polygon(50% 0%, 0% 100%, 100% 100%);"></span>
+    <span class="absolute w-40 h-40 bg-gray-500 opacity-10 animate-float-slow top-1/2 left-1/4"
+      style="clip-path: polygon(50% 0%, 0% 100%, 100% 100%);"></span>
 
     <!-- Horizontal line -->
     <span class="absolute w-80 h-px bg-gray-600 opacity-10 animate-float-slow bottom-1/3 left-1/2"></span>
   </div>
 
   <!-- Hero content -->
-  <h1 class="text-5xl md:text-6xl font-extrabold mb-6 animate-fade-up bg-clip-text text-transparent bg-gradient-to-r from-gray-100 via-gray-300 to-gray-100">
+  <h1 class="text-5xl md:text-6xl font-extrabold mb-6">
     JD De Jesus
   </h1>
 
-  <p class="text-xl md:text-2xl text-gray-300 mb-12 animate-fade-up delay-200 flex justify-center items-center gap-2">
+  <p class="text-xl md:text-2xl text-gray-300 mb-12 flex justify-center items-center gap-2">
     Full Stack Web Developer
     <span class="text-teal-300 font-semibold typing inline-block border-r-2 border-gray-300"></span>
   </p>
 
   <!-- Buttons -->
-  <div class="flex flex-wrap justify-center gap-4 animate-fade-up delay-400">
-    <!-- GitHub -->
-    <a href="https://github.com/JeydiDJ" target="_blank" class="group flex items-center gap-2 bg-gray-700 text-gray-300 rounded-full px-6 py-3 shadow-lg hover:bg-gray-900 hover:text-white transition transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-400">
-      <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-all" fill="currentColor" viewBox="0 0 24 24">
-  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.11.82-.26.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.385-1.333-1.753-1.333-1.753-1.09-.746.082-.73.082-.73 1.205.084 1.838 1.235 1.838 1.235 1.07 1.833 2.807 1.304 3.492.997.108-.776.418-1.304.76-1.604-2.665-.303-5.466-1.334-5.466-5.93 0-1.31.468-2.382 1.235-3.22-.123-.303-.536-1.523.117-3.176 0 0 1.008-.322 3.3 1.23a11.49 11.49 0 013.003-.404c1.018.004 2.043.137 3.003.404 2.292-1.552 3.297-1.23 3.297-1.23.655 1.653.242 2.873.12 3.176.77.838 1.233 1.91 1.233 3.22 0 4.61-2.807 5.625-5.48 5.922.43.37.813 1.1.813 2.22v3.293c0 .32.217.694.824.576C20.565 21.796 24 17.3 24 12c0-6.63-5.373-12-12-12z"/>
-</svg>
+  <div class="flex flex-wrap justify-center gap-4">
+    <a href="https://github.com/JeydiDJ" target="_blank"
+       class="group flex items-center gap-2 bg-gray-700 text-gray-300 rounded-full px-6 py-3 shadow-lg hover:bg-gray-900 hover:text-white transition transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-400">
       GitHub
     </a>
 
-    <!-- LinkedIn -->
-    <a href="https://linkedin.com/in/john-dave-de-jesus-502b17207" target="_blank" class="group flex items-center gap-2 bg-gray-700 text-gray-300 border border-gray-600 rounded-full px-6 py-3 shadow-lg hover:bg-blue-800 hover:text-white transition transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-400">
-      <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-all" fill="currentColor" viewBox="0 0 24 24">
-  <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zm7.5 0h4.78v2.2h.07c.66-1.25 2.27-2.56 4.68-2.56 5 0 5.93 3.29 5.93 7.56V24h-5v-7.56c0-1.8-.03-4.12-2.5-4.12-2.5 0-2.88 1.94-2.88 3.97V24h-5V8z"/>
-</svg>
+    <a href="https://linkedin.com/in/john-dave-de-jesus-502b17207" target="_blank"
+       class="group flex items-center gap-2 bg-gray-700 text-gray-300 border border-gray-600 rounded-full px-6 py-3 shadow-lg hover:bg-blue-800 hover:text-white transition transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-400">
       LinkedIn
     </a>
 
-   <a href="#contact" class="group flex items-center gap-2 bg-gray-700 text-gray-300 rounded-full px-6 py-3 shadow-lg hover:bg-green-500 hover:text-white transition transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-400">
-  <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-all" fill="currentColor" viewBox="0 0 24 24">
-    <path d="M12 12.713l-11.713-7.713h23.426l-11.713 7.713zm0 2.574l-12-7.287v12h24v-12l-12 7.287z"/>
-  </svg>
-  Email Me
-</a>
+    <a href="#contact"
+       class="group flex items-center gap-2 bg-gray-700 text-gray-300 rounded-full px-6 py-3 shadow-lg hover:bg-green-500 hover:text-white transition transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-400">
+      Email Me
+    </a>
 
-    <!-- View Projects -->
-    <a href="#projects" class="group flex items-center gap-2 bg-gray-700 text-gray-300 border border-gray-600 rounded-full px-6 py-3 shadow-lg hover:bg-purple-500 hover:text-white transition transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-400">
-      <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-all" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/></svg>
+    <a href="#projects"
+       class="group flex items-center gap-2 bg-gray-700 text-gray-300 border border-gray-600 rounded-full px-6 py-3 shadow-lg hover:bg-purple-500 hover:text-white transition transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-400">
       View Projects
     </a>
   </div>
@@ -65,7 +62,8 @@
   <!-- Scroll hint -->
   <div class="absolute bottom-8 animate-bounce text-gray-400">
     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M19 9l-7 7-7-7"/>
     </svg>
   </div>
 </section>
