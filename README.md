@@ -1,27 +1,82 @@
 # MyPortfolio
 
+A personal portfolio website built with **Angular** to showcase my projects, skills, and experience as a **Full Stack Web Developer**. The site features interactive components, animated backgrounds, and scroll-based card effects for a modern, engaging user experience.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.10.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Live Demo
 
-## Code scaffolding
+Check out the live version of the portfolio here:  
+[https://dejesus-portfolio-lyart.vercel.app/](https://dejesus-portfolio-lyart.vercel.app/)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
 
-## Build
+## Features
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Fully responsive layout for desktop and mobile  
+- Hero section with floating shapes and **animated scroll effects**  
+- Project cards with **scroll-based shuffle animations**  
+- Smooth fade-to-dark background transitions on scroll  
+- Contact section with email link integration  
+- Links to GitHub and LinkedIn profiles  
+- Clean, modern design with Tailwind CSS  
 
-## Running unit tests
+---
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Technologies Used
 
-## Running end-to-end tests
+- **Angular 15**  
+- **TypeScript**  
+- **Tailwind CSS**  
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+---
 
-## Further help
+## Screenshots
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Hero Section
+![Hero Screenshot](assets/screenshots/hero-screenshot.png)
+
+### Projects Section
+![Projects Screenshot](assets/screenshots/projects-screenshot.png)
+
+### Contact Section
+![Contact Screenshot](assets/screenshots/contact-screenshot.png)
+
+*(Replace the paths above with your actual screenshot paths)*
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+Make sure you have Node.js and Angular CLI installed:
+
+## Author
+
+JD De Jesus – Full Stack Web Developer
+
+GitHub: https://github.com/JeydiDJ
+
+LinkedIn: https://linkedin.com/in/john-dave-de-jesus-502b17207
+
+License
+
+This project is licensed under the MIT License – see the LICENSE
+ file for details.
+
+
+---
+
+This README is **full-featured**:  
+
+- Live demo section  
+- Features & technologies  
+- Screenshots ready (just replace placeholders)  
+- Full dev setup + build + test instructions  
+- Deployment guidance  
+- Author & license info  
+
+---
