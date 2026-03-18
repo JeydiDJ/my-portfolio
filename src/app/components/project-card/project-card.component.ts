@@ -25,7 +25,8 @@ export class ProjectCardComponent implements AfterViewInit {
   'Javascript': 'assets/tech-icons/javascript-icon.svg',
   'MongoDB': 'assets/tech-icons/mongodb-icon.svg',
   'Tailwind': 'assets/tech-icons/tailwindcss-icon.svg',
-  'TypeScript': 'assets/tech-icons/typescriptlang-icon.svg'
+  'TypeScript': 'assets/tech-icons/typescriptlang-icon.svg',
+  'Wix': 'assets/tech-icons/wix-icon.svg',
 };
 
   expanded = false;
