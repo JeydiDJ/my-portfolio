@@ -24,6 +24,7 @@ export class SkillsComponent {
     'Github': 'assets/tech-icons/github-tile.svg',
     'Python': 'assets/tech-icons/python-icon.svg',
     'Django': 'assets/tech-icons/djangoproject-icon.svg',
+    'Supabase':'assets/tech-icons/supabase-icon.svg'
   };
 
   // Skill categories
@@ -46,6 +47,7 @@ export class SkillsComponent {
       skills: [
         { name: 'Node.js', level: 'Advanced', levelPercentage: 85 },
         { name: 'Firebase', level: 'Advanced', levelPercentage: 90 },
+        { name: 'Supabase', level: 'Intermediate', levelPercentage: 70 },
         { name: 'MongoDB', level: 'Intermediate', levelPercentage: 75 },
         { name: 'Python', level: 'Intermediate', levelPercentage: 70 },
         { name: 'Django', level: 'Beginner', levelPercentage: 30 },
