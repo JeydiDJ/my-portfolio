@@ -24,7 +24,8 @@ export class SkillsComponent {
     'Github': 'assets/tech-icons/github-tile.svg',
     'Python': 'assets/tech-icons/python-icon.svg',
     'Django': 'assets/tech-icons/djangoproject-icon.svg',
-    'Supabase':'assets/tech-icons/supabase-icon.svg'
+    'Supabase':'assets/tech-icons/supabase-icon.svg',
+    'Wix': 'assets/tech-icons/wix-icon.svg'
   };
 
   // Skill categories
@@ -58,6 +59,7 @@ export class SkillsComponent {
       skills: [
         { name: 'Git', level: 'Advanced', levelPercentage: 90 },
         { name: 'Github', level: 'Advanced', levelPercentage: 90 },
+        { name: 'Wix', level: 'Advanced', levelPercentage: 90 },
       ],
     },
   ];
