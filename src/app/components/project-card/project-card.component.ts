@@ -29,6 +29,7 @@ export class ProjectCardComponent implements AfterViewInit {
   'Wix': 'assets/tech-icons/wix-icon.svg',
   'React': 'assets/tech-icons/reactjs-icon.svg',
   'Supabase': 'assets/tech-icons/supabase-icon.svg',
+  'Nextjs': 'assets/tech-icons/nextjs-icon.svg',
 };
 
   expanded = false;
