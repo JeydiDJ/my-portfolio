@@ -69,10 +69,6 @@ export class AboutComponent {
           heading: 'Pampanga High School | 2020 Apr',
           detail: 'Senior High School Diploma under the ABM track, focused on Accountancy, Business, and Management.'
         },
-        {
-          heading: 'Field',
-          detail: 'Computer Science and Information Technology with strong emphasis on web development.'
-        }
       ]
     },
     {
@@ -94,24 +90,6 @@ export class AboutComponent {
       ]
     },
     {
-      title: 'Personal Info',
-      eyebrow: 'Profile Details',
-      items: [
-        {
-          heading: 'Basic Information',
-          detail: 'Birthdate: November 18, 2002 | Civil Status: Single | Gender: Male | Nationality: Filipino'
-        },
-        {
-          heading: 'Address',
-          detail: 'Blk 1 Lot 3, Panipuan, Mexico, Pampanga, Philippines, Central Luzon (Region III).'
-        },
-        {
-          heading: 'Languages',
-          detail: 'English and Tagalog.'
-        }
-      ]
-    },
-    {
       title: 'Certifications',
       eyebrow: 'Credentials',
       items: [
@@ -122,6 +100,10 @@ export class AboutComponent {
         {
           heading: '2023',
           detail: 'CyberOps Associate.'
+        },
+        {
+          heading: 'Languages',
+          detail: 'English and Tagalog.'
         }
       ]
     },
