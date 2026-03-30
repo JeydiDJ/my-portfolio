@@ -22,7 +22,6 @@
 }
 
 .shell-grid,
-.shell-glow,
 .shell-orb {
   position: absolute;
 }
@@ -36,19 +35,10 @@
   mask-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.65), transparent);
 }
 
-.shell-glow {
-  inset: -10%;
-  background:
-    radial-gradient(circle at 15% 20%, rgba(250, 204, 21, 0.12), transparent 20%),
-    radial-gradient(circle at 80% 30%, rgba(56, 189, 248, 0.12), transparent 22%),
-    radial-gradient(circle at 50% 80%, rgba(15, 118, 110, 0.1), transparent 20%);
-  transform: translateY(calc(var(--scroll-y, 0px) * -0.03));
-}
-
 .shell-orb {
   border-radius: 999px;
-  filter: blur(80px);
-  opacity: 0.4;
+  filter: blur(56px);
+  opacity: 0.28;
 }
 
 .shell-orb-one {
@@ -57,7 +47,6 @@
   width: 24rem;
   height: 24rem;
   background: rgba(245, 158, 11, 0.2);
-  transform: translateY(calc(var(--scroll-y, 0px) * -0.04));
 }
 
 .shell-orb-two {
@@ -66,7 +55,6 @@
   width: 28rem;
   height: 28rem;
   background: rgba(14, 165, 233, 0.16);
-  transform: translateY(calc(var(--scroll-y, 0px) * -0.06));
 }
 
 .shell-orb-three {
@@ -75,7 +63,6 @@
   width: 22rem;
   height: 22rem;
   background: rgba(45, 212, 191, 0.14);
-  transform: translateY(calc(var(--scroll-y, 0px) * -0.05));
 }
 
 app-hero,

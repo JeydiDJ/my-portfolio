@@ -30,30 +30,30 @@ export class AboutComponent {
 
   resumeSections = [
     {
-      title: 'Objective',
-      eyebrow: 'Career Goal',
+      title: 'Career Objective',
+      eyebrow: 'Professional Focus',
       items: [
         {
-          heading: 'Professional Direction',
+          heading: 'Where I Want To Grow',
           detail: 'To pursue opportunities that allow me to test my capabilities, take on challenges, continuously develop my skills, and contribute effectively while growing within the IT industry.'
         }
       ]
     },
     {
-      title: 'Work Experience',
+      title: 'Experience',
       eyebrow: 'Professional Background',
       items: [
         {
-          heading: 'Freelance Web Developer | 2025 Nov - Present',
-          detail: 'Designs and develops web applications and client features using modern JavaScript tools, Angular-based interfaces, backend API integration, data visualization, and task management functionality.'
+          heading: 'Freelance Web Developer',
+          detail: 'November 2025 to Present. Designs and develops web applications and client features using modern JavaScript tools, Angular-based interfaces, backend API integration, data visualization, and task management functionality.'
         },
         {
-          heading: 'TherapyPro | Junior Web Developer | 2025 Jun - 2025 Oct',
-          detail: 'Developed intranet sites using Microsoft SharePoint and SPFx while also building full stack applications with Angular.js, Vue.js, and Python Django for healthcare-related internal tools.'
+          heading: 'Junior Web Developer at TherapyPro',
+          detail: 'June 2025 to October 2025. Developed intranet sites using Microsoft SharePoint and SPFx while also building full stack applications with Angular.js, Vue.js, and Python Django for healthcare-related internal tools.'
         },
         {
-          heading: 'TILES & MORE | Junior Web Developer | 2021 Jan - 2022 Jan',
-          detail: 'Built and maintained the company website in WIX, added product updates, and implemented custom HTML and JavaScript integrations while keeping a sleek minimal visual style.'
+          heading: 'Junior Web Developer at TILES & MORE',
+          detail: 'January 2021 to January 2022. Built and maintained the company website in WIX, added product updates, and implemented custom HTML and JavaScript integrations while keeping a sleek minimal visual style.'
         }
       ]
     },
@@ -62,12 +62,12 @@ export class AboutComponent {
       eyebrow: 'Academic Background',
       items: [
         {
-          heading: 'Holy Angel University | 2025 Nov',
-          detail: 'Bachelor of Science in Information Technology with Area of Specialization in Website Development.'
+          heading: 'Holy Angel University',
+          detail: 'Bachelor of Science in Information Technology with Area of Specialization in Website Development. Completed in November 2025.'
         },
         {
-          heading: 'Pampanga High School | 2020 Apr',
-          detail: 'Senior High School Diploma under the ABM track, focused on Accountancy, Business, and Management.'
+          heading: 'Pampanga High School',
+          detail: 'Senior High School Diploma under the ABM track, focused on Accountancy, Business, and Management. Completed in April 2020.'
         },
       ]
     },
@@ -76,16 +76,30 @@ export class AboutComponent {
       eyebrow: 'Core Tools',
       items: [
         {
-          heading: 'Development',
-          detail: 'HTML, CSS, JavaScript, Python, frontend development, backend development, AngularJS, Firebase, and NoSQL.'
+          heading: 'Web Development',
+          detail: 'Frontend development, backend development, responsive interfaces, API integration, application logic, and production-minded feature implementation.'
         },
         {
-          heading: 'Business Tools',
+          heading: 'Platforms And Business Tools',
           detail: 'Microsoft 365 and M365 SharePoint, including practical intranet and workflow-oriented implementation.'
         },
         {
-          heading: 'Working Style',
+          heading: 'Development Approach',
           detail: 'Responsive interfaces, API integration, application logic, feature development, and production-minded implementation.'
+        }
+      ]
+    },
+    {
+      title: 'Skills Snapshot',
+      eyebrow: 'Technologies',
+      items: [
+        {
+          heading: 'Frontend And Backend',
+          detail: 'HTML, CSS, JavaScript, Python, frontend development, backend development, AngularJS, Firebase, and NoSQL.'
+        },
+        {
+          heading: 'Languages',
+          detail: 'English and Tagalog.'
         }
       ]
     },
@@ -94,16 +108,12 @@ export class AboutComponent {
       eyebrow: 'Credentials',
       items: [
         {
-          heading: '2025',
+          heading: 'Certifications Earned in 2025',
           detail: 'Agile Project Management, Google Analytics, JavaScript Algorithms and Data Structures, Responsive Web Design.'
         },
         {
-          heading: '2023',
+          heading: 'Certification Earned in 2023',
           detail: 'CyberOps Associate.'
-        },
-        {
-          heading: 'Languages',
-          detail: 'English and Tagalog.'
         }
       ]
     },
@@ -113,15 +123,15 @@ export class AboutComponent {
       items: [
         {
           heading: 'Levi Cedric Valdez',
-          detail: 'Work Supervisor, System Administrator at TherapyPRO | 09082051299'
+          detail: 'Work Supervisor and System Administrator at TherapyPRO. Contact: 09082051299.'
         },
         {
           heading: 'Kathrine Aguilar',
-          detail: 'Capstone Thesis Adviser, Professor and Instructor at Holy Angel University | 09174352345 | khatzaguilar23@gmail.com'
+          detail: 'Capstone Thesis Adviser, Professor, and Instructor at Holy Angel University. Contact: 09174352345. Email: khatzaguilar23@gmail.com.'
         },
         {
           heading: 'Eone Zeus Lorenzo',
-          detail: 'Former Colleague, System Administrator at TherapyPRO | 09161741103'
+          detail: 'Former Colleague and System Administrator at TherapyPRO. Contact: 09161741103.'
         }
       ]
     }
