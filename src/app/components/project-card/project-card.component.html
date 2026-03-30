@@ -1,53 +1,50 @@
-<!-- project-card.component.html -->
 <div
-  class="project-card relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-lg transition-transform duration-300 cursor-pointer hover:scale-105 hover:shadow-2xl"
+  class="project-card surface-card relative cursor-pointer rounded-[1.75rem] p-6 text-white"
   (click)="toggle()"
 >
-  <!-- Collapsed: Logo + Name + Preview -->
-  <div class="flex flex-col items-center justify-center space-y-2">
-    <img [src]="logo" alt="{{ name }} logo" class="w-24 h-24 object-contain drop-shadow-md transition-transform duration-300 group-hover:scale-105" />
-    <h3 class="text-2xl font-bold text-center tracking-wide">{{ name }}</h3>
-
-    <!-- Preview elements (collapsed state) -->
-<ng-container *ngIf="!expanded">
-  <div class="absolute bottom-4 right-4 flex gap-2">
-    <img
-      *ngFor="let tech of techStack | slice:0:3"
-      [src]="techIconMap[tech]"
-      [alt]="tech"
-      class="w-6 h-6 object-contain transition-transform duration-300 hover:scale-110"
-      title="{{ tech }}"
-    />
-  </div>
-</ng-container>
+  <div class="mb-5 flex items-start justify-between gap-4">
+    <div class="flex items-center gap-4">
+      <div class="project-logo-wrap">
+        <img [src]="logo" alt="{{ name }} logo" class="h-16 w-16 object-contain drop-shadow-md" />
+      </div>
+      <div>
+        <h3 class="text-2xl font-bold tracking-wide">{{ name }}</h3>
+        <p class="mt-1 text-sm uppercase tracking-[0.18em] text-slate-400">Click to {{ expanded ? 'collapse' : 'expand' }}</p>
+      </div>
+    </div>
+    <span class="project-toggle">{{ expanded ? '−' : '+' }}</span>
   </div>
 
-  <!-- Expanded Content -->
+  <p class="mb-4 max-w-xl leading-7 text-slate-300">
+    {{ description }}
+  </p>
+
+  <div class="mb-2 flex flex-wrap gap-2">
+    <span *ngFor="let tech of techStack | slice:0:4" class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs uppercase tracking-[0.14em] text-slate-300">
+      {{ tech }}
+    </span>
+  </div>
+
   <div
     #expandableContent
     [style.maxHeight]="maxHeight"
-    class="overflow-hidden transition-all duration-500 mt-4"
+    class="mt-4 overflow-hidden transition-all duration-500"
     [ngClass]="{'opacity-100': expanded, 'opacity-0': !expanded}"
   >
-    <!-- Full Description -->
-    <p class="text-gray-200 mb-4 leading-relaxed">{{ description }}</p>
-
-    <!-- Tech Stack Section -->
-    <div class="mb-6">
-      <h4 class="text-gray-400 text-sm font-semibold mb-2">Tech Stack</h4>
+    <div class="mb-6 border-t border-white/10 pt-5">
+      <h4 class="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-slate-400">Tech Stack</h4>
       <div class="flex flex-wrap gap-3">
         <img
           *ngFor="let tech of techStack"
           [src]="techIconMap[tech]"
           [alt]="tech"
-          class="w-8 h-8 object-contain transition-all duration-300"
+          class="h-8 w-8 object-contain transition-all duration-300"
           title="{{ tech }}"
         />
       </div>
     </div>
 
-    <!-- Slideshow -->
-    <div class="relative w-full h-64 overflow-hidden rounded-2xl shadow-lg mb-6">
+    <div class="relative mb-6 h-64 w-full overflow-hidden rounded-3xl shadow-lg">
       <div
         class="absolute inset-0 flex transition-transform duration-500"
         [style.transform]="'translateX(-' + currentSlide * 100 + '%)'"
@@ -55,28 +52,26 @@
         <img
           *ngFor="let screenshot of screenshots"
           [src]="screenshot"
-          class="w-full flex-shrink-0 h-full object-cover rounded-2xl"
+          class="h-full w-full flex-shrink-0 object-cover"
         />
       </div>
 
-      <!-- Minimal Grey → Black Arrows -->
       <button
         (click)="$event.stopPropagation(); prevSlide()"
-        class="absolute left-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-black text-3xl font-bold z-10 transition-colors duration-300"
+        class="absolute left-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-slate-950/55 text-xl text-white transition hover:bg-slate-950/80"
         aria-label="Previous slide"
       >
-        ‹
+        &#8249;
       </button>
       <button
         (click)="$event.stopPropagation(); nextSlide()"
-        class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-black text-3xl font-bold z-10 transition-colors duration-300"
+        class="absolute right-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-slate-950/55 text-xl text-white transition hover:bg-slate-950/80"
         aria-label="Next slide"
       >
-        ›
+        &#8250;
       </button>
 
-      <!-- Pagination Dots -->
-      <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
+      <div class="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-2">
         <span
           *ngFor="let s of screenshots; let i = index"
           [ngClass]="{
@@ -87,33 +82,22 @@
       </div>
     </div>
 
-  <!-- Action Buttons -->
-<div class="flex flex-wrap gap-4 mt-4">
+    <div class="mt-4 flex flex-wrap gap-4">
+      <a *ngIf="liveLink"
+         [href]="liveLink"
+         target="_blank"
+         class="rounded-full border border-amber-300/30 bg-amber-300/10 px-6 py-3 transition hover:bg-white hover:text-slate-950"
+      >
+        View Live
+      </a>
 
-  <!-- View Live Button -->
-  <a *ngIf="liveLink"
-     [href]="liveLink"
-     target="_blank"
-     class="flex items-center gap-2 px-6 py-3 border border-blue-500 rounded-full transition hover:bg-white hover:text-black"
-  >
-    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-    </svg>
-    View Live
-  </a>
-
-  <!-- GitHub Button -->
-  <a *ngIf="githubLink"
-     [href]="githubLink"
-     target="_blank"
-     class="flex items-center gap-2 px-6 py-3 border border-white rounded-full transition hover:bg-gray-900 hover:text-white"
-  >
-    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 transition-colors duration-300" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577v-2.234c-3.338.724-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.744.083-.729.083-.729 1.205.084 1.84 1.236 1.84 1.236 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.304.762-1.604-2.665-.304-5.466-1.334-5.466-5.932 0-1.31.468-2.382 1.236-3.222-.124-.303-.536-1.524.117-3.176 0 0 1.008-.322 3.3 1.23a11.52 11.52 0 013.003-.404c1.02.005 2.045.137 3.003.404 2.291-1.552 3.297-1.23 3.297-1.23.655 1.653.243 2.874.12 3.176.77.84 1.234 1.912 1.234 3.222 0 4.61-2.804 5.625-5.475 5.921.43.372.813 1.102.813 2.222v3.293c0 .319.218.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
-    </svg>
-    GitHub
-  </a>
-
-</div>
+      <a *ngIf="githubLink"
+         [href]="githubLink"
+         target="_blank"
+         class="rounded-full border border-white/20 px-6 py-3 transition hover:bg-white hover:text-slate-950"
+      >
+        GitHub
+      </a>
+    </div>
   </div>
 </div>

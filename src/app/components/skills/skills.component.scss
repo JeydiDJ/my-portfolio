@@ -1,48 +1,81 @@
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.animate-fade-up {
-  animation: fadeUp 1s ease forwards;
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
 }
 
 .skill-card {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(15px);
-  padding: 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-  position: relative;
-
-  &:hover {
-    transform: translateY(-5px) scale(1.03);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.7);
-    background: rgba(255, 255, 255, 0.1);
-  }
-
-  img {
-    transition: transform 0.3s ease;
-  }
-
-  .tooltip {
-    transition: opacity 0.3s ease, transform 0.3s ease;
-  }
+  padding: 1.5rem;
+  border-radius: 1.75rem;
 }
 
-@keyframes floatSlow {
-  0%,100% { transform: translateY(0) translateX(0) rotate(0deg); }
-  20% { transform: translateY(-15px) translateX(10px) rotate(10deg); }
-  40% { transform: translateY(-30px) translateX(-10px) rotate(-10deg); }
-  60% { transform: translateY(-15px) translateX(5px) rotate(5deg); }
-  80% { transform: translateY(-25px) translateX(-5px) rotate(-5deg); }
-}
-.animate-float-slow {
-  animation: floatSlow 14s ease-in-out infinite;
+.skill-card-header h3 {
+  margin: 0;
+  font-size: 1.5rem;
 }
 
-.blob {
-  clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
-  border-radius: 35%;
+.skill-list {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.skill-row {
+  padding: 1rem;
+  border-radius: 1.25rem;
+}
+
+.skill-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.skill-name {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-weight: 600;
+}
+
+.skill-level {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: rgba(148, 163, 184, 0.9);
+}
+
+.skill-meter {
+  margin-top: 0.9rem;
+  height: 0.55rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.skill-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #facc15, #38bdf8);
+}
+
+.skills-orb-left {
+  top: 22%;
+  left: -3rem;
+  width: 18rem;
+  height: 18rem;
+}
+
+.skills-orb-right {
+  right: 0;
+  bottom: 8%;
+  width: 20rem;
+  height: 20rem;
+}
+
+@media (max-width: 960px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
 }

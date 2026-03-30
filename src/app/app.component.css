@@ -1,0 +1,88 @@
+.portfolio-shell {
+  position: relative;
+  min-height: 100vh;
+  background: #07111f;
+  color: #f8fafc;
+  overflow: clip;
+}
+
+.shell-content {
+  position: relative;
+  z-index: 1;
+}
+
+.shell-backdrop {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top, rgba(14, 24, 44, 0.2), transparent 40%),
+    linear-gradient(180deg, #07111f 0%, #0b1324 45%, #09111d 100%);
+}
+
+.shell-grid,
+.shell-glow,
+.shell-orb {
+  position: absolute;
+}
+
+.shell-grid {
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.07) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.65), transparent);
+}
+
+.shell-glow {
+  inset: -10%;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(250, 204, 21, 0.12), transparent 20%),
+    radial-gradient(circle at 80% 30%, rgba(56, 189, 248, 0.12), transparent 22%),
+    radial-gradient(circle at 50% 80%, rgba(15, 118, 110, 0.1), transparent 20%);
+  transform: translateY(calc(var(--scroll-y, 0px) * -0.03));
+}
+
+.shell-orb {
+  border-radius: 999px;
+  filter: blur(80px);
+  opacity: 0.4;
+}
+
+.shell-orb-one {
+  top: -10rem;
+  left: -6rem;
+  width: 24rem;
+  height: 24rem;
+  background: rgba(245, 158, 11, 0.2);
+  transform: translateY(calc(var(--scroll-y, 0px) * -0.04));
+}
+
+.shell-orb-two {
+  top: 24%;
+  right: -8rem;
+  width: 28rem;
+  height: 28rem;
+  background: rgba(14, 165, 233, 0.16);
+  transform: translateY(calc(var(--scroll-y, 0px) * -0.06));
+}
+
+.shell-orb-three {
+  bottom: -8rem;
+  left: 20%;
+  width: 22rem;
+  height: 22rem;
+  background: rgba(45, 212, 191, 0.14);
+  transform: translateY(calc(var(--scroll-y, 0px) * -0.05));
+}
+
+app-hero,
+app-about,
+app-projects,
+app-skills,
+app-contact {
+  display: block;
+  position: relative;
+}

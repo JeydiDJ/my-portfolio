@@ -1,59 +1,110 @@
-<section id="about" class="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-tr from-gray-900 via-gray-800 to-gray-700 px-6 py-20">
-
-  <!-- Floating shapes -->
-  <div class="absolute w-full h-full top-0 left-0 pointer-events-none overflow-hidden">
-    <span class="absolute w-96 h-96 bg-purple-600 opacity-10 rounded-full animate-float-slow -top-32 -left-32 blur-3xl"></span>
-    <span class="absolute w-80 h-80 bg-teal-500 opacity-10 rounded-full animate-float-slow top-1/3 right-1/4 blur-2xl"></span>
-    <span class="absolute w-96 h-96 bg-yellow-500 opacity-5 rounded-full animate-float-slow bottom-1/4 left-1/3 blur-3xl"></span>
+<section id="about" class="site-section about-section overflow-hidden text-slate-50">
+  <div class="about-backdrop" aria-hidden="true">
+    <span class="section-orb gold glow glow-sand float-soft-slow"></span>
+    <span class="section-orb sky glow glow-slate float-soft"></span>
+    <span class="grid-lines"></span>
   </div>
 
-  <!-- Content wrapper -->
-  <div class="relative z-10 flex flex-col md:flex-row items-center gap-16 max-w-7xl w-full">
-
-    <!-- Left: Text -->
-    <div class="md:w-1/2 flex flex-col justify-center space-y-6">
-      <h2 class="text-5xl md:text-6xl font-extrabold text-white animate-fade-up">
-        About Me
-      </h2>
-      <p class="text-lg md:text-xl text-gray-300 animate-fade-up delay-200">
-        I’m JD De Jesus, a Full Stack Web Developer passionate about creating web experiences that can contribute to the community. 
-        I love experimenting with modern technologies to bring ideas to life.
+  <div class="section-shell">
+    <div class="section-heading reveal">
+      <div class="section-kicker">Know More</div>
+      <h2>About Me</h2>
+      <p>
+        Freelance Web Developer with hands-on experience in full stack development, intranet systems,
+        business websites, and modern frontend implementation across client and organization-focused projects.
       </p>
-      <div class="flex items-center gap-3">
-        <span class="w-1 h-12 bg-teal-400 animate-pulse"></span>
-        <p class="text-gray-400">Curious, creative, and always coding.</p>
-      </div>
     </div>
 
-    <!-- Right: Morphing Blob Image -->
-    <div class="md:w-2/3 flex justify-center animate-fade-up delay-300 relative">
-      <div class="relative w-80 h-96 md:w-96 md:h-[36rem] overflow-hidden">
+    <article class="glass-panel reveal reveal-delay-1 about-sheet">
+      <div class="about-top">
+        <div class="about-portrait-col">
+          <div class="portrait-frame relative aspect-[4/5] overflow-hidden rounded-3xl border border-white/10 bg-slate-800/70">
+            <img src="assets/jd.jpg" alt="JD De Jesus portrait" class="h-full w-full object-cover">
+          </div>
+          <p class="availability-note">
+            Open to freelance opportunities and roles that strengthen my long-term foundation in web development.
+          </p>
+        </div>
 
-        <!-- Glow/Shadow inside blob -->
-        <div class="absolute inset-0 bg-purple-600 opacity-20 blur-3xl" style="clip-path: url(#blobClip);"></div>
+        <div class="about-main-col">
+          <div class="about-heading-block">
+            <p class="about-name-tag">John Dave De Jesus</p>
+            <h3>Freelance Web Developer</h3>
+            <p class="about-summary">
+              I aim to keep growing through challenging development work while contributing effectively
+              to the community, real products, internal systems, and client-facing web experiences.
+            </p>
+          </div>
 
-        <!-- Image clipped to blob -->
-        <img src="assets/jd.jpg" alt="JD De Jesus" class="w-full h-full object-cover" style="clip-path: url(#blobClip);">
+          <div class="about-contact-row">
+            <a
+              *ngFor="let link of contactLinks"
+              class="about-icon-link"
+              [href]="link.href"
+              [attr.aria-label]="link.label + ': ' + link.value"
+              [attr.title]="link.label + ': ' + link.value"
+              [attr.target]="link.type === 'email' || link.type === 'phone' ? null : '_blank'"
+              rel="noreferrer"
+            >
+              <ng-container [ngSwitch]="link.type">
+                <svg *ngSwitchCase="'email'" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4 6h16v12H4z" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                  <path d="m5 7 7 6 7-6" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                </svg>
+                <svg *ngSwitchCase="'phone'" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M6.6 3.8c.4-.4 1-.5 1.5-.2l2.2 1.3c.6.3.8 1 .6 1.6l-.7 2c-.1.4 0 .8.3 1.1l3.5 3.5c.3.3.7.4 1.1.3l2-.7c.6-.2 1.3 0 1.6.6l1.3 2.2c.3.5.2 1.1-.2 1.5l-1.5 1.5c-.7.7-1.8 1-2.8.7-2.6-.8-5-2.3-7-4.4-2.1-2-3.6-4.4-4.4-7-.3-1 .1-2.1.7-2.8z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                </svg>
+                <svg *ngSwitchCase="'linkedin'" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M6.5 8.5V18M6.5 6.3v.1M10.5 18v-5.1c0-1.8 1-2.9 2.5-2.9 1.4 0 2.2 1 2.2 2.9V18M4.5 8.5h4V18h-4zM15.2 8.5h3.8V18h-3.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                </svg>
+                <svg *ngSwitchCase="'github'" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 2.8a9.2 9.2 0 0 0-2.9 17.9c.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.2-3.4-1.2-.4-1-.9-1.3-.9-1.3-.8-.5 0-.5 0-.5.9.1 1.4.9 1.4.9.8 1.4 2.1 1 2.6.8.1-.6.3-1 .6-1.3-2.3-.3-4.7-1.1-4.7-5a4 4 0 0 1 1.1-2.8 3.7 3.7 0 0 1 .1-2.8s.8-.3 2.9 1.1a9.8 9.8 0 0 1 5.2 0c2-1.4 2.9-1.1 2.9-1.1.4.9.4 2 .1 2.8a4 4 0 0 1 1.1 2.8c0 3.9-2.4 4.7-4.7 5 .3.3.7.9.7 1.8v2.6c0 .3.2.6.7.5A9.2 9.2 0 0 0 12 2.8Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                </svg>
+              </ng-container>
+            </a>
+          </div>
 
-        <!-- SVG Clip Path with morphing animation -->
-        <svg width="0" height="0">
-          <defs>
-            <clipPath id="blobClip" clipPathUnits="objectBoundingBox">
-              <path d="M0.5,0 C0.7,0.05 1,0.2 0.9,0.5 C0.85,0.8 0.6,1 0.4,0.9 C0.15,0.8 0,0.5 0.15,0.2 C0.2,0.1 0.35,0 0.5,0 Z">
-                <animate attributeName="d" dur="12s" repeatCount="indefinite"
-                  values="
-                  M0.5,0 C0.7,0.05 1,0.2 0.9,0.5 C0.85,0.8 0.6,1 0.4,0.9 C0.15,0.8 0,0.5 0.15,0.2 C0.2,0.1 0.35,0 0.5,0 Z;
-                  M0.5,0 C0.72,0.08 1,0.25 0.88,0.55 C0.83,0.82 0.63,0.98 0.42,0.92 C0.18,0.85 0,0.5 0.12,0.18 C0.18,0.08 0.33,0 0.5,0 Z;
-                  M0.5,0 C0.68,0.05 1,0.22 0.9,0.5 C0.85,0.78 0.62,0.95 0.38,0.9 C0.15,0.82 0,0.5 0.15,0.18 C0.2,0.08 0.35,0 0.5,0 Z;
-                  M0.5,0 C0.7,0.05 1,0.2 0.9,0.5 C0.85,0.8 0.6,1 0.4,0.9 C0.15,0.8 0,0.5 0.15,0.2 C0.2,0.1 0.35,0 0.5,0 Z
-                  " />
-              </path>
-            </clipPath>
-          </defs>
-        </svg>
+          <div class="about-meta">
+            <div *ngFor="let stat of profileStats" class="about-meta-item">
+              <span>{{ stat.label }}</span>
+              <strong>{{ stat.value }}</strong>
+            </div>
+          </div>
 
+          <div class="about-highlights">
+            <p *ngFor="let strength of strengths">{{ strength }}</p>
+          </div>
+        </div>
       </div>
-    </div>
 
+      <button
+        type="button"
+        class="about-toggle"
+        (click)="toggleExpanded()"
+        [attr.aria-expanded]="isExpanded"
+      >
+        <span>{{ isExpanded ? 'Hide resume details' : 'Expand resume details' }}</span>
+        <span class="toggle-icon" [class.is-open]="isExpanded">&#8595;</span>
+      </button>
+
+      <div class="resume-panel" [class.is-open]="isExpanded">
+        <div class="resume-columns">
+          <section *ngFor="let section of resumeSections" class="resume-column">
+            <p class="resume-column-kicker">{{ section.eyebrow }}</p>
+            <h4>{{ section.title }}</h4>
+
+            <div class="resume-items">
+              <article *ngFor="let item of section.items" class="resume-item">
+                <div class="timeline-dot" aria-hidden="true"></div>
+                <div>
+                  <h5>{{ item.heading }}</h5>
+                  <p>{{ item.detail }}</p>
+                </div>
+              </article>
+            </div>
+          </section>
+        </div>
+      </div>
+    </article>
   </div>
 </section>

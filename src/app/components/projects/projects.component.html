@@ -1,85 +1,86 @@
-<section id="projects" class="relative min-h-screen bg-gradient-to-tr from-gray-900 via-gray-800 to-gray-700 text-white px-6 py-20 overflow-hidden">
+<section id="projects" class="site-section projects-section overflow-hidden text-white">
+  <span class="section-orb sky projects-orb-left float-soft"></span>
+  <span class="section-orb gold projects-orb-right float-soft-slow"></span>
 
-  <!-- Particle Background -->
-  <canvas #particleCanvas class="absolute inset-0 z-0 pointer-events-none"></canvas>
+  <canvas #particleCanvas class="projects-canvas" aria-hidden="true"></canvas>
 
-  <h2 class="text-4xl font-bold text-center mb-12 relative z-10">My Projects</h2>
+  <div class="section-shell">
+    <div class="section-heading reveal">
+      <div class="section-kicker">Selected Work</div>
+      <h2>Projects</h2>
+      <p>
+        A mix of community platforms, task tools, startup storefronts, and business websites built
+        with a modern frontend feel and practical full stack decisions.
+      </p>
+    </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl mx-auto relative z-10">
-    <!-- PHinder Card -->
-    <app-project-card
-      [name]="'PHinder'"
-      [logo]="'assets/project-icons/phinder-logo.png'"
-      [description]="'Community-driven PWA to help locate missing persons in Pampanga. Interactive Mapbox map with verified reports and real-time updates.'"
-      [techStack]="['Vue.js','HTML','CSS','Javascript', 'Firebase', 'Mapbox']"
-      [screenshots]="['assets/phinder-pics/phinder1.png','assets/phinder-pics/phinder2.png','assets/phinder-pics/phinder3.png','assets/phinder-pics/phinder4.png','assets/phinder-pics/phinder5.png','assets/phinder-pics/phinder6.png','assets/phinder-pics/phinder7.png','assets/phinder-pics/phinder8.png']"
-      [liveLink]="'https://missing-persons-tracker.web.app/'"
-      [githubLink]="'https://github.com/JeydiDJ/phinder'"
-    ></app-project-card>
+    <div class="projects-grid reveal reveal-delay-1">
+      <app-project-card
+        [name]="'PHinder'"
+        [logo]="'assets/project-icons/phinder-logo.png'"
+        [description]="'Community-driven PWA to help locate missing persons in Pampanga. Interactive Mapbox map with verified reports and real-time updates.'"
+        [techStack]="['Vue.js','HTML','CSS','Javascript', 'Firebase', 'Mapbox']"
+        [screenshots]="['assets/phinder-pics/phinder1.png','assets/phinder-pics/phinder2.png','assets/phinder-pics/phinder3.png','assets/phinder-pics/phinder4.png','assets/phinder-pics/phinder5.png','assets/phinder-pics/phinder6.png','assets/phinder-pics/phinder7.png','assets/phinder-pics/phinder8.png']"
+        [liveLink]="'https://missing-persons-tracker.web.app/'"
+        [githubLink]="'https://github.com/JeydiDJ/phinder'"
+      ></app-project-card>
 
-    <!-- TaskDone Card -->
-    <app-project-card
-      [name]="'TaskDone'"
-      [logo]="'assets/project-icons/taskdone-logo.png'"
-      [description]="'Modern task management PWA with visual progress charts, and mobile-first design. Helps users stay organized and focused.'"
-      [techStack]="['Angular','HTML','Tailwind','TypeScript','MongoDB']"
-      [screenshots]="['assets/taskdone-pics/taskdone1.png','assets/taskdone-pics/taskdone2.png','assets/taskdone-pics/taskdone3.png','assets/taskdone-pics/taskdone4.png','assets/taskdone-pics/taskdone5.png','assets/taskdone-pics/taskdone6.png','assets/taskdone-pics/taskdone7.png','assets/taskdone-pics/taskdone8.png','assets/taskdone-pics/taskdone9.png','assets/taskdone-pics/taskdone10.png','assets/taskdone-pics/taskdone11.png','assets/taskdone-pics/taskdone12.png', 'assets/taskdone-pics/taskdone13.png']"
-      [liveLink]="'https://taskdone.digital'"
-      [githubLink]="'https://github.com/JeydiDJ/TaskDone/tree/main'"
-    ></app-project-card>
-    
-    <!-- TILES&MORE Card -->
-    <app-project-card
-      [name]="'TILES & MORE'"
-      [logo]="'assets/project-icons/tilesandmore-logo.png'"
-      [description]="'A website tailored using WIX for a Tile Distributor Company located in Mexico Pampanga.'"
-      [techStack]="['Wix']"
-      [screenshots]="['assets/tilesandmore-pics/tilesandmore1.png','assets/tilesandmore-pics/tilesandmore2.png','assets/tilesandmore-pics/tilesandmore3.png','assets/tilesandmore-pics/tilesandmore4.png','assets/tilesandmore-pics/tilesandmore5.png','assets/tilesandmore-pics/tilesandmore6.png','assets/tilesandmore-pics/tilesandmore7.png']"
-      [liveLink]="'https://infotilesandmore.wixsite.com/website'"
-    ></app-project-card>
+      <app-project-card
+        [name]="'TaskDone'"
+        [logo]="'assets/project-icons/taskdone-logo.png'"
+        [description]="'Modern task management PWA with visual progress charts, and mobile-first design. Helps users stay organized and focused.'"
+        [techStack]="['Angular','HTML','Tailwind','TypeScript','MongoDB']"
+        [screenshots]="['assets/taskdone-pics/taskdone1.png','assets/taskdone-pics/taskdone2.png','assets/taskdone-pics/taskdone3.png','assets/taskdone-pics/taskdone4.png','assets/taskdone-pics/taskdone5.png','assets/taskdone-pics/taskdone6.png','assets/taskdone-pics/taskdone7.png','assets/taskdone-pics/taskdone8.png','assets/taskdone-pics/taskdone9.png','assets/taskdone-pics/taskdone10.png','assets/taskdone-pics/taskdone11.png','assets/taskdone-pics/taskdone12.png', 'assets/taskdone-pics/taskdone13.png']"
+        [liveLink]="'https://taskdone.digital'"
+        [githubLink]="'https://github.com/JeydiDJ/TaskDone/tree/main'"
+      ></app-project-card>
 
-    <!-- NearBuy Card -->
-    <app-project-card
-      [name]="'NearBuy'"
-      [logo]="'assets/project-icons/nearbuy-logo.png'"
-      [description]="'A neighborhood marketplace platform that connects local buyers and sellers. Features product listings, user authentication, and real-time data powered by Supabase.'"
-      [techStack]="['React','HTML','Tailwind','Javascript','Supabase']"
-      [screenshots]="[
-        'assets/nearbuy-pics/nearbuy1.png',
-        'assets/nearbuy-pics/nearbuy2.png',
-        'assets/nearbuy-pics/nearbuy3.png',
-        'assets/nearbuy-pics/nearbuy4.png',
-        'assets/nearbuy-pics/nearbuy5.png',
-        'assets/nearbuy-pics/nearbuy6.png',
-        'assets/nearbuy-pics/nearbuy7.png',
-      ]"
-      [liveLink]="'https://neighborhood-marketplace.vercel.app/'"
-      [githubLink]="'https://github.com/JeydiDJ/neighborhood-marketplace'"
-    ></app-project-card>
+      <app-project-card
+        [name]="'TILES & MORE'"
+        [logo]="'assets/project-icons/tilesandmore-logo.png'"
+        [description]="'A website tailored using WIX for a tile distributor company located in Mexico, Pampanga.'"
+        [techStack]="['Wix']"
+        [screenshots]="['assets/tilesandmore-pics/tilesandmore1.png','assets/tilesandmore-pics/tilesandmore2.png','assets/tilesandmore-pics/tilesandmore3.png','assets/tilesandmore-pics/tilesandmore4.png','assets/tilesandmore-pics/tilesandmore5.png','assets/tilesandmore-pics/tilesandmore6.png','assets/tilesandmore-pics/tilesandmore7.png']"
+        [liveLink]="'https://infotilesandmore.wixsite.com/website'"
+      ></app-project-card>
 
-    <!-- Kane & Kaori Card -->
-    <app-project-card
-      [name]="'Kane & Kaori'"
-      [logo]="'assets/project-icons/kaneandkaori-logo.png'"
-      [description]="'A modern fullstack e-commerce website for a startup perfume brand in the Philippines. Features product browsing, dynamic listings, checkout, and a clean, luxury-inspired UI with seamless user experience.'"
-      [techStack]="['Nextjs','React','HTML','Tailwind','TypeScript','Supabase']"
-      [screenshots]="[
-        'assets/kaneandkaori-pics/kaneandkaori1.png',
-        'assets/kaneandkaori-pics/kaneandkaori2.png',
-        'assets/kaneandkaori-pics/kaneandkaori3.png',
-        'assets/kaneandkaori-pics/kaneandkaori4.png',
-        'assets/kaneandkaori-pics/kaneandkaori5.png',
-        'assets/kaneandkaori-pics/kaneandkaori6.png',
-        'assets/kaneandkaori-pics/kaneandkaori7.png',
-        'assets/kaneandkaori-pics/kaneandkaori8.png',
-        'assets/kaneandkaori-pics/kaneandkaori9.png'
-      ]"
-      [liveLink]="'https://kaneandkaori.vercel.app/'"
-      [githubLink]="'https://github.com/JeydiDJ/kaneandkaori'"
-    ></app-project-card>
+      <app-project-card
+        [name]="'NearBuy'"
+        [logo]="'assets/project-icons/nearbuy-logo.png'"
+        [description]="'A neighborhood marketplace platform connecting local buyers and sellers with listings, authentication, and real-time data powered by Supabase.'"
+        [techStack]="['React','HTML','Tailwind','Javascript','Supabase']"
+        [screenshots]="[
+          'assets/nearbuy-pics/nearbuy1.png',
+          'assets/nearbuy-pics/nearbuy2.png',
+          'assets/nearbuy-pics/nearbuy3.png',
+          'assets/nearbuy-pics/nearbuy4.png',
+          'assets/nearbuy-pics/nearbuy5.png',
+          'assets/nearbuy-pics/nearbuy6.png',
+          'assets/nearbuy-pics/nearbuy7.png'
+        ]"
+        [liveLink]="'https://neighborhood-marketplace.vercel.app/'"
+        [githubLink]="'https://github.com/JeydiDJ/neighborhood-marketplace'"
+      ></app-project-card>
 
-
-
-
+      <app-project-card
+        [name]="'Kane & Kaori'"
+        [logo]="'assets/project-icons/kaneandkaori-logo.png'"
+        [description]="'A modern full stack e-commerce website for a startup perfume brand with dynamic listings, checkout, and a clean luxury-inspired experience.'"
+        [techStack]="['Nextjs','React','HTML','Tailwind','TypeScript','Supabase']"
+        [screenshots]="[
+          'assets/kaneandkaori-pics/kaneandkaori1.png',
+          'assets/kaneandkaori-pics/kaneandkaori2.png',
+          'assets/kaneandkaori-pics/kaneandkaori3.png',
+          'assets/kaneandkaori-pics/kaneandkaori4.png',
+          'assets/kaneandkaori-pics/kaneandkaori5.png',
+          'assets/kaneandkaori-pics/kaneandkaori6.png',
+          'assets/kaneandkaori-pics/kaneandkaori7.png',
+          'assets/kaneandkaori-pics/kaneandkaori8.png',
+          'assets/kaneandkaori-pics/kaneandkaori9.png'
+        ]"
+        [liveLink]="'https://kaneandkaori.vercel.app/'"
+        [githubLink]="'https://github.com/JeydiDJ/kaneandkaori'"
+      ></app-project-card>
+    </div>
   </div>
 </section>

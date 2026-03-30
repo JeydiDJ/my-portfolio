@@ -1,90 +1,79 @@
-<section id="contact" class="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white px-6 py-20 relative overflow-hidden">
+<section id="contact" class="site-section contact-section overflow-hidden text-white">
+  <span class="section-orb gold contact-orb-left float-soft"></span>
+  <span class="section-orb teal contact-orb-right float-soft-slow"></span>
 
-  <!-- Background glow -->
-  <div class="absolute w-96 h-96 bg-blue-500/20 blur-3xl rounded-full top-10 left-10 animate-pulse"></div>
-  <div class="absolute w-96 h-96 bg-purple-500/20 blur-3xl rounded-full bottom-10 right-10 animate-pulse"></div>
+  <div class="section-shell">
+    <div class="section-heading reveal">
+      <div class="section-kicker">Let's Build</div>
+      <h2>Contact</h2>
+      <p>
+        If you have a project in mind, want a portfolio refresh, or need a modern web build, I’m
+        open to collaborations, freelance work, and new opportunities.
+      </p>
+    </div>
 
-  <!-- Content -->
-  <div class="relative z-10 max-w-5xl mx-auto">
+    <div class="contact-grid reveal reveal-delay-1">
+      <div class="glass-panel contact-panel">
+        <form (submit)="sendEmail($event)" class="contact-form">
+          <input
+            type="text"
+            name="user_name"
+            placeholder="Your Name"
+            required
+            class="contact-input"
+          />
 
-    <!-- Heading -->
-    <h2 class="text-4xl md:text-5xl font-bold text-center mb-4 animate-fade-up">
-      Let’s Work Together
-    </h2>
+          <input
+            type="email"
+            name="user_email"
+            placeholder="Your Email"
+            required
+            class="contact-input"
+          />
 
-    <p class="text-center text-gray-400 mb-12 max-w-xl mx-auto animate-fade-up delay-100">
-      I build fast, modern, and scalable web applications using various technologies. If you have a project in mind or want to discuss opportunities, feel free to reach out. I’m always open to new collaborations and challenges.  
-    </p>
+          <textarea
+            name="message"
+            rows="6"
+            placeholder="Tell me about your project"
+            required
+            class="contact-input contact-textarea"
+          ></textarea>
 
-    <!-- Glass Card -->
-    <div class="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-8 shadow-xl animate-fade-up delay-200">
+          <button
+            type="submit"
+            [disabled]="isLoading"
+            class="contact-submit"
+          >
+            {{ isLoading ? 'Sending...' : 'Send Message' }}
+          </button>
+        </form>
 
-     <form (submit)="sendEmail($event)" class="grid md:grid-cols-2 gap-6">
-
-  <!-- Name -->
-  <input 
-    type="text" 
-    name="user_name"
-    placeholder="Your Name"
-    required
-    class="col-span-1 p-3 rounded-lg bg-gray-900/60 border border-gray-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition"
-  />
-
-  <!-- Email -->
-  <input 
-    type="email" 
-    name="user_email"
-    placeholder="Your Email"
-    required
-    class="col-span-1 p-3 rounded-lg bg-gray-900/60 border border-gray-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition"
-  />
-
-  <!-- Message -->
-  <textarea 
-    name="message"
-    rows="5"
-    placeholder="Your Message"
-    required
-    class="md:col-span-2 p-3 rounded-lg bg-gray-900/60 border border-gray-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition"
-  ></textarea>
-
-  <!-- Button -->
-  <button 
-    type="submit"
-    [disabled]="isLoading"
-    class="md:col-span-2 bg-gradient-to-r from-cyan-400 to-indigo-500 hover:opacity-90 transition p-3 rounded-lg font-semibold shadow-lg hover:shadow-cyan-500/30"
-  >
-    {{ isLoading ? 'Sending...' : 'Send Message' }}
-  </button>
-
-</form>
-
-<!-- Success Message -->
-<p *ngIf="isSent" class="text-green-400 text-center mt-6">
-  Message sent! I’ll get back to you soon.
-</p>
-
-      <!-- Divider -->
-      <div class="my-8 border-t border-white/10"></div>
-
-      <!-- Contact Info -->
-      <div class="flex flex-col md:flex-row justify-between items-center text-gray-400 text-sm gap-4">
-
-        <p>Philippines</p>
-
-        <p>
-          <a href="mailto:johndave.dejesus@email.com" class="hover:text-blue-400 transition">
-            johndave.dejesus@gmail.com
-          </a>
+        <p *ngIf="isSent" class="contact-success">
+          Message sent. I’ll get back to you soon.
         </p>
-
-        <div class="flex gap-5">
-          <a href="https://github.com/JeydiDJ" class="hover:text-blue-400 transition">GitHub</a>
-          <a href="https://www.linkedin.com/in/john-dave-de-jesus-502b17207/" class="hover:text-blue-400 transition">LinkedIn</a>
-        </div>
-
       </div>
 
+      <div class="contact-side">
+        <div class="surface-card contact-info-card">
+          <span>Location</span>
+          <strong>Philippines</strong>
+        </div>
+
+        <a href="mailto:johndave.dejesus@gmail.com" class="surface-card contact-info-card">
+          <span>Email</span>
+          <strong>johndave.dejesus@gmail.com</strong>
+        </a>
+
+        <a href="https://github.com/JeydiDJ" target="_blank" rel="noreferrer" class="surface-card contact-info-card">
+          <span>GitHub</span>
+          <strong>github.com/JeydiDJ</strong>
+        </a>
+
+        <a href="https://www.linkedin.com/in/john-dave-de-jesus-502b17207/" target="_blank" rel="noreferrer" class="surface-card contact-info-card">
+          <span>LinkedIn</span>
+          <strong>john-dave-de-jesus-502b17207</strong>
+        </a>
+      </div>
     </div>
   </div>
 </section>

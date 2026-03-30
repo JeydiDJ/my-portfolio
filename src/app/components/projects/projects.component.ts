@@ -60,13 +60,14 @@ export class ProjectsComponent implements AfterViewInit {
   @HostListener('window:resize')
   resizeCanvas(): void {
     const canvas = this.canvasRef.nativeElement;
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    const parent = canvas.parentElement;
+    canvas.width = parent?.clientWidth || window.innerWidth;
+    canvas.height = parent?.clientHeight || window.innerHeight;
   }
 
   private initParticles(): void {
     const canvas = this.canvasRef.nativeElement;
-    const numberOfParticles = Math.floor(canvas.width / 10);
+    const numberOfParticles = Math.max(Math.floor((canvas.width * canvas.height) / 18000), 30);
     this.particlesArray = [];
     for (let i = 0; i < numberOfParticles; i++) {
       this.particlesArray.push(new Particle(canvas.width, canvas.height));
