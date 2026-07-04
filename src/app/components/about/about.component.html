@@ -1,110 +1,63 @@
-<section id="about" class="site-section about-section overflow-hidden text-slate-50">
-  <div class="about-backdrop" aria-hidden="true">
-    <span class="section-orb gold glow glow-sand float-soft-slow"></span>
-    <span class="section-orb sky glow glow-slate float-soft"></span>
-    <span class="grid-lines"></span>
-  </div>
-
+<section id="about" class="site-section about-section">
   <div class="section-shell">
-    <div class="section-heading reveal">
-      <div class="section-kicker">Know More</div>
-      <h2>About Me</h2>
-      <p>
-        Freelance Web Developer with hands-on experience in full stack development, intranet systems,
-        business websites, and modern frontend implementation across client and organization-focused projects.
-      </p>
-    </div>
+    <div class="about-grid terminal-panel reveal">
+      <div class="about-intro">
+        <p class="section-command"><span class="prompt">john@dejesus:~/portfolio$</span> cat about.md<span class="terminal-caret" aria-hidden="true"></span></p>
+        <h2>About</h2>
+        <p class="about-lead">
+          I work across frontend architecture, backend integration, database-driven systems, and
+          modernization efforts for teams that need software to hold up in real use.
+        </p>
 
-    <article class="glass-panel reveal reveal-delay-1 about-sheet">
-      <div class="about-top">
-        <div class="about-portrait-col">
-          <div class="portrait-frame relative aspect-[4/5] overflow-hidden rounded-3xl border border-white/10 bg-slate-800/70">
-            <img src="assets/jd.jpg" alt="JD De Jesus portrait" class="h-full w-full object-cover">
+        <div class="about-stats">
+          <div *ngFor="let stat of profileStats" class="about-stat">
+            <span>{{ stat.label }}</span>
+            <strong>{{ stat.value }}</strong>
           </div>
-          <p class="availability-note">
-            Open to freelance opportunities and roles that strengthen my long-term foundation in web development.
-          </p>
         </div>
 
-        <div class="about-main-col">
-          <div class="about-heading-block">
-            <p class="about-name-tag">John Dave De Jesus</p>
-            <h3>Freelance Web Developer</h3>
-            <p class="about-summary">
-              I aim to keep growing through challenging development work while contributing effectively
-              to the community, real products, internal systems, and client-facing web experiences.
-            </p>
-          </div>
-
-          <div class="about-contact-row">
-            <a
-              *ngFor="let link of contactLinks"
-              class="about-icon-link"
-              [href]="link.href"
-              [attr.aria-label]="link.label + ': ' + link.value"
-              [attr.title]="link.label + ': ' + link.value"
-              [attr.target]="link.type === 'email' || link.type === 'phone' ? null : '_blank'"
-              rel="noreferrer"
-            >
-              <ng-container [ngSwitch]="link.type">
-                <svg *ngSwitchCase="'email'" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M4 6h16v12H4z" fill="none" stroke="currentColor" stroke-width="1.8"/>
-                  <path d="m5 7 7 6 7-6" fill="none" stroke="currentColor" stroke-width="1.8"/>
-                </svg>
-                <svg *ngSwitchCase="'phone'" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M6.6 3.8c.4-.4 1-.5 1.5-.2l2.2 1.3c.6.3.8 1 .6 1.6l-.7 2c-.1.4 0 .8.3 1.1l3.5 3.5c.3.3.7.4 1.1.3l2-.7c.6-.2 1.3 0 1.6.6l1.3 2.2c.3.5.2 1.1-.2 1.5l-1.5 1.5c-.7.7-1.8 1-2.8.7-2.6-.8-5-2.3-7-4.4-2.1-2-3.6-4.4-4.4-7-.3-1 .1-2.1.7-2.8z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-                </svg>
-                <svg *ngSwitchCase="'linkedin'" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M6.5 8.5V18M6.5 6.3v.1M10.5 18v-5.1c0-1.8 1-2.9 2.5-2.9 1.4 0 2.2 1 2.2 2.9V18M4.5 8.5h4V18h-4zM15.2 8.5h3.8V18h-3.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-                </svg>
-                <svg *ngSwitchCase="'github'" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M12 2.8a9.2 9.2 0 0 0-2.9 17.9c.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.2-3.4-1.2-.4-1-.9-1.3-.9-1.3-.8-.5 0-.5 0-.5.9.1 1.4.9 1.4.9.8 1.4 2.1 1 2.6.8.1-.6.3-1 .6-1.3-2.3-.3-4.7-1.1-4.7-5a4 4 0 0 1 1.1-2.8 3.7 3.7 0 0 1 .1-2.8s.8-.3 2.9 1.1a9.8 9.8 0 0 1 5.2 0c2-1.4 2.9-1.1 2.9-1.1.4.9.4 2 .1 2.8a4 4 0 0 1 1.1 2.8c0 3.9-2.4 4.7-4.7 5 .3.3.7.9.7 1.8v2.6c0 .3.2.6.7.5A9.2 9.2 0 0 0 12 2.8Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-                </svg>
-              </ng-container>
-            </a>
-          </div>
-
-          <div class="about-meta">
-            <div *ngFor="let stat of profileStats" class="about-meta-item">
-              <span>{{ stat.label }}</span>
-              <strong>{{ stat.value }}</strong>
-            </div>
-          </div>
-
-          <div class="about-highlights">
-            <p *ngFor="let strength of strengths">{{ strength }}</p>
-          </div>
+        <div class="about-links">
+          <a
+            *ngFor="let link of contactLinks"
+            [href]="link.href"
+            [attr.target]="link.type === 'email' || link.type === 'phone' ? null : '_blank'"
+            rel="noreferrer"
+          >
+            {{ link.label }}
+          </a>
         </div>
       </div>
 
-      <button
-        type="button"
-        class="about-toggle"
-        (click)="toggleExpanded()"
-        [attr.aria-expanded]="isExpanded"
-      >
-        <span>{{ isExpanded ? 'Hide resume details' : 'Expand resume details' }}</span>
-        <span class="toggle-icon" [class.is-open]="isExpanded">&#8595;</span>
-      </button>
+      <div class="about-content">
+        <div class="about-strengths">
+          <p *ngFor="let strength of strengths">{{ strength }}</p>
+        </div>
 
-      <div class="resume-panel" [class.is-open]="isExpanded">
-        <div class="resume-columns">
-          <section *ngFor="let section of resumeSections" class="resume-column">
-            <p class="resume-column-kicker">{{ section.eyebrow }}</p>
-            <h4>{{ section.title }}</h4>
+        <button
+          type="button"
+          class="about-toggle"
+          (click)="toggleExpanded()"
+          [attr.aria-expanded]="isExpanded"
+        >
+          <span>{{ isExpanded ? 'hide --details' : 'show --details' }}</span>
+          <span class="toggle-icon" [class.is-open]="isExpanded">v</span>
+        </button>
 
-            <div class="resume-items">
-              <article *ngFor="let item of section.items" class="resume-item">
-                <div class="timeline-dot" aria-hidden="true"></div>
-                <div>
-                  <h5>{{ item.heading }}</h5>
+        <div class="resume-panel" [class.is-open]="isExpanded">
+          <div class="resume-columns">
+            <section *ngFor="let section of resumeSections" class="resume-column">
+              <h3>{{ section.title }}</h3>
+
+              <div class="resume-items">
+                <article *ngFor="let item of section.items" class="resume-item">
+                  <h4>{{ item.heading }}</h4>
                   <p>{{ item.detail }}</p>
-                </div>
-              </article>
-            </div>
-          </section>
+                </article>
+              </div>
+            </section>
+          </div>
         </div>
       </div>
-    </article>
+    </div>
   </div>
 </section>

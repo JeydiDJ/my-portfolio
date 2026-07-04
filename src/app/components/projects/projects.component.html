@@ -1,18 +1,15 @@
-<section id="projects" class="site-section projects-section overflow-hidden text-white">
-  <span class="section-orb sky projects-orb-left float-soft"></span>
-  <span class="section-orb gold projects-orb-right float-soft-slow"></span>
-
+<section id="projects" class="site-section projects-section">
   <div class="section-shell">
     <div class="section-heading reveal">
-      <div class="section-kicker">Selected Work</div>
-      <h2>Projects</h2>
+      <p class="section-command"><span class="prompt">john@dejesus:~/portfolio$</span> ls projects<span class="terminal-caret" aria-hidden="true"></span></p>
+      <h2>Project output</h2>
       <p>
-        A mix of community platforms, task tools, startup storefronts, and business websites built
-        with a modern frontend feel and practical full stack decisions.
+        Production-minded builds across public platforms, startup products, task tools, and client
+        websites presented like a working project log.
       </p>
     </div>
 
-    <div class="projects-grid reveal reveal-delay-1">
+    <div class="projects-list reveal reveal-delay-1">
       <app-project-card
         [name]="'PHinder'"
         [logo]="'assets/project-icons/phinder-logo.png'"
@@ -26,7 +23,7 @@
       <app-project-card
         [name]="'TaskDone'"
         [logo]="'assets/project-icons/taskdone-logo.png'"
-        [description]="'Modern task management PWA with visual progress charts, and mobile-first design. Helps users stay organized and focused.'"
+        [description]="'Modern task management PWA with visual progress views and mobile-first workflows designed to help users stay organized and focused.'"
         [techStack]="['Angular','HTML','Tailwind','TypeScript','MongoDB']"
         [screenshots]="['assets/taskdone-pics/taskdone1.png','assets/taskdone-pics/taskdone2.png','assets/taskdone-pics/taskdone3.png','assets/taskdone-pics/taskdone4.png','assets/taskdone-pics/taskdone5.png','assets/taskdone-pics/taskdone6.png','assets/taskdone-pics/taskdone7.png','assets/taskdone-pics/taskdone8.png','assets/taskdone-pics/taskdone9.png','assets/taskdone-pics/taskdone10.png','assets/taskdone-pics/taskdone11.png','assets/taskdone-pics/taskdone12.png', 'assets/taskdone-pics/taskdone13.png']"
         [liveLink]="'https://taskdone.digital'"
@@ -36,7 +33,7 @@
       <app-project-card
         [name]="'TILES & MORE'"
         [logo]="'assets/project-icons/tilesandmore-logo.png'"
-        [description]="'A website tailored using WIX for a tile distributor company located in Mexico, Pampanga.'"
+        [description]="'Business website tailored in WIX for a tile distributor in Mexico, Pampanga, with content management and a simple commercial presentation.'"
         [techStack]="['Wix']"
         [screenshots]="['assets/tilesandmore-pics/tilesandmore1.png','assets/tilesandmore-pics/tilesandmore2.png','assets/tilesandmore-pics/tilesandmore3.png','assets/tilesandmore-pics/tilesandmore4.png','assets/tilesandmore-pics/tilesandmore5.png','assets/tilesandmore-pics/tilesandmore6.png','assets/tilesandmore-pics/tilesandmore7.png']"
         [liveLink]="'https://infotilesandmore.wixsite.com/website'"
@@ -45,7 +42,7 @@
       <app-project-card
         [name]="'NearBuy'"
         [logo]="'assets/project-icons/nearbuy-logo.png'"
-        [description]="'A neighborhood marketplace platform connecting local buyers and sellers with listings, authentication, and real-time data powered by Supabase.'"
+        [description]="'Neighborhood marketplace platform connecting local buyers and sellers through listings, authentication, and real-time data powered by Supabase.'"
         [techStack]="['React','HTML','Tailwind','Javascript','Supabase']"
         [screenshots]="[
           'assets/nearbuy-pics/nearbuy1.png',
@@ -63,7 +60,7 @@
       <app-project-card
         [name]="'Kane & Kaori'"
         [logo]="'assets/project-icons/kaneandkaori-logo.png'"
-        [description]="'A modern full stack e-commerce website for a startup perfume brand with dynamic listings, checkout, and a clean luxury-inspired experience.'"
+        [description]="'Full-stack e-commerce website for a startup perfume brand with dynamic listings, checkout, and a clean luxury-oriented storefront experience.'"
         [techStack]="['Nextjs','React','HTML','Tailwind','TypeScript','Supabase']"
         [screenshots]="[
           'assets/kaneandkaori-pics/kaneandkaori1.png',

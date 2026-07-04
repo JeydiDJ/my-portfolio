@@ -1,24 +1,45 @@
-<section id="contact" class="site-section contact-section overflow-hidden text-white">
-  <span class="section-orb gold contact-orb-left float-soft"></span>
-  <span class="section-orb teal contact-orb-right float-soft-slow"></span>
-
+<section id="contact" class="site-section contact-section">
   <div class="section-shell">
-    <div class="section-heading reveal">
-      <div class="section-kicker">Let's Build</div>
-      <h2>Contact</h2>
-      <p>
-        If you have a project in mind, want a portfolio refresh, or need a modern web build, I’m
-        open to collaborations, freelance work, and new opportunities.
-      </p>
-    </div>
+    <div class="contact-grid">
+      <div class="contact-copy reveal terminal-subpanel">
+        <p class="section-command"><span class="prompt">john@dejesus:~/portfolio$</span> ./contact --open<span class="terminal-caret" aria-hidden="true"></span></p>
+        <h2>Send a message</h2>
+        <p>
+          If you need a developer for a product build, system modernization effort, or a more
+          polished frontend experience, I’m open to new opportunities and freelance work.
+        </p>
 
-    <div class="contact-grid reveal reveal-delay-1">
-      <div class="glass-panel contact-panel">
+        <div class="contact-links">
+          <div class="contact-info-card">
+            <span>location</span>
+            <strong>Philippines</strong>
+          </div>
+
+          <a href="mailto:johndave.dejesus@gmail.com" class="contact-info-card">
+            <span>email</span>
+            <strong>johndave.dejesus@gmail.com</strong>
+          </a>
+
+          <a href="https://github.com/JeydiDJ" target="_blank" rel="noreferrer" class="contact-info-card">
+            <span>github</span>
+            <strong>github.com/JeydiDJ</strong>
+          </a>
+
+          <a href="https://www.linkedin.com/in/john-dave-de-jesus-502b17207/" target="_blank" rel="noreferrer" class="contact-info-card">
+            <span>linkedin</span>
+            <strong>john-dave-de-jesus-502b17207</strong>
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-panel reveal reveal-delay-1">
+        <p class="terminal-line"><span class="prompt">john@dejesus:~/portfolio$</span> send-message.sh<span class="terminal-caret" aria-hidden="true"></span></p>
+
         <form (submit)="sendEmail($event)" class="contact-form">
           <input
             type="text"
             name="user_name"
-            placeholder="Your Name"
+            placeholder="your_name"
             required
             class="contact-input"
           />
@@ -26,7 +47,7 @@
           <input
             type="email"
             name="user_email"
-            placeholder="Your Email"
+            placeholder="your_email"
             required
             class="contact-input"
           />
@@ -34,7 +55,7 @@
           <textarea
             name="message"
             rows="6"
-            placeholder="Tell me about your project"
+            placeholder="message"
             required
             class="contact-input contact-textarea"
           ></textarea>
@@ -44,35 +65,13 @@
             [disabled]="isLoading"
             class="contact-submit"
           >
-            {{ isLoading ? 'Sending...' : 'Send Message' }}
+            {{ isLoading ? 'sending...' : 'execute send' }}
           </button>
         </form>
 
         <p *ngIf="isSent" class="contact-success">
-          Message sent. I’ll get back to you soon.
+          status: message sent
         </p>
-      </div>
-
-      <div class="contact-side">
-        <div class="surface-card contact-info-card">
-          <span>Location</span>
-          <strong>Philippines</strong>
-        </div>
-
-        <a href="mailto:johndave.dejesus@gmail.com" class="surface-card contact-info-card">
-          <span>Email</span>
-          <strong>johndave.dejesus@gmail.com</strong>
-        </a>
-
-        <a href="https://github.com/JeydiDJ" target="_blank" rel="noreferrer" class="surface-card contact-info-card">
-          <span>GitHub</span>
-          <strong>github.com/JeydiDJ</strong>
-        </a>
-
-        <a href="https://www.linkedin.com/in/john-dave-de-jesus-502b17207/" target="_blank" rel="noreferrer" class="surface-card contact-info-card">
-          <span>LinkedIn</span>
-          <strong>john-dave-de-jesus-502b17207</strong>
-        </a>
       </div>
     </div>
   </div>

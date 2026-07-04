@@ -1,31 +1,4 @@
-.projects-section {
-  position: relative;
-}
-
-.projects-grid {
-  position: relative;
-  z-index: 1;
+.projects-list {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.5rem;
-}
-
-.projects-orb-left {
-  top: 18%;
-  left: 2%;
-  width: 18rem;
-  height: 18rem;
-}
-
-.projects-orb-right {
-  right: -2rem;
-  bottom: 12%;
-  width: 20rem;
-  height: 20rem;
-}
-
-@media (max-width: 900px) {
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
+  gap: 1rem;
 }

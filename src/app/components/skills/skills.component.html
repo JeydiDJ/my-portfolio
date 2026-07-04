@@ -1,35 +1,28 @@
-<section id="skills" class="site-section skills-section overflow-hidden text-white">
-  <span class="section-orb teal skills-orb-left float-soft"></span>
-  <span class="section-orb sky skills-orb-right float-soft-slow"></span>
-
+<section id="skills" class="site-section skills-section">
   <div class="section-shell">
     <div class="section-heading reveal">
-      <div class="section-kicker">Stack & Workflow</div>
-      <h2>Skills</h2>
+      <p class="section-command"><span class="prompt">john@dejesus:~/portfolio$</span> ./stack --show<span class="terminal-caret" aria-hidden="true"></span></p>
+      <h2>Capabilities</h2>
       <p>
-        My toolkit covers the full path from interface design and frontend engineering to backend
-        integrations, databases, and practical shipping workflows.
+        The stack below reflects the work I’m doing most often: application interfaces, backend and
+        data integration, and delivery across business and government environments.
       </p>
     </div>
 
     <div class="skills-grid reveal reveal-delay-1">
-      <div *ngFor="let category of skillCategories" class="skill-card glass-panel">
+      <div *ngFor="let category of skillCategories" class="skill-card terminal-subpanel">
         <div class="skill-card-header">
           <h3>{{ category.name }}</h3>
         </div>
 
         <div class="skill-list">
-          <div *ngFor="let skill of category.skills" class="skill-row surface-card">
+          <div *ngFor="let skill of category.skills" class="skill-row">
             <div class="skill-topline">
               <div class="skill-name">
-                <img [src]="techIconMap[skill.name]" [alt]="skill.name" class="h-10 w-10 object-contain" />
+                <img [src]="techIconMap[skill.name]" [alt]="skill.name" class="skill-icon" />
                 <span>{{ skill.name }}</span>
               </div>
               <span class="skill-level">{{ skill.level }}</span>
-            </div>
-
-            <div class="skill-meter">
-              <div class="skill-fill" [style.width]="skill.levelPercentage + '%'"></div>
             </div>
           </div>
         </div>

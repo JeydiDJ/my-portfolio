@@ -1,103 +1,69 @@
-<div
-  class="project-card surface-card relative cursor-pointer rounded-[1.75rem] p-6 text-white"
-  (click)="toggle()"
->
-  <div class="mb-5 flex items-start justify-between gap-4">
-    <div class="flex items-center gap-4">
-      <div class="project-logo-wrap">
-        <img [src]="logo" alt="{{ name }} logo" class="h-16 w-16 object-contain drop-shadow-md" />
-      </div>
-      <div>
-        <h3 class="text-2xl font-bold tracking-wide">{{ name }}</h3>
-        <p class="mt-1 text-sm uppercase tracking-[0.18em] text-slate-400">Click to {{ expanded ? 'collapse' : 'expand' }}</p>
+<article class="project-card" (click)="toggle()">
+  <div class="project-card-main terminal-subpanel">
+    <div class="project-body">
+      <p class="project-command"><span class="prompt">~/projects$</span> open {{ name | lowercase }}</p>
+
+      <div class="project-heading">
+        <div class="project-brand">
+          <img [src]="logo" alt="{{ name }} logo" class="project-logo" />
+          <div>
+            <h3>{{ name }}</h3>
+            <p>{{ techStack.join(' / ') }}</p>
+          </div>
+        </div>
+
+        <button type="button" class="project-toggle" (click)="$event.stopPropagation(); toggle()">
+          {{ expanded ? 'close' : 'details' }}
+        </button>
       </div>
     </div>
-    <span class="project-toggle">{{ expanded ? '−' : '+' }}</span>
-  </div>
-
-  <p class="mb-4 max-w-xl leading-7 text-slate-300">
-    {{ description }}
-  </p>
-
-  <div class="mb-2 flex flex-wrap gap-2">
-    <span *ngFor="let tech of techStack | slice:0:4" class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs uppercase tracking-[0.14em] text-slate-300">
-      {{ tech }}
-    </span>
   </div>
 
   <div
     #expandableContent
     [style.maxHeight]="maxHeight"
-    class="mt-4 overflow-hidden transition-all duration-500"
-    [ngClass]="{'opacity-100': expanded, 'opacity-0': !expanded}"
+    class="project-expand"
+    [class.is-open]="expanded"
   >
-    <div class="mb-6 border-t border-white/10 pt-5">
-      <h4 class="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-slate-400">Tech Stack</h4>
-      <div class="flex flex-wrap gap-3">
+    <div class="project-expand-inner terminal-subpanel">
+      <div class="project-media" *ngIf="screenshots.length">
         <img
-          *ngFor="let tech of techStack"
-          [src]="techIconMap[tech]"
-          [alt]="tech"
-          class="h-8 w-8 object-contain transition-all duration-300"
-          title="{{ tech }}"
-        />
-      </div>
-    </div>
-
-    <div class="relative mb-6 h-64 w-full overflow-hidden rounded-3xl shadow-lg">
-      <div
-        class="absolute inset-0 flex transition-transform duration-500"
-        [style.transform]="'translateX(-' + currentSlide * 100 + '%)'"
-      >
-        <img
-          *ngFor="let screenshot of screenshots"
-          [src]="screenshot"
-          class="h-full w-full flex-shrink-0 object-cover"
+          [src]="screenshots[currentSlide]"
+          [alt]="name + ' preview'"
+          class="project-shot"
         />
       </div>
 
-      <button
-        (click)="$event.stopPropagation(); prevSlide()"
-        class="absolute left-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-slate-950/55 text-xl text-white transition hover:bg-slate-950/80"
-        aria-label="Previous slide"
-      >
-        &#8249;
-      </button>
-      <button
-        (click)="$event.stopPropagation(); nextSlide()"
-        class="absolute right-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-slate-950/55 text-xl text-white transition hover:bg-slate-950/80"
-        aria-label="Next slide"
-      >
-        &#8250;
-      </button>
+      <p class="project-description">{{ description }}</p>
 
-      <div class="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-2">
-        <span
-          *ngFor="let s of screenshots; let i = index"
-          [ngClass]="{
-            'w-2 h-2 rounded-full transition-colors duration-300 bg-white': i === currentSlide,
-            'w-2 h-2 rounded-full transition-colors duration-300 bg-white/50': i !== currentSlide
-          }"
-        ></span>
+      <div class="project-actions">
+        <a *ngIf="liveLink" [href]="liveLink" target="_blank" rel="noreferrer" (click)="$event.stopPropagation()">
+          run live-site
+        </a>
+        <a *ngIf="githubLink" [href]="githubLink" target="_blank" rel="noreferrer" (click)="$event.stopPropagation()">
+          open source
+        </a>
       </div>
-    </div>
 
-    <div class="mt-4 flex flex-wrap gap-4">
-      <a *ngIf="liveLink"
-         [href]="liveLink"
-         target="_blank"
-         class="rounded-full border border-amber-300/30 bg-amber-300/10 px-6 py-3 transition hover:bg-white hover:text-slate-950"
-      >
-        View Live
-      </a>
+      <div class="project-tech-icons">
+        <div *ngFor="let tech of techStack" class="project-tech-item">
+          <img
+            *ngIf="techIconMap[tech]"
+            [src]="techIconMap[tech]"
+            [alt]="tech"
+            title="{{ tech }}"
+          />
+          <span>{{ tech }}</span>
+        </div>
+      </div>
 
-      <a *ngIf="githubLink"
-         [href]="githubLink"
-         target="_blank"
-         class="rounded-full border border-white/20 px-6 py-3 transition hover:bg-white hover:text-slate-950"
-      >
-        GitHub
-      </a>
+      <div *ngIf="screenshots.length > 1" class="project-carousel-controls">
+        <button type="button" (click)="$event.stopPropagation(); prevSlide()" aria-label="Previous slide">prev</button>
+        <div class="project-dots">
+          <span *ngFor="let s of screenshots; let i = index" [class.is-active]="i === currentSlide"></span>
+        </div>
+        <button type="button" (click)="$event.stopPropagation(); nextSlide()" aria-label="Next slide">next</button>
+      </div>
     </div>
   </div>
-</div>
+</article>

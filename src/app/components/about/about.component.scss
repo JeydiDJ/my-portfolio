@@ -1,1 +1,141 @@
+.about-grid {
+  align-items: start;
+  padding: 1.5rem;
+}
 
+.about-intro h2 {
+  margin: 0;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  letter-spacing: -0.04em;
+}
+
+.about-lead,
+.about-strengths p,
+.resume-item p {
+  color: var(--muted);
+  line-height: 1.9;
+}
+
+.about-lead {
+  margin: 1rem 0 0;
+}
+
+.about-stats,
+.about-strengths,
+.resume-items {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.about-stats {
+  margin-top: 1.5rem;
+}
+
+.about-stat,
+.about-links,
+.about-strengths p,
+.resume-column,
+.about-toggle {
+  border-top: 1px solid var(--border);
+}
+
+.about-stat {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 0.85rem;
+}
+
+.about-stat span,
+.resume-item p {
+  font-size: 0.9rem;
+}
+
+.about-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.25rem;
+  margin-top: 1.25rem;
+  padding-top: 0.85rem;
+}
+
+.about-links a {
+  text-decoration: none;
+  color: var(--accent-strong);
+}
+
+.about-strengths p {
+  margin: 0;
+  padding-top: 0.9rem;
+}
+
+.about-toggle {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  padding: 0.95rem 0 0;
+  background: transparent;
+  border-right: 0;
+  border-bottom: 0;
+  border-left: 0;
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.toggle-icon {
+  transition: transform 0.2s ease;
+}
+
+.toggle-icon.is-open {
+  transform: rotate(180deg);
+}
+
+.resume-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.25s ease;
+}
+
+.resume-panel.is-open {
+  grid-template-rows: 1fr;
+}
+
+.resume-columns {
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  padding-top: 1rem;
+}
+
+.resume-column {
+  padding-top: 0.9rem;
+}
+
+.resume-column h3,
+.resume-item h4 {
+  margin: 0;
+}
+
+.resume-column h3 {
+  font-size: 1.1rem;
+  color: var(--accent-strong);
+}
+
+.resume-item h4 {
+  font-size: 0.96rem;
+  line-height: 1.6;
+}
+
+.resume-item p {
+  margin: 0.35rem 0 0;
+}
+
+@media (max-width: 960px) {
+  .resume-columns {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,28 +1,168 @@
 .project-card {
+  cursor: pointer;
+}
+
+.project-card-main {
+  display: block;
+  padding: 1rem;
+}
+
+.project-media {
+  border: 1px solid var(--border);
+  background: #05080a;
   overflow: hidden;
 }
 
-.project-logo-wrap {
-  display: inline-flex;
+.project-shot {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.project-command {
+  margin: 0 0 0.8rem;
+  color: var(--accent);
+  font-size: 0.88rem;
+}
+
+.project-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.project-brand {
+  display: flex;
+  gap: 0.9rem;
   align-items: center;
-  justify-content: center;
-  width: 5rem;
-  height: 5rem;
-  border-radius: 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.05);
+}
+
+.project-logo {
+  width: 4.5rem;
+  height: 4.5rem;
+  object-fit: contain;
+  padding: 0.6rem;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.project-brand h3,
+.project-brand p,
+.project-description {
+  margin: 0;
+}
+
+.project-brand h3 {
+  font-size: 1.45rem;
+  color: var(--text);
+}
+
+.project-brand p,
+.project-description {
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.project-brand p {
+  margin-top: 0.2rem;
+  font-size: 0.88rem;
+}
+
+.project-toggle,
+.project-actions a,
+.project-carousel-controls button {
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text);
+  font: inherit;
+  text-decoration: none;
 }
 
 .project-toggle {
+  padding: 0.55rem 0.85rem;
+  cursor: pointer;
+  text-transform: lowercase;
+}
+
+.project-description {
+  margin-top: 1rem;
+}
+
+.project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.project-actions a {
+  padding: 0.65rem 0.8rem;
+}
+
+.project-expand {
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.25s ease, opacity 0.2s ease;
+}
+
+.project-expand.is-open {
+  opacity: 1;
+}
+
+.project-expand-inner {
+  margin-top: 0.8rem;
+  padding: 1rem;
+}
+
+.project-expand-inner .project-media {
+  margin-bottom: 1rem;
+}
+
+.project-tech-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.project-tech-item {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  min-width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.05);
-  font-size: 1.5rem;
-  line-height: 1;
-  color: #fde68a;
+  gap: 0.55rem;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.project-tech-item img {
+  width: 1.2rem;
+  height: 1.2rem;
+  object-fit: contain;
+}
+
+.project-carousel-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.project-carousel-controls button {
+  padding: 0.55rem 0.75rem;
+  cursor: pointer;
+}
+
+.project-dots {
+  display: flex;
+  gap: 0.45rem;
+}
+
+.project-dots span {
+  width: 0.48rem;
+  height: 0.48rem;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.project-dots span.is-active {
+  background: var(--accent-strong);
 }

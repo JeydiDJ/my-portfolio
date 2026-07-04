@@ -1,68 +1,30 @@
-.portfolio-shell {
+.portfolio-page {
   position: relative;
   min-height: 100vh;
-  background: #07111f;
-  color: #f8fafc;
-  overflow: clip;
+  background:
+    radial-gradient(circle at top, rgba(74, 222, 128, 0.08), transparent 24%),
+    linear-gradient(180deg, #070a0d 0%, #0b1014 100%);
 }
 
-.shell-content {
-  position: relative;
-  z-index: 1;
-}
-
-.shell-backdrop {
+.portfolio-page::before,
+.portfolio-page::after {
+  content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
-  overflow: hidden;
-  background:
-    radial-gradient(circle at top, rgba(14, 24, 44, 0.2), transparent 40%),
-    linear-gradient(180deg, #07111f 0%, #0b1324 45%, #09111d 100%);
 }
 
-.shell-grid,
-.shell-orb {
-  position: absolute;
-}
-
-.shell-grid {
-  inset: 0;
+.portfolio-page::before {
   background-image:
-    linear-gradient(rgba(148, 163, 184, 0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(148, 163, 184, 0.07) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.65), transparent);
+    linear-gradient(rgba(120, 255, 173, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(120, 255, 173, 0.045) 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: 0.2;
 }
 
-.shell-orb {
-  border-radius: 999px;
-  filter: blur(56px);
-  opacity: 0.28;
-}
-
-.shell-orb-one {
-  top: -10rem;
-  left: -6rem;
-  width: 24rem;
-  height: 24rem;
-  background: rgba(245, 158, 11, 0.2);
-}
-
-.shell-orb-two {
-  top: 24%;
-  right: -8rem;
-  width: 28rem;
-  height: 28rem;
-  background: rgba(14, 165, 233, 0.16);
-}
-
-.shell-orb-three {
-  bottom: -8rem;
-  left: 20%;
-  width: 22rem;
-  height: 22rem;
-  background: rgba(45, 212, 191, 0.14);
+.portfolio-page::after {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0));
+  opacity: 0.35;
 }
 
 app-hero,
