@@ -16,6 +16,8 @@
           {{ expanded ? 'close' : 'details' }}
         </button>
       </div>
+
+      <p class="project-description">{{ description }}</p>
     </div>
   </div>
 
@@ -33,8 +35,6 @@
           class="project-shot"
         />
       </div>
-
-      <p class="project-description">{{ description }}</p>
 
       <div class="project-actions">
         <a *ngIf="liveLink" [href]="liveLink" target="_blank" rel="noreferrer" (click)="$event.stopPropagation()">
