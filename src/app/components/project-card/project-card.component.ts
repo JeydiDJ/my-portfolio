@@ -1,5 +1,5 @@
 // project-card.component.ts
-import { Component, Input, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, Input, ElementRef, ViewChild, AfterViewInit, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-project-card',
@@ -38,9 +38,16 @@ export class ProjectCardComponent implements AfterViewInit {
 
   @ViewChild('expandableContent') expandableContent!: ElementRef<HTMLDivElement>;
   maxHeight = '0px';
+  private preloadedScreenshots = new Set<string>();
 
   ngAfterViewInit() {
     this.maxHeight = this.expanded ? `${this.expandableContent.nativeElement.scrollHeight}px` : '0px';
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['screenshots']) {
+      this.preloadScreenshots(this.screenshots);
+    }
   }
 
   toggle() {
@@ -52,10 +59,38 @@ export class ProjectCardComponent implements AfterViewInit {
 
   nextSlide() {
     this.currentSlide = (this.currentSlide + 1) % this.screenshots.length;
+    this.preloadAdjacentSlides();
   }
 
   prevSlide() {
     this.currentSlide =
       (this.currentSlide - 1 + this.screenshots.length) % this.screenshots.length;
+    this.preloadAdjacentSlides();
+  }
+
+  private preloadScreenshots(screenshots: string[]) {
+    screenshots.forEach((src) => {
+      if (this.preloadedScreenshots.has(src)) {
+        return;
+      }
+
+      const image = new Image();
+      image.src = src;
+      this.preloadedScreenshots.add(src);
+    });
+  }
+
+  private preloadAdjacentSlides() {
+    if (!this.screenshots.length) {
+      return;
+    }
+
+    const nextIndex = (this.currentSlide + 1) % this.screenshots.length;
+    const prevIndex = (this.currentSlide - 1 + this.screenshots.length) % this.screenshots.length;
+    this.preloadScreenshots([
+      this.screenshots[this.currentSlide],
+      this.screenshots[nextIndex],
+      this.screenshots[prevIndex]
+    ]);
   }
 }

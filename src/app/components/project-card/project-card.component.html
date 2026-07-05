@@ -29,6 +29,13 @@
   >
     <div class="project-expand-inner terminal-subpanel">
       <div class="project-media" *ngIf="screenshots.length">
+        <div *ngIf="screenshots.length > 1" class="project-carousel-controls">
+          <button type="button" (click)="$event.stopPropagation(); prevSlide()" aria-label="Previous slide">prev</button>
+          <div class="project-dots">
+            <span *ngFor="let s of screenshots; let i = index" [class.is-active]="i === currentSlide"></span>
+          </div>
+          <button type="button" (click)="$event.stopPropagation(); nextSlide()" aria-label="Next slide">next</button>
+        </div>
         <img
           [src]="screenshots[currentSlide]"
           [alt]="name + ' preview'"
@@ -55,14 +62,6 @@
           />
           <span>{{ tech }}</span>
         </div>
-      </div>
-
-      <div *ngIf="screenshots.length > 1" class="project-carousel-controls">
-        <button type="button" (click)="$event.stopPropagation(); prevSlide()" aria-label="Previous slide">prev</button>
-        <div class="project-dots">
-          <span *ngFor="let s of screenshots; let i = index" [class.is-active]="i === currentSlide"></span>
-        </div>
-        <button type="button" (click)="$event.stopPropagation(); nextSlide()" aria-label="Next slide">next</button>
       </div>
     </div>
   </div>
