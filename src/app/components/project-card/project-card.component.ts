@@ -30,6 +30,7 @@ export class ProjectCardComponent implements AfterViewInit {
   'React': 'assets/tech-icons/reactjs-icon.svg',
   'Supabase': 'assets/tech-icons/supabase-icon.svg',
   'Nextjs': 'assets/tech-icons/nextjs-icon.svg',
+  'Next.js': 'assets/tech-icons/nextjs-icon.svg',
 };
 
   expanded = false;
