@@ -2,14 +2,29 @@
   <div class="section-shell">
     <div class="section-heading reveal">
       <p class="section-command"><span class="prompt">john@dejesus:~/portfolio$</span> ls projects<span class="terminal-caret" aria-hidden="true"></span></p>
-      <h2>Project output</h2>
+      <h2>Projects</h2>
       <p>
-        Production-minded builds across public platforms, startup products, task tools, and client
-        websites presented like a working project log.
+        A selection of web apps, internal tools, and client work I have built.
       </p>
     </div>
 
     <div class="projects-list reveal reveal-delay-1">
+      <app-project-card
+        [name]="'TVET Dashboard'"
+        [logo]="'assets/project-icons/tvet-logo.png'"
+        [description]="'Internal dashboard for TVET-related monitoring and reporting workflows, built to surface operational data in a cleaner and more usable interface for day-to-day system work.'"
+        [techStack]="['React','Next.js','TypeScript','PostgreSQL']"
+        [screenshots]="[
+          'assets/tvet-pics/tvetdb.png',
+          'assets/tvet-pics/tvet1.png',
+          'assets/tvet-pics/tvet1.1.png',
+          'assets/tvet-pics/tvet2.png',
+          'assets/tvet-pics/tvet3.png',
+          'assets/tvet-pics/tvet4.png',
+          'assets/tvet-pics/tvet5.png'
+        ]"
+      ></app-project-card>
+
       <app-project-card
         [name]="'PHinder'"
         [logo]="'assets/project-icons/phinder-logo.png'"
@@ -28,22 +43,6 @@
         [screenshots]="['assets/taskdone-pics/taskdone1.png','assets/taskdone-pics/taskdone2.png','assets/taskdone-pics/taskdone3.png','assets/taskdone-pics/taskdone4.png','assets/taskdone-pics/taskdone5.png','assets/taskdone-pics/taskdone6.png','assets/taskdone-pics/taskdone7.png','assets/taskdone-pics/taskdone8.png','assets/taskdone-pics/taskdone9.png','assets/taskdone-pics/taskdone10.png','assets/taskdone-pics/taskdone11.png','assets/taskdone-pics/taskdone12.png', 'assets/taskdone-pics/taskdone13.png']"
         [liveLink]="'https://taskdone.digital'"
         [githubLink]="'https://github.com/JeydiDJ/TaskDone/tree/main'"
-      ></app-project-card>
-
-      <app-project-card
-        [name]="'TVET Dashboard'"
-        [logo]="'assets/project-icons/tvet-logo.png'"
-        [description]="'Internal dashboard for TVET-related monitoring and reporting workflows, built to surface operational data in a cleaner and more usable interface for day-to-day system work.'"
-        [techStack]="['React','Next.js','TypeScript','PostgreSQL']"
-        [screenshots]="[
-          'assets/tvet-pics/tvetdb.png',
-          'assets/tvet-pics/tvet1.png',
-          'assets/tvet-pics/tvet1.1.png',
-          'assets/tvet-pics/tvet2.png',
-          'assets/tvet-pics/tvet3.png',
-          'assets/tvet-pics/tvet4.png',
-          'assets/tvet-pics/tvet5.png'
-        ]"
       ></app-project-card>
 
       <app-project-card

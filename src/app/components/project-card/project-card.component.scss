@@ -8,15 +8,19 @@
 }
 
 .project-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: 1px solid var(--border);
   background: #05080a;
   overflow: hidden;
+  padding: 0.75rem;
 }
 
 .project-shot {
   width: 100%;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
+  max-height: min(70vh, 42rem);
+  object-fit: contain;
 }
 
 .project-command {
