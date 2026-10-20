@@ -1,7 +1,7 @@
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <nav class="section-shell site-nav" aria-label="Main navigation">
-    <a class="brand" href="#top" aria-label="John Dave, home">jd<span>.</span></a>
+    <a class="brand" href="#top" aria-label="John Dave, home"><img src="assets/brand-logo.svg" alt="" width="82" height="52"></a>
     <div class="nav-links" id="main-navigation" [class.is-open]="menuOpen">
       <a href="#top" (click)="menuOpen = false" [class.is-active]="activeSection === 'top'" [attr.aria-current]="activeSection === 'top' ? 'location' : null">Home</a>
       <a href="#about" (click)="menuOpen = false" [class.is-active]="activeSection === 'about'" [attr.aria-current]="activeSection === 'about' ? 'location' : null">About</a>
@@ -27,7 +27,7 @@
   <app-contact></app-contact>
 </main>
 <footer class="site-footer section-shell">
-  <a class="brand" href="#top" aria-label="Back to top">jd<span>.</span></a>
+  <a class="brand" href="#top" aria-label="Back to top"><img src="assets/brand-logo.svg" alt="" width="82" height="52" loading="lazy"></a>
   <p>© {{ year }} John Dave Espiritu De Jesus</p>
   <a href="#top">Back to top <span aria-hidden="true">↑</span></a>
 </footer>
