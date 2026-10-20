@@ -1,4 +1,3 @@
-// about.component.ts
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,141 +6,51 @@ import { Component } from '@angular/core';
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent {
-  isExpanded = false;
-
   contactLinks = [
-    { label: 'Email', value: 'johndave.dejesus@gmail.com', href: 'mailto:johndave.dejesus@gmail.com', type: 'email' },
-    { label: 'Mobile', value: '09368984316', href: 'tel:09368984316', type: 'phone' },
-    { label: 'LinkedIn', value: 'john-dave-de-jesus', href: 'https://www.linkedin.com/in/john-dave-de-jesus-502b17207/', type: 'linkedin' },
-    { label: 'GitHub', value: 'JeydiDJ', href: 'https://github.com/JeydiDJ', type: 'github' }
+    { label: 'Email', href: 'mailto:johndave.dejesus@gmail.com', external: false },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/john-dave-de-jesus-502b17207/', external: true },
+    { label: 'GitHub', href: 'https://github.com/JeydiDJ', external: true }
   ];
 
-  profileStats = [
-    { label: 'Base', value: 'Mexico, Pampanga' },
-    { label: 'Nationality', value: 'Filipino' },
-    { label: 'Role', value: 'Full Stack Developer' }
+  education = [
+    { title: 'Bachelor of Science in Information Technology', detail: 'Specialization in Website Development', year: '2025' },
+    { title: 'Senior High School Diploma', detail: 'Accountancy, Business, and Management', year: '2020' }
   ];
 
-  strengths = [
-    'Builds and modernizes internal systems, public-facing platforms, and business web applications with practical full stack implementation.',
-    'Experienced across React, Next.js, Angular, Vue.js, PostgreSQL, Firebase, SharePoint, and backend integration workflows.',
-    'Comfortable handling frontend architecture, application logic, system migration, documentation, and delivery across government and client projects.'
+  experience = [
+    { title: 'Full Stack Developer', company: 'TESDA', period: 'Apr 2026 — Present', detail: 'Modernizing internal and public systems with React, Next.js, and PostgreSQL.' },
+    { title: 'Freelance Web Developer', company: 'Client projects', period: 'Nov 2025 — Mar 2026', detail: 'Responsive web applications, API integrations, and data visualization.' },
+    { title: 'Junior Web Developer', company: 'TherapyPro', period: 'Jun — Oct 2025', detail: 'SharePoint intranets, SPFx, and web applications for internal healthcare tools.' },
+    { title: 'Junior Web Developer', company: 'Tiles & More', period: 'Jan 2021 — Jan 2022', detail: 'Website management, product content, and custom HTML and JavaScript integrations.' }
   ];
 
-  resumeSections = [
-    {
-      title: 'Career Objective',
-      eyebrow: 'Professional Focus',
-      items: [
-        {
-          heading: 'Where I Want To Grow',
-          detail: 'To pursue opportunities that allow me to test my capabilities, take on challenges, continuously develop my skills, and contribute effectively while growing within the IT industry.'
-        }
-      ]
-    },
-    {
-      title: 'Experience',
-      eyebrow: 'Professional Background',
-      items: [
-        {
-          heading: 'Full Stack Developer at TESDA',
-          detail: 'April 2026 to Present. Develops and migrates legacy internal and public systems into modern frameworks using React, Next.js, and PostgreSQL, while also supporting documentation and office-level technical requirements.'
-        },
-        {
-          heading: 'Freelance Web Developer',
-          detail: 'November 2025 to March 2026. Designed and developed web applications for clients with responsive interfaces, application logic, backend API integration, data visualization, and task management features.'
-        },
-        {
-          heading: 'Junior Web Developer at TherapyPro',
-          detail: 'June 2025 to October 2025. Developed intranet sites using Microsoft SharePoint and SPFx and contributed to full stack applications using Angular.js, Vue.js, and Python Django for healthcare-related internal tools.'
-        },
-        {
-          heading: 'Junior Web Developer at Tiles & More',
-          detail: 'January 2021 to January 2022. Managed the company website in WIX, updated product content, and implemented custom HTML and JavaScript integrations while maintaining a clean and minimal visual direction.'
-        }
-      ]
-    },
-    {
-      title: 'Education',
-      eyebrow: 'Academic Background',
-      items: [
-        {
-          heading: 'Bachelor of Science in Information Technology',
-          detail: 'Bachelor of Science in Information Technology with Area of Specialization in Website Development. Completed in November 2025.'
-        },
-        {
-          heading: 'Senior High School Diploma',
-          detail: 'Senior High School Diploma under the ABM track, focused on Accountancy, Business, and Management. Completed in April 2020.'
-        },
-      ]
-    },
-    {
-      title: 'Technical Skills',
-      eyebrow: 'Core Tools',
-      items: [
-        {
-          heading: 'Application Development',
-          detail: 'Frontend development, backend development, responsive interfaces, API integration, application logic, and production-minded feature implementation for modern web systems.'
-        },
-        {
-          heading: 'Platforms and Business Tools',
-          detail: 'Microsoft 365 and M365 SharePoint, including practical intranet and workflow-oriented implementation.'
-        },
-        {
-          heading: 'Engineering Approach',
-          detail: 'System modernization, scalable application structure, migration support, documentation, and maintainable delivery across internal and public systems.'
-        }
-      ]
-    },
-    {
-      title: 'Skills Snapshot',
-      eyebrow: 'Technologies',
-      items: [
-        {
-          heading: 'Frontend and Backend',
-          detail: 'HTML, CSS, JavaScript, Python, AngularJS, React, Next.js, Firebase, PostgreSQL, NoSQL, and full stack web development.'
-        },
-        {
-          heading: 'Working Languages',
-          detail: 'English and Tagalog.'
-        }
-      ]
-    },
-    {
-      title: 'Certifications',
-      eyebrow: 'Credentials',
-      items: [
-        {
-          heading: '2025 Certifications',
-          detail: 'Agile Project Management, Google Analytics, JavaScript Algorithms and Data Structures, Responsive Web Design.'
-        },
-        {
-          heading: '2023 Certification',
-          detail: 'CyberOps Associate.'
-        }
-      ]
-    },
-    {
-      title: 'References',
-      eyebrow: 'Professional Contacts',
-      items: [
-        {
-          heading: 'Levi Cedric Valdez',
-          detail: 'Work Supervisor, System Administrator at TherapyPRO. Contact: 09082051299.'
-        },
-        {
-          heading: 'Kathrine Aguilar',
-          detail: 'Capstone Thesis Adviser, Professor, and Instructor at Holy Angel University. Contact: 09174352345. Email: khatzaguilar23@gmail.com.'
-        },
-        {
-          heading: 'Eone Zeus Lorenzo',
-          detail: 'Former Colleague, System Administrator at TherapyPRO. Contact: 09161741103.'
-        }
-      ]
-    }
+  certifications = [
+    { title: 'Agile Project Management', year: '2025', symbol: 'AP' },
+    { title: 'Google Analytics', year: '2025', symbol: 'GA' },
+    { title: 'JavaScript Algorithms and Data Structures', year: '2025', symbol: 'JS' },
+    { title: 'Responsive Web Design', year: '2025', symbol: '</>' },
+    { title: 'CyberOps Associate', year: '2023', symbol: 'CO' }
   ];
 
-  toggleExpanded(): void {
-    this.isExpanded = !this.isExpanded;
-  }
+  technicalSkills = ['Full-stack development', 'Responsive web design', 'API integration', 'Database-driven systems', 'System modernization', 'SharePoint & SPFx'];
+  workingStyle = ['Clear documentation', 'Practical problem solving', 'Maintainable code', 'Thoughtful interfaces', 'End-to-end delivery', 'Continuous learning'];
+
+  toolkit = [
+    { name: 'React', icon: 'reactjs-icon.svg' },
+    { name: 'Next.js', icon: 'nextjs-icon.svg' },
+    { name: 'Angular', icon: 'angular-icon.svg' },
+    { name: 'Vue.js', icon: 'vuejs-icon.svg' },
+    { name: 'TypeScript', icon: 'typescriptlang-icon.svg' },
+    { name: 'HTML', icon: 'w3_html5-icon.svg' },
+    { name: 'CSS', icon: 'w3_css-icon~old.svg' },
+    { name: 'JavaScript', icon: 'javascript-icon.svg' },
+    { name: 'Tailwind', icon: 'tailwindcss-icon.svg' },
+    { name: 'Node.js', icon: 'nodejs-icon.svg' },
+    { name: 'Python', icon: 'python-icon.svg' },
+    { name: 'Django', icon: 'djangoproject-icon.svg' },
+    { name: 'Firebase', icon: 'firebase-icon.svg' },
+    { name: 'Supabase', icon: 'supabase-icon.svg' },
+    { name: 'Git', icon: 'git-scm-icon.svg' },
+    { name: 'GitHub', icon: 'github-tile.svg' }
+  ];
 }
