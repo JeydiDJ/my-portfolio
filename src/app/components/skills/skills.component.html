@@ -1,11 +1,11 @@
 <section id="skills" class="site-section skills-section">
   <div class="section-shell">
-    <div class="section-heading"><h2>The tools behind the work.</h2><p>A practical toolkit for building across the web, from responsive interfaces to the systems behind them.</p></div>
+    <div class="section-heading" appScrollAnimate><h2>The tools behind the work.</h2><p>A practical toolkit for building across the web, from responsive interfaces to the systems behind them.</p></div>
     <div class="skills-grid">
-      <section *ngFor="let category of skillCategories" class="skill-category">
+      <section *ngFor="let category of skillCategories; let categoryIndex = index" class="skill-category" appScrollAnimate [revealDelay]="categoryIndex * 120">
         <h3>{{ category.name }}</h3>
         <div class="skill-list">
-          <div *ngFor="let skill of category.skills" class="skill-row">
+          <div *ngFor="let skill of category.skills; let skillIndex = index" class="skill-row" appScrollAnimate="scale" [revealDelay]="skillIndex * 55">
             <img *ngIf="techIconMap[skill.name]" [src]="techIconMap[skill.name]" alt="" width="24" height="24" loading="lazy" />
             <span *ngIf="!techIconMap[skill.name]" class="skill-initial" aria-hidden="true">{{ skill.name.charAt(0) }}</span>
             <span>{{ skill.name }}</span>

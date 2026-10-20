@@ -1,6 +1,26 @@
 <article class="project-card">
   <div class="project-media" *ngIf="screenshots.length">
-    <img [src]="screenshots[currentSlide]" [alt]="name + ', screenshot ' + (currentSlide + 1)" class="project-shot" [class.is-expanded]="expanded" loading="lazy" width="1440" height="900" />
+    <div #gallery class="project-gallery" [class.is-dragging]="dragging" tabindex="0"
+      role="region" aria-roledescription="carousel" [attr.aria-label]="name + ' screenshots. Swipe, drag, or use arrow keys to browse.'"
+      (scroll)="onScroll()" (keydown)="onKeydown($event)"
+      (pointerdown)="startDrag($event)" (pointermove)="moveDrag($event)"
+      (pointerup)="endDrag($event)" (pointercancel)="endDrag($event)" (lostpointercapture)="endDrag($event)">
+      <div class="project-slide" *ngFor="let shot of screenshots; let i = index" role="group" aria-roledescription="slide" [attr.aria-label]="(i + 1) + ' of ' + screenshots.length">
+        <img [src]="shot" [alt]="name + ', screenshot ' + (i + 1)" class="project-shot" loading="lazy" width="1440" height="900" draggable="false" />
+      </div>
+    </div>
+    <div *ngIf="screenshots.length > 1" class="gallery-toolbar">
+      <span class="drag-hint">Drag to explore <span aria-hidden="true">↔</span></span>
+      <div class="gallery-navigation">
+        <button type="button" (click)="prevSlide()" [attr.aria-label]="'Previous screenshot of ' + name">←</button>
+        <span class="gallery-count" aria-live="polite" aria-atomic="true">{{ currentSlide + 1 }} / {{ screenshots.length }}</span>
+        <button type="button" (click)="nextSlide()" [attr.aria-label]="'Next screenshot of ' + name">→</button>
+      </div>
+    </div>
+    <div *ngIf="screenshots.length > 1" class="gallery-pagination" role="group" [attr.aria-label]="name + ' slide selection'">
+      <button *ngFor="let shot of screenshots; let i = index" type="button" (click)="goToSlide(i)" [class.is-current]="i === currentSlide"
+        [attr.aria-label]="'Show screenshot ' + (i + 1) + ' of ' + name" [attr.aria-current]="i === currentSlide ? 'true' : null"><span></span></button>
+    </div>
   </div>
   <div class="project-body">
     <div class="project-heading">
@@ -11,17 +31,10 @@
       <a *ngIf="liveLink" [href]="liveLink" target="_blank" rel="noreferrer" class="project-visit" [attr.aria-label]="'Visit ' + name">↗</a>
     </div>
     <p class="project-description">{{ description }}</p>
-    <ul class="project-tech" aria-label="Technologies">
-      <li *ngFor="let tech of techStack">{{ tech }}</li>
-    </ul>
-    <div class="project-actions">
-      <button type="button" (click)="toggle()" [attr.aria-expanded]="expanded">{{ expanded ? 'Close gallery' : 'Explore project' }} <span aria-hidden="true">{{ expanded ? '−' : '+' }}</span></button>
+    <ul class="project-tech" aria-label="Technologies"><li *ngFor="let tech of techStack">{{ tech }}</li></ul>
+    <div class="project-actions" *ngIf="liveLink || githubLink">
+      <a *ngIf="liveLink" [href]="liveLink" target="_blank" rel="noreferrer">Visit website <span aria-hidden="true">↗</span></a>
       <a *ngIf="githubLink" [href]="githubLink" target="_blank" rel="noreferrer">Source code <span aria-hidden="true">↗</span></a>
-    </div>
-    <div *ngIf="expanded && screenshots.length > 1" class="project-carousel-controls" role="group" [attr.aria-label]="name + ' screenshot gallery'">
-      <button type="button" (click)="prevSlide()" [attr.aria-label]="'Previous screenshot of ' + name">←</button>
-      <span aria-live="polite">{{ currentSlide + 1 }} / {{ screenshots.length }}</span>
-      <button type="button" (click)="nextSlide()" [attr.aria-label]="'Next screenshot of ' + name">→</button>
     </div>
   </div>
 </article>

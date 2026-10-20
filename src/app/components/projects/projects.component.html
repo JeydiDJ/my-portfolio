@@ -1,6 +1,6 @@
 <section id="projects" class="site-section projects-section">
   <div class="section-shell">
-    <div class="section-heading">
+    <div class="section-heading" appScrollAnimate>
       <h2>A few things I've built<span aria-hidden="true">.</span></h2>
       <p>
         Real problems, thoughtful solutions. A selection of web apps, business systems, and client work.
@@ -8,7 +8,7 @@
     </div>
 
     <div class="projects-list">
-      <app-project-card
+      <app-project-card appScrollAnimate [revealDelay]="0"
         [name]="'TVET Dashboard'"
         [logo]="'assets/project-icons/tvet-logo.png'"
         [description]="'The TVET Dashboard is an internal TESDA system for monitoring training operations, reviewing institutional and program data, validating uploads, handling reconciliation, and generating reports through one secure dashboard.'"
@@ -25,7 +25,7 @@
         [liveLink]="'https://tvet-dashboard.vercel.app/'"
       ></app-project-card>
 
-      <app-project-card
+      <app-project-card appScrollAnimate [revealDelay]="130"
         [name]="'PHinder'"
         [logo]="'assets/project-icons/phinder-logo.png'"
         [description]="'Community-driven PWA to help locate missing persons in Pampanga. Interactive Mapbox map with verified reports and real-time updates.'"
@@ -35,7 +35,7 @@
         [githubLink]="'https://github.com/JeydiDJ/phinder'"
       ></app-project-card>
 
-      <app-project-card
+      <app-project-card appScrollAnimate [revealDelay]="0"
         [name]="'TaskDone'"
         [logo]="'assets/project-icons/taskdone-logo.png'"
         [description]="'Modern task management PWA with visual progress views and mobile-first workflows designed to help users stay organized and focused.'"
@@ -45,7 +45,7 @@
         [githubLink]="'https://github.com/JeydiDJ/TaskDone/tree/main'"
       ></app-project-card>
 
-      <app-project-card
+      <app-project-card appScrollAnimate [revealDelay]="130"
         [name]="'TILES & MORE'"
         [logo]="'assets/project-icons/tilesandmore-logo.png'"
         [description]="'Business website tailored in WIX for a tile distributor in Mexico, Pampanga, with content management and a simple commercial presentation.'"
@@ -54,7 +54,7 @@
         [liveLink]="'https://infotilesandmore.wixsite.com/website'"
       ></app-project-card>
 
-      <app-project-card
+      <app-project-card appScrollAnimate [revealDelay]="0"
         [name]="'NearBuy'"
         [logo]="'assets/project-icons/nearbuy-logo.png'"
         [description]="'Neighborhood marketplace platform connecting local buyers and sellers through listings, authentication, and real-time data powered by Supabase.'"
@@ -72,7 +72,7 @@
         [githubLink]="'https://github.com/JeydiDJ/neighborhood-marketplace'"
       ></app-project-card>
 
-      <app-project-card
+      <app-project-card appScrollAnimate [revealDelay]="130"
         [name]="'Kane & Kaori'"
         [logo]="'assets/project-icons/kaneandkaori-logo.png'"
         [description]="'Full-stack e-commerce website for a startup perfume brand with dynamic listings, checkout, and a clean luxury-oriented storefront experience.'"

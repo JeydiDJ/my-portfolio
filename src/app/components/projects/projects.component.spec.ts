@@ -1,3 +1,4 @@
+import { ScrollAnimateDirective } from '../../scroll-animate.directive';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProjectsComponent } from './projects.component';
@@ -9,7 +10,7 @@ describe('ProjectsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProjectsComponent, ProjectCardComponent ]
+      declarations: [ ScrollAnimateDirective, ProjectsComponent, ProjectCardComponent ]
     })
     .compileComponents();
 

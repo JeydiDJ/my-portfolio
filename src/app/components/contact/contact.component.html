@@ -1,7 +1,7 @@
 <section id="contact" class="site-section contact-section">
   <div class="section-shell contact-grid">
-    <div class="contact-copy">
-      <div class="section-heading"><h2>Have something<br>in mind? Let's talk.</h2></div>
+    <div class="contact-copy" appScrollAnimate="left">
+      <div class="section-heading" appScrollAnimate><h2>Have something<br>in mind? Let's talk.</h2></div>
       <p>Whether it's a new project, a role on your team, or just a hello, I'd love to hear from you.</p>
       <a class="contact-email" href="mailto:johndave.dejesus@gmail.com">johndave.dejesus&#64;gmail.com <span aria-hidden="true">↗</span></a>
       <div class="contact-links">
@@ -10,7 +10,7 @@
       </div>
       <p class="contact-location">Pampanga, Philippines · Open to remote work</p>
     </div>
-    <form (submit)="sendEmail($event)" class="contact-form">
+    <form (submit)="sendEmail($event)" class="contact-form" appScrollAnimate="right" [revealDelay]="150">
       <div class="form-row">
         <div><label for="contact-name">Your name</label><input id="contact-name" type="text" name="user_name" autocomplete="name" placeholder="John Doe" required maxlength="120" /></div>
         <div><label for="contact-email">Email address</label><input id="contact-email" type="email" name="user_email" autocomplete="email" placeholder="you@example.com" required maxlength="254" /></div>
