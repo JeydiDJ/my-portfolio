@@ -3,7 +3,7 @@
 .about-links { display: flex; gap: 24px; color: var(--accent); font-size: 13px; font-weight: 750; }
 .background-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 28px; align-items: start; }
 .background-column { display: grid; gap: 24px; min-width: 0; }
-.background-card { padding: 28px; border: 1px solid var(--border); border-radius: 24px; background: var(--surface); box-shadow: 0 8px 24px #20205008; }
+.background-card { padding: 28px; border: 1px solid var(--border); border-radius: 24px; background: var(--surface); box-shadow: 0 8px 24px #20302608; }
 .background-card h3 { display: flex; align-items: center; gap: 12px; font-size: 21px; font-weight: 800; letter-spacing: -.6px; margin-bottom: 26px; }
 .background-card h3 svg, .background-card h3 > span { color: var(--accent); width: 22px; height: 22px; }
 h4 { font-size: 16px; line-height: 1.4; font-weight: 800; margin: 0; }

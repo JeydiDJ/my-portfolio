@@ -17,7 +17,7 @@ export class SkillsComponent {
 
   skillCategories = [
     {
-      name: 'Frontend', color: '#e76491',
+      name: 'Frontend', color: 'var(--accent)',
       skills: [
         { name: 'HTML', description: 'Semantic web structure' },
         { name: 'CSS', description: 'Responsive styling & layouts' },
@@ -26,7 +26,7 @@ export class SkillsComponent {
       ]
     },
     {
-      name: 'Frameworks', color: '#59b9e3',
+      name: 'Frameworks', color: 'var(--accent)',
       skills: [
         { name: 'React', description: 'Component-based interfaces' },
         { name: 'Next.js', description: 'Full-stack React framework' },
@@ -36,7 +36,7 @@ export class SkillsComponent {
       ]
     },
     {
-      name: 'Backend & data', color: '#a38ae7',
+      name: 'Backend & data', color: 'var(--accent)',
       skills: [
         { name: 'Node.js', description: 'JavaScript runtime' },
         { name: 'Python', description: 'Backend development & scripting' },
@@ -48,7 +48,7 @@ export class SkillsComponent {
       ]
     },
     {
-      name: 'Platforms & delivery', color: '#e7a855',
+      name: 'Platforms & delivery', color: 'var(--accent)',
       skills: [
         { name: 'Git', description: 'Version control' },
         { name: 'GitHub', description: 'Code collaboration & delivery' },

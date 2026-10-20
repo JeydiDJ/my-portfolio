@@ -13,8 +13,9 @@
         <section class="background-card education-card" appScrollAnimate="left">
           <h3>Education <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m2 9 10-5 10 5-10 5L2 9Zm4 2v6c4 3 8 3 12 0v-6M22 9v7"/></svg></h3>
           <div class="education-item" *ngFor="let item of education">
-            <span class="education-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m2 9 10-5 10 5-10 5L2 9Zm4 2v6c4 3 8 3 12 0v-6"/></svg></span>
-            <div><h4>{{ item.title }}</h4><p>{{ item.detail }}</p><span class="item-year">Completed {{ item.year }}</span></div>
+            <img *ngIf="item.logo; else educationPlaceholder" [src]="item.logo" [alt]="item.school + ' crest'" class="school-crest" width="64" height="80" loading="lazy">
+            <ng-template #educationPlaceholder><span class="education-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m2 9 10-5 10 5-10 5L2 9Zm4 2v6c4 3 8 3 12 0v-6"/></svg></span></ng-template>
+            <div><h4>{{ item.title }}</h4><p *ngIf="item.school" class="education-school">{{ item.school }}</p><p>{{ item.detail }}</p><span class="item-year">Completed {{ item.year }}</span></div>
           </div>
         </section>
 

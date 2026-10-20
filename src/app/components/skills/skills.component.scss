@@ -9,7 +9,7 @@
 .skill-category h3 { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; font-size: 13px; font-weight: 800; }
 .category-dot { display: block; width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 0 4px var(--accent-soft); }
 .skill-list { display: grid; gap: 18px; }
-.tool-card { display: flex; align-items: center; min-height: 104px; gap: 18px; padding: 22px; border: 1px solid var(--border); border-radius: 20px; background: var(--surface); box-shadow: 0 10px 24px #20205007; }
+.tool-card { display: flex; align-items: center; min-height: 104px; gap: 18px; padding: 22px; border: 1px solid var(--border); border-radius: 20px; background: var(--surface); box-shadow: 0 10px 24px #20302607; }
 .tool-card.is-visible:hover { transform: translateY(-7px); border-color: var(--card-accent-border); }
 .tool-icon { display: grid; place-items: center; flex: 0 0 36px; width: 36px; height: 38px; color: var(--accent); font-size: 23px; font-weight: 800; }
 .tool-icon img, .tool-icon svg { width: 32px; height: 32px; object-fit: contain; transition: transform .4s cubic-bezier(.2,.8,.2,1); }

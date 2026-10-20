@@ -13,8 +13,8 @@ export class AboutComponent {
   ];
 
   education = [
-    { title: 'Bachelor of Science in Information Technology', detail: 'Specialization in Website Development', year: '2025' },
-    { title: 'Senior High School Diploma', detail: 'Accountancy, Business, and Management', year: '2020' }
+    { title: 'Bachelor of Science in Information Technology', school: 'Holy Angel University', logo: 'assets/education/holy-angel-university.png', detail: 'Specialization in Website Development', year: '2025' },
+    { title: 'Senior High School Diploma', school: '', logo: '', detail: 'Accountancy, Business, and Management', year: '2020' }
   ];
 
   experience = [
