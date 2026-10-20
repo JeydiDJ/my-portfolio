@@ -157,3 +157,8 @@ app-about .toolkit-tile:hover .toolkit-name, .toolkit-tile:focus-visible .toolki
 @media (prefers-reduced-motion: reduce) {
   app-about .toolkit-tile:hover img, app-about .toolkit-tile:focus-visible img { transform: none; }
 }
+
+app-about .about-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+app-about .about-links a { display: grid; place-items: center; width: 46px; height: 46px; border: 1px solid var(--border); border-radius: 8px; color: var(--accent); background: var(--surface); transition: transform .25s, background-color .2s, border-color .2s; }
+app-about .about-links svg { width: 21px; height: 21px; }
+app-about .about-links a:hover, app-about .about-links a:focus-visible { background: var(--accent-soft); border-color: var(--accent); }
