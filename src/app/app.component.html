@@ -1,52 +1,33 @@
-<main class="portfolio-page">
-  <div class="ambient ambient-mouse" aria-hidden="true"></div>
-  <div class="ambient ambient-glows" aria-hidden="true">
-    <span class="glow glow-a"></span>
-    <span class="glow glow-b"></span>
-    <span class="glow glow-c"></span>
-  </div>
-  <div class="ambient ambient-orbits" aria-hidden="true">
-    <span class="orbit orbit-a"></span>
-    <span class="orbit orbit-b"></span>
-    <span class="orbit orbit-c"></span>
-  </div>
-  <div class="ambient ambient-nodes" aria-hidden="true">
-    <span class="node node-a"></span>
-    <span class="node node-b"></span>
-    <span class="node node-c"></span>
-    <span class="node node-d"></span>
-    <span class="node-link link-a"></span>
-    <span class="node-link link-b"></span>
-  </div>
-  <div class="ambient ambient-rain" aria-hidden="true">
-    <span class="rain-column rain-a">101101<br>root<br>sync<br>$</span>
-    <span class="rain-column rain-b">git<br>init<br>push<br>0x7f</span>
-    <span class="rain-column rain-c">&lt;div&gt;<br>api<br>run<br>_</span>
-  </div>
-  <div class="ambient ambient-glyphs" aria-hidden="true">
-    <span class="glyph glyph-a">[ ]</span>
-    <span class="glyph glyph-b">+</span>
-    <span class="glyph glyph-c">&lt;/&gt;</span>
-    <span class="glyph glyph-d">x</span>
-  </div>
-  <div class="ambient ambient-cursors" aria-hidden="true">
-    <span class="cursor-echo cursor-a"></span>
-    <span class="cursor-echo cursor-b"></span>
-    <span class="cursor-echo cursor-c"></span>
-  </div>
-  <div class="ambient ambient-wireframes" aria-hidden="true">
-    <span class="wire wire-a"></span>
-    <span class="wire wire-b"></span>
-  </div>
-  <div class="ambient ambient-pulses" aria-hidden="true">
-    <span class="pulse-strip pulse-left"></span>
-    <span class="pulse-strip pulse-right"></span>
-  </div>
-  <div class="ambient ambient-noise" aria-hidden="true"></div>
-  <div class="ambient ambient-scan" aria-hidden="true"></div>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <nav class="section-shell site-nav" aria-label="Main navigation">
+    <a class="brand" href="#top" aria-label="John Dave, home">jd<span>.</span></a>
+    <div class="nav-links" id="main-navigation" [class.is-open]="menuOpen">
+      <a href="#top" (click)="menuOpen = false">Home</a>
+      <a href="#about" (click)="menuOpen = false">About</a>
+      <a href="#skills" (click)="menuOpen = false">Tools</a>
+      <a href="#projects" (click)="menuOpen = false">Work</a>
+      <a href="#contact" (click)="menuOpen = false">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <button class="theme-toggle" type="button" (click)="toggleTheme()" [attr.aria-label]="darkMode ? 'Switch to light theme' : 'Switch to dark theme'" [attr.aria-pressed]="darkMode">
+        <svg *ngIf="!darkMode" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20.8 13A8.5 8.5 0 0 1 11 3.2 8.5 8.5 0 1 0 20.8 13Z"/></svg>
+        <svg *ngIf="darkMode" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+      </button>
+      <a class="button button-primary nav-contact" href="#contact">Let's talk <span aria-hidden="true">↗</span></a>
+      <button class="menu-toggle" type="button" (click)="menuOpen = !menuOpen" [attr.aria-expanded]="menuOpen" aria-controls="main-navigation" [attr.aria-label]="menuOpen ? 'Close menu' : 'Open menu'">{{ menuOpen ? '✕' : '☰' }}</button>
+    </div>
+  </nav>
+</header>
+<main id="main" tabindex="-1">
   <app-hero></app-hero>
   <app-projects></app-projects>
   <app-about></app-about>
   <app-skills></app-skills>
   <app-contact></app-contact>
 </main>
+<footer class="site-footer section-shell">
+  <a class="brand" href="#top" aria-label="Back to top">jd<span>.</span></a>
+  <p>© {{ year }} John Dave De Jesus</p>
+  <a href="#top">Back to top <span aria-hidden="true">↑</span></a>
+</footer>

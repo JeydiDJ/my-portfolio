@@ -1,62 +1,30 @@
 <section id="about" class="site-section about-section">
-  <div class="section-shell">
-    <div class="about-grid terminal-panel reveal">
-      <div class="about-intro">
-        <p class="section-command"><span class="prompt">john@dejesus:~/portfolio$</span> cat about.md<span class="terminal-caret" aria-hidden="true"></span></p>
-        <h2>About</h2>
-        <p class="about-lead">
-          I work across frontend development, backend integration, and database-driven systems for
-          teams that need software that is reliable and easy to use.
-        </p>
-
-        <div class="about-stats">
-          <div *ngFor="let stat of profileStats" class="about-stat">
-            <span>{{ stat.label }}</span>
-            <strong>{{ stat.value }}</strong>
-          </div>
-        </div>
-
-        <div class="about-links">
-          <a
-            *ngFor="let link of contactLinks"
-            [href]="link.href"
-            [attr.target]="link.type === 'email' || link.type === 'phone' ? null : '_blank'"
-            rel="noreferrer"
-          >
-            {{ link.label }}
-          </a>
-        </div>
+  <div class="section-shell about-grid">
+    <div class="about-intro">
+      <div class="section-heading"><h2>A developer.<br>A curious mind.</h2></div>
+      <p class="about-lead">I'm John Dave, a full-stack developer who enjoys making complicated things feel simple.</p>
+      <p class="about-description">I work across frontend development, backend integration, and database-driven systems, helping teams build software that's reliable and easy to use.</p>
+      <dl class="about-stats">
+        <div *ngFor="let stat of profileStats"><dt>{{ stat.label }}</dt><dd>{{ stat.value }}</dd></div>
+      </dl>
+      <div class="about-links">
+        <a *ngFor="let link of contactLinks" [href]="link.href" [attr.target]="link.type === 'email' || link.type === 'phone' ? null : '_blank'" rel="noreferrer">{{ link.label }} <span aria-hidden="true">↗</span></a>
       </div>
-
-      <div class="about-content">
-        <div class="about-strengths">
-          <p *ngFor="let strength of strengths">{{ strength }}</p>
-        </div>
-
-        <button
-          type="button"
-          class="about-toggle"
-          (click)="toggleExpanded()"
-          [attr.aria-expanded]="isExpanded"
-        >
-          <span>{{ isExpanded ? 'hide --details' : 'show --details' }}</span>
-          <span class="toggle-icon" [class.is-open]="isExpanded">v</span>
-        </button>
-
-        <div class="resume-panel" [class.is-open]="isExpanded">
-          <div class="resume-columns">
-            <section *ngFor="let section of resumeSections" class="resume-column">
-              <h3>{{ section.title }}</h3>
-
-              <div class="resume-items">
-                <article *ngFor="let item of section.items" class="resume-item">
-                  <h4>{{ item.heading }}</h4>
-                  <p>{{ item.detail }}</p>
-                </article>
-              </div>
-            </section>
-          </div>
-        </div>
+    </div>
+    <div class="about-content">
+      <h3>From idea to working product.</h3>
+      <div class="about-strengths"><p *ngFor="let strength of strengths">{{ strength }}</p></div>
+      <div class="current-role">
+        <span>Currently</span>
+        <h3>Full Stack Developer at TESDA</h3>
+        <p>Modernizing systems with React, Next.js, and PostgreSQL.</p>
+      </div>
+      <button type="button" class="about-toggle" (click)="toggleExpanded()" [attr.aria-expanded]="isExpanded" aria-controls="resume-details">{{ isExpanded ? 'Less about my background' : 'Experience & background' }} <span aria-hidden="true">{{ isExpanded ? '−' : '+' }}</span></button>
+      <div id="resume-details" *ngIf="isExpanded" class="resume-panel">
+        <section *ngFor="let section of resumeSections" class="resume-column">
+          <h3>{{ section.title }}</h3>
+          <article *ngFor="let item of section.items" class="resume-item"><h4>{{ item.heading }}</h4><p>{{ item.detail }}</p></article>
+        </section>
       </div>
     </div>
   </div>

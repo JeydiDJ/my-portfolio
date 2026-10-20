@@ -1,68 +1,27 @@
-<article class="project-card" (click)="toggle()">
-  <div class="project-card-main terminal-subpanel">
-    <div class="project-body">
-      <p class="project-command"><span class="prompt">~/projects$</span> open {{ name | lowercase }}</p>
-
-      <div class="project-heading">
-        <div class="project-brand">
-          <img [src]="logo" alt="{{ name }} logo" class="project-logo" />
-          <div>
-            <h3>{{ name }}</h3>
-            <p>{{ techStack.join(' / ') }}</p>
-          </div>
-        </div>
-
-        <button type="button" class="project-toggle" (click)="$event.stopPropagation(); toggle()">
-          {{ expanded ? 'close' : 'details' }}
-        </button>
-      </div>
-
-      <p class="project-description">{{ description }}</p>
-    </div>
+<article class="project-card">
+  <div class="project-media" *ngIf="screenshots.length">
+    <img [src]="screenshots[currentSlide]" [alt]="name + ', screenshot ' + (currentSlide + 1)" class="project-shot" [class.is-expanded]="expanded" loading="lazy" width="1440" height="900" />
   </div>
-
-  <div
-    #expandableContent
-    [style.maxHeight]="maxHeight"
-    class="project-expand"
-    [class.is-open]="expanded"
-  >
-    <div class="project-expand-inner terminal-subpanel">
-      <div class="project-media" *ngIf="screenshots.length">
-        <div *ngIf="screenshots.length > 1" class="project-carousel-controls">
-          <button type="button" (click)="$event.stopPropagation(); prevSlide()" aria-label="Previous slide">prev</button>
-          <div class="project-dots">
-            <span *ngFor="let s of screenshots; let i = index" [class.is-active]="i === currentSlide"></span>
-          </div>
-          <button type="button" (click)="$event.stopPropagation(); nextSlide()" aria-label="Next slide">next</button>
-        </div>
-        <img
-          [src]="screenshots[currentSlide]"
-          [alt]="name + ' preview'"
-          class="project-shot"
-        />
+  <div class="project-body">
+    <div class="project-heading">
+      <div class="project-brand">
+        <img [src]="logo" alt="" class="project-logo" loading="lazy" width="32" height="32" />
+        <h3>{{ name }}</h3>
       </div>
-
-      <div class="project-actions">
-        <a *ngIf="liveLink" [href]="liveLink" target="_blank" rel="noreferrer" (click)="$event.stopPropagation()">
-          run live-site
-        </a>
-        <a *ngIf="githubLink" [href]="githubLink" target="_blank" rel="noreferrer" (click)="$event.stopPropagation()">
-          open source
-        </a>
-      </div>
-
-      <div class="project-tech-icons">
-        <div *ngFor="let tech of techStack" class="project-tech-item">
-          <img
-            *ngIf="techIconMap[tech]"
-            [src]="techIconMap[tech]"
-            [alt]="tech"
-            title="{{ tech }}"
-          />
-          <span>{{ tech }}</span>
-        </div>
-      </div>
+      <a *ngIf="liveLink" [href]="liveLink" target="_blank" rel="noreferrer" class="project-visit" [attr.aria-label]="'Visit ' + name">↗</a>
+    </div>
+    <p class="project-description">{{ description }}</p>
+    <ul class="project-tech" aria-label="Technologies">
+      <li *ngFor="let tech of techStack">{{ tech }}</li>
+    </ul>
+    <div class="project-actions">
+      <button type="button" (click)="toggle()" [attr.aria-expanded]="expanded">{{ expanded ? 'Close gallery' : 'Explore project' }} <span aria-hidden="true">{{ expanded ? '−' : '+' }}</span></button>
+      <a *ngIf="githubLink" [href]="githubLink" target="_blank" rel="noreferrer">Source code <span aria-hidden="true">↗</span></a>
+    </div>
+    <div *ngIf="expanded && screenshots.length > 1" class="project-carousel-controls" role="group" [attr.aria-label]="name + ' screenshot gallery'">
+      <button type="button" (click)="prevSlide()" [attr.aria-label]="'Previous screenshot of ' + name">←</button>
+      <span aria-live="polite">{{ currentSlide + 1 }} / {{ screenshots.length }}</span>
+      <button type="button" (click)="nextSlide()" [attr.aria-label]="'Next screenshot of ' + name">→</button>
     </div>
   </div>
 </article>

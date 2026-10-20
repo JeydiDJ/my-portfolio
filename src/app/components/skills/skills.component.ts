@@ -18,7 +18,6 @@ export class SkillsComponent {
     'Next.js': 'assets/tech-icons/nextjs-icon.svg',
     'Firebase': 'assets/tech-icons/firebase-icon.svg',
     'MongoDB': 'assets/tech-icons/mongodb-icon.svg',
-    'PostgreSQL': 'assets/tech-icons/mongodb-icon.svg',
     'Tailwind': 'assets/tech-icons/tailwindcss-icon.svg',
     'Node.js': 'assets/tech-icons/nodejs-icon.svg',
     'Git': 'assets/tech-icons/git-scm-icon.svg',
@@ -28,9 +27,6 @@ export class SkillsComponent {
     'Django': 'assets/tech-icons/djangoproject-icon.svg',
     'Supabase':'assets/tech-icons/supabase-icon.svg',
     'Wix': 'assets/tech-icons/wix-icon.svg',
-    'SharePoint': 'assets/tech-icons/wix-icon.svg',
-    'SPFx': 'assets/tech-icons/wix-icon.svg',
-    'Microsoft 365': 'assets/tech-icons/wix-icon.svg'
   };
 
   // Skill categories

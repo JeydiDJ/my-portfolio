@@ -1,96 +1,39 @@
-// project-card.component.ts
-import { Component, Input, ElementRef, ViewChild, AfterViewInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-project-card',
   templateUrl: './project-card.component.html',
   styleUrls: ['./project-card.component.scss']
 })
-export class ProjectCardComponent implements AfterViewInit {
-  @Input() name!: string;
-  @Input() logo!: string;
-  @Input() description!: string;
+export class ProjectCardComponent implements OnChanges {
+  @Input() name = '';
+  @Input() logo = '';
+  @Input() description = '';
   @Input() techStack: string[] = [];
   @Input() screenshots: string[] = [];
-  @Input() liveLink!: string;
-  @Input() githubLink!: string;
-
-  techIconMap: { [key: string]: string } = {
-  'Vue.js': 'assets/tech-icons/vuejs-icon.svg',
-  'Angular': 'assets/tech-icons/angular-icon.svg',
-  'Firebase': 'assets/tech-icons/firebase-icon.svg',
-  'Mapbox': 'assets/tech-icons/mapbox-icon.svg',
-  'HTML': 'assets/tech-icons/w3_html5-icon.svg',
-  'CSS': 'assets/tech-icons/w3_css-icon~old.svg',
-  'Javascript': 'assets/tech-icons/javascript-icon.svg',
-  'MongoDB': 'assets/tech-icons/mongodb-icon.svg',
-  'Tailwind': 'assets/tech-icons/tailwindcss-icon.svg',
-  'TypeScript': 'assets/tech-icons/typescriptlang-icon.svg',
-  'Wix': 'assets/tech-icons/wix-icon.svg',
-  'React': 'assets/tech-icons/reactjs-icon.svg',
-  'Supabase': 'assets/tech-icons/supabase-icon.svg',
-  'Nextjs': 'assets/tech-icons/nextjs-icon.svg',
-  'Next.js': 'assets/tech-icons/nextjs-icon.svg',
-};
-
+  @Input() liveLink = '';
+  @Input() githubLink = '';
   expanded = false;
   currentSlide = 0;
 
-  @ViewChild('expandableContent') expandableContent!: ElementRef<HTMLDivElement>;
-  maxHeight = '0px';
-  private preloadedScreenshots = new Set<string>();
-
-  ngAfterViewInit() {
-    this.maxHeight = this.expanded ? `${this.expandableContent.nativeElement.scrollHeight}px` : '0px';
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['screenshots']) { this.currentSlide = 0; }
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['screenshots']) {
-      this.preloadScreenshots(this.screenshots);
-    }
-  }
-
-  toggle() {
+  toggle(): void {
     this.expanded = !this.expanded;
-    this.maxHeight = this.expanded
-      ? `${this.expandableContent.nativeElement.scrollHeight}px`
-      : '0px';
+    if (!this.expanded) { this.currentSlide = 0; }
   }
 
-  nextSlide() {
-    this.currentSlide = (this.currentSlide + 1) % this.screenshots.length;
-    this.preloadAdjacentSlides();
-  }
-
-  prevSlide() {
-    this.currentSlide =
-      (this.currentSlide - 1 + this.screenshots.length) % this.screenshots.length;
-    this.preloadAdjacentSlides();
-  }
-
-  private preloadScreenshots(screenshots: string[]) {
-    screenshots.forEach((src) => {
-      if (this.preloadedScreenshots.has(src)) {
-        return;
-      }
-
-      const image = new Image();
-      image.src = src;
-      this.preloadedScreenshots.add(src);
-    });
-  }
-
-  private preloadAdjacentSlides() {
-    if (!this.screenshots.length) {
-      return;
+  nextSlide(): void {
+    if (this.screenshots.length) {
+      this.currentSlide = (this.currentSlide + 1) % this.screenshots.length;
     }
+  }
 
-    const nextIndex = (this.currentSlide + 1) % this.screenshots.length;
-    const prevIndex = (this.currentSlide - 1 + this.screenshots.length) % this.screenshots.length;
-    this.preloadScreenshots([
-      this.screenshots[this.currentSlide],
-      this.screenshots[nextIndex],
-      this.screenshots[prevIndex]
-    ]);
+  prevSlide(): void {
+    if (this.screenshots.length) {
+      this.currentSlide = (this.currentSlide - 1 + this.screenshots.length) % this.screenshots.length;
+    }
   }
 }

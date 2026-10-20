@@ -10,13 +10,16 @@ import { environment } from '../../../environments/environment';
 export class ContactComponent {
   isLoading = false;
   isSent = false;
+  hasError = false;
 
   sendEmail(event: Event) {
     event.preventDefault();
     this.isLoading = true;
     this.isSent = false;
+    this.hasError = false;
 
     const form = event.target as HTMLFormElement;
+    if (!form.reportValidity()) { this.isLoading = false; return; }
 
     emailjs.sendForm(
       environment.emailjsServiceID,
@@ -31,6 +34,7 @@ export class ContactComponent {
       },
       (error) => {
         this.isLoading = false;
+        this.hasError = true;
         console.error('FAILED...', error);
       }
     );
