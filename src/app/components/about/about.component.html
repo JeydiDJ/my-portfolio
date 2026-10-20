@@ -3,7 +3,9 @@
     <div class="about-overview">
       <div class="section-heading" appScrollAnimate="left"><h2>A little more about me.</h2></div>
       <div class="about-bio" appScrollAnimate="right">
-        <p>I'm John Dave, a full-stack developer based in Pampanga, Philippines. I build web experiences that make complex systems feel simple, from the interface to the database.</p>
+        <p>I'm <strong>John Dave Espiritu De Jesus</strong>, a Software Engineer at <strong>OneTool Solutions Inc.</strong>, based in Pampanga, Philippines. I develop xUML API services in MagicDraw and deploy them to Scheer PAS. I also use Docker to manage PAS environments and troubleshoot issues for the clients we support.</p>
+        <p>My full-stack background spans the construction, medical, and government sectors, working with React, Next.js, Angular, Vue.js, Python, and relational and NoSQL databases. I focus on solving technical challenges and delivering reliable, scalable software.</p>
+        <p>Languages: English and Filipino (Tagalog).</p>
         <div class="about-links"><a *ngFor="let link of contactLinks" [href]="link.href" [attr.target]="link.external ? '_blank' : null" rel="noreferrer">{{ link.label }} <span aria-hidden="true">↗</span></a></div>
       </div>
     </div>
@@ -15,7 +17,7 @@
           <div class="education-item" *ngFor="let item of education">
             <img *ngIf="item.logo; else educationPlaceholder" [src]="item.logo" [alt]="item.school + ' crest'" class="school-crest" width="64" height="80" loading="lazy">
             <ng-template #educationPlaceholder><span class="education-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m2 9 10-5 10 5-10 5L2 9Zm4 2v6c4 3 8 3 12 0v-6"/></svg></span></ng-template>
-            <div><h4>{{ item.title }}</h4><p *ngIf="item.school" class="education-school">{{ item.school }}</p><p>{{ item.detail }}</p><span class="item-year">Completed {{ item.year }}</span></div>
+            <div><h4>{{ item.title }}</h4><p *ngIf="item.school" class="education-school">{{ item.school }}</p><p>{{ item.detail }}</p><span class="item-year">Graduated {{ item.year }}<ng-container *ngIf="item.grade"> · {{ item.grade }}</ng-container></span></div>
           </div>
         </section>
 

@@ -140,6 +140,7 @@ app-project-card .gallery-pagination .is-current span { background: var(--accent
 
 app-about .school-crest { width: 64px; height: 80px; flex: 0 0 64px; object-fit: contain; }
 app-about .education-item .education-school { color: var(--text); font-weight: 750; }
+app-skills .tool-icon > span { font-size: 13px; letter-spacing: -.4px; }
 @media (max-width: 400px) { app-about .school-crest { width: 48px; height: 60px; flex-basis: 48px; } }
 app-about .strengths-card { padding: 24px 20px; }
 app-about .strengths-card h3 { font-size: 18px; gap: 8px; }
