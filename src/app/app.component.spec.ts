@@ -58,4 +58,75 @@ describe('AppComponent', () => {
     expect(fixture.componentInstance.menuOpen).toBeFalse();
     expect(window.history.replaceState).toHaveBeenCalledWith(null, '', '#main');
   });
+
+  it('highlights the section at the reading line in page order', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const main = fixture.nativeElement.querySelector('main') as HTMLElement;
+    ['top', 'projects', 'about', 'skills', 'contact'].forEach((id, i) => {
+      const section = document.createElement('section');
+      section.id = id;
+      main.appendChild(section);
+      spyOn(section, 'getBoundingClientRect').and.returnValue({ top: [-1500, -800, -100, 800, 1600][i] } as DOMRect);
+    });
+    spyOnProperty(window, 'scrollY').and.returnValue(1500);
+    spyOnProperty(window, 'innerHeight').and.returnValue(800);
+    spyOnProperty(document.documentElement, 'scrollHeight').and.returnValue(5000);
+    fixture.componentInstance.updateScrollState();
+    fixture.detectChanges();
+    const active = fixture.nativeElement.querySelectorAll('.nav-links [aria-current="location"]');
+    expect(active.length).toBe(1);
+    expect(active[0].textContent).toBe('About');
+    expect(fixture.componentInstance.showBackToTop).toBeTrue();
+    expect(fixture.componentInstance.scrollProgress).toBeCloseTo(35.71, 1);
+  });
+
+  it('marks the final section at the page bottom and completes the progress ring', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const section = document.createElement('section');
+    section.id = 'contact';
+    fixture.nativeElement.querySelector('main').appendChild(section);
+    spyOn(section, 'getBoundingClientRect').and.returnValue({ top: 600 } as DOMRect);
+    spyOnProperty(window, 'scrollY').and.returnValue(1200);
+    spyOnProperty(window, 'innerHeight').and.returnValue(800);
+    spyOnProperty(document.documentElement, 'scrollHeight').and.returnValue(2000);
+    fixture.componentInstance.updateScrollState();
+    expect(fixture.componentInstance.activeSection).toBe('contact');
+    expect(fixture.componentInstance.scrollProgress).toBe(100);
+  });
+
+  it('hides the top button on a short page without dividing by zero', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    spyOnProperty(window, 'scrollY').and.returnValue(0);
+    spyOnProperty(window, 'innerHeight').and.returnValue(800);
+    spyOnProperty(document.documentElement, 'scrollHeight').and.returnValue(800);
+    fixture.componentInstance.updateScrollState();
+    fixture.detectChanges();
+    const button = fixture.nativeElement.querySelector('.back-to-top');
+    expect(button.getAttribute('tabindex')).toBe('-1');
+    expect(button.getAttribute('aria-hidden')).toBe('true');
+    expect(fixture.componentInstance.scrollProgress).toBe(0);
+  });
+
+  it('returns to the top without animation for reduced motion and restores scroll behavior', () => {
+    let callback: FrameRequestCallback = () => {};
+    let scrollY = 900;
+    spyOn(window, 'requestAnimationFrame').and.callFake(frame => { callback = frame; return 1; });
+    spyOn(window, 'cancelAnimationFrame');
+    spyOn(window, 'matchMedia').and.returnValue({ matches: true } as MediaQueryList);
+    spyOnProperty(window, 'scrollY').and.callFake(() => scrollY);
+    spyOn(window, 'scrollTo').and.callFake(() => { scrollY = 0; });
+    spyOn(window.history, 'replaceState');
+    const previousBehavior = document.documentElement.style.scrollBehavior;
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    fixture.componentInstance.scrollToTop();
+    callback(performance.now() + 16);
+    expect(window.scrollTo).toHaveBeenCalledWith(0, 0);
+    expect(fixture.componentInstance.activeSection).toBe('top');
+    expect(document.documentElement.style.scrollBehavior).toBe(previousBehavior);
+    expect(window.history.replaceState).toHaveBeenCalledWith(null, '', '#top');
+  });
 });

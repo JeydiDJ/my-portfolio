@@ -4,7 +4,7 @@
 .brand span { color: var(--accent); }
 .nav-links, .nav-actions { display: flex; align-items: center; gap: 30px; }
 .nav-links a { font-size: 13px; font-weight: 700; color: var(--muted); padding-block: 10px; }
-.nav-links a:hover { color: var(--accent); }
+.nav-links a:hover, .nav-links a.is-active { color: var(--accent); }
 .nav-actions { gap: 18px; }
 .theme-toggle, .menu-toggle { display: grid; place-items: center; background: none; border: 1px solid var(--border); border-radius: 6px; width: 40px; height: 40px; }
 .theme-toggle:hover, .menu-toggle:hover { background: var(--accent-soft); }
@@ -27,7 +27,7 @@
 
 .nav-links a { position: relative; }
 .nav-links a::after { content: ''; position: absolute; left: 0; right: 0; bottom: 4px; height: 2px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .3s; }
-.nav-links a:hover::after, .nav-links a:focus-visible::after { transform: scaleX(1); }
+.nav-links a:hover::after, .nav-links a:focus-visible::after, .nav-links a.is-active::after { transform: scaleX(1); }
 .theme-toggle svg { transition: transform .5s; }
 .theme-toggle:hover svg { transform: rotate(35deg); }
 .site-header { animation: headerEnter .7s ease both; }

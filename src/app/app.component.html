@@ -3,11 +3,11 @@
   <nav class="section-shell site-nav" aria-label="Main navigation">
     <a class="brand" href="#top" aria-label="John Dave, home">jd<span>.</span></a>
     <div class="nav-links" id="main-navigation" [class.is-open]="menuOpen">
-      <a href="#top" (click)="menuOpen = false">Home</a>
-      <a href="#about" (click)="menuOpen = false">About</a>
-      <a href="#skills" (click)="menuOpen = false">Tools</a>
-      <a href="#projects" (click)="menuOpen = false">Work</a>
-      <a href="#contact" (click)="menuOpen = false">Contact</a>
+      <a href="#top" (click)="menuOpen = false" [class.is-active]="activeSection === 'top'" [attr.aria-current]="activeSection === 'top' ? 'location' : null">Home</a>
+      <a href="#about" (click)="menuOpen = false" [class.is-active]="activeSection === 'about'" [attr.aria-current]="activeSection === 'about' ? 'location' : null">About</a>
+      <a href="#skills" (click)="menuOpen = false" [class.is-active]="activeSection === 'skills'" [attr.aria-current]="activeSection === 'skills' ? 'location' : null">Tools</a>
+      <a href="#projects" (click)="menuOpen = false" [class.is-active]="activeSection === 'projects'" [attr.aria-current]="activeSection === 'projects' ? 'location' : null">Work</a>
+      <a href="#contact" (click)="menuOpen = false" [class.is-active]="activeSection === 'contact'" [attr.aria-current]="activeSection === 'contact' ? 'location' : null">Contact</a>
     </div>
     <div class="nav-actions">
       <button class="theme-toggle" type="button" (click)="toggleTheme()" [attr.aria-label]="darkMode ? 'Switch to light theme' : 'Switch to dark theme'" [attr.aria-pressed]="darkMode">
@@ -31,3 +31,11 @@
   <p>© {{ year }} John Dave Espiritu De Jesus</p>
   <a href="#top">Back to top <span aria-hidden="true">↑</span></a>
 </footer>
+<button type="button" class="back-to-top" [class.is-visible]="showBackToTop" (click)="scrollToTop()"
+  aria-label="Scroll to top" title="Back to top" [attr.aria-hidden]="showBackToTop ? null : 'true'" [attr.tabindex]="showBackToTop ? 0 : -1">
+  <svg class="scroll-progress" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+    <circle class="progress-track" cx="32" cy="32" r="29"/>
+    <circle class="progress-value" cx="32" cy="32" r="29" pathLength="100" [attr.stroke-dashoffset]="100 - scrollProgress"/>
+  </svg>
+  <svg class="back-to-top-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20V4m-7 7 7-7 7 7"/></svg>
+</button>
