@@ -127,16 +127,8 @@ body, .site-header, .site-footer, .site-section, input, textarea { transition: b
   .tech-marquee-track { width: auto; }
   .tech-marquee-group { flex-wrap: wrap; justify-content: center; gap: 12px 24px; padding-inline: 20px; }
   .tech-marquee-group[aria-hidden] { display: none; }
-  .project-card:hover, .project-visit:hover, .gallery-navigation button:hover { transform: none; }
+  .project-card:hover, .project-visit:hover { transform: none; }
 }
-app-project-card .gallery-toolbar { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding-top: 12px; }
-app-project-card .drag-hint { display: flex; gap: 10px; align-items: center; font-size: 10px; color: var(--accent-strong); }
-app-project-card .drag-hint span { display: inline-block; animation: swipeHint 2.5s ease-in-out infinite; }
-app-project-card .gallery-pagination { display: flex; justify-content: center; gap: 2px; }
-app-project-card .gallery-pagination button { display: grid; place-items: center; min-width: 0; width: 24px; height: 28px; border: 0; padding: 0; background: none; }
-app-project-card .gallery-pagination span { width: 12px; height: 3px; background: var(--border); transition: background .25s, transform .25s; }
-app-project-card .gallery-pagination .is-current span { background: var(--accent); transform: scaleX(1.3); }
-@keyframes swipeHint { 0%,100% { transform: translateX(-3px); } 50% { transform: translateX(3px); } }
 
 app-about .school-crest { width: 64px; height: 80px; flex: 0 0 64px; object-fit: contain; }
 app-about .education-item .education-school { color: var(--text); font-weight: 750; }

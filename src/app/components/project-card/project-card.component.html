@@ -9,18 +9,7 @@
         <img [src]="shot" [alt]="name + ', screenshot ' + (i + 1)" class="project-shot" loading="lazy" width="1440" height="900" draggable="false" />
       </div>
     </div>
-    <div *ngIf="screenshots.length > 1" class="gallery-toolbar">
-      <span class="drag-hint">Drag to explore <span aria-hidden="true">↔</span></span>
-      <div class="gallery-navigation">
-        <button type="button" (click)="prevSlide()" [attr.aria-label]="'Previous screenshot of ' + name">←</button>
-        <span class="gallery-count" aria-live="polite" aria-atomic="true">{{ currentSlide + 1 }} / {{ screenshots.length }}</span>
-        <button type="button" (click)="nextSlide()" [attr.aria-label]="'Next screenshot of ' + name">→</button>
-      </div>
-    </div>
-    <div *ngIf="screenshots.length > 1" class="gallery-pagination" role="group" [attr.aria-label]="name + ' slide selection'">
-      <button *ngFor="let shot of screenshots; let i = index" type="button" (click)="goToSlide(i)" [class.is-current]="i === currentSlide"
-        [attr.aria-label]="'Show screenshot ' + (i + 1) + ' of ' + name" [attr.aria-current]="i === currentSlide ? 'true' : null"><span></span></button>
-    </div>
+    <span class="sr-only" aria-live="polite" aria-atomic="true">{{ name }}: screenshot {{ currentSlide + 1 }} of {{ screenshots.length }}</span>
   </div>
   <div class="project-body">
     <div class="project-heading">

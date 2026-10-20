@@ -22,7 +22,9 @@ describe('ProjectCardComponent', () => {
   it('makes every screenshot available without expanding the project', () => {
     expect(gallery.querySelectorAll('.project-slide').length).toBe(3);
     expect(fixture.nativeElement.textContent).not.toContain('Explore project');
-    expect(fixture.nativeElement.querySelector('.gallery-navigation')).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('.gallery-navigation')).toBeNull();
+    expect(fixture.nativeElement.querySelector('.gallery-pagination')).toBeNull();
+    expect(fixture.nativeElement.textContent).not.toContain('Drag to explore');
   });
 
   it('supports keyboard navigation and wraps at the final screenshot', () => {
@@ -37,12 +39,12 @@ describe('ProjectCardComponent', () => {
     expect(component.currentSlide).toBe(2);
   });
 
-  it('synchronizes the selected indicator after native swipe or trackpad scrolling', () => {
+  it('announces the selected screenshot after native swipe or trackpad scrolling', () => {
     gallery.scrollLeft = 790;
     gallery.dispatchEvent(new Event('scroll'));
     fixture.detectChanges();
     expect(component.currentSlide).toBe(2);
-    expect(fixture.nativeElement.querySelector('.is-current').getAttribute('aria-label')).toContain('3');
+    expect(fixture.nativeElement.querySelector('[aria-live]').textContent).toContain('screenshot 3 of 3');
   });
 
   it('drags with the mouse and snaps to the adjacent screenshot on release', () => {
