@@ -5,8 +5,8 @@
     <div class="nav-links" id="main-navigation" [class.is-open]="menuOpen">
       <a href="#top" (click)="menuOpen = false" [class.is-active]="activeSection === 'top'" [attr.aria-current]="activeSection === 'top' ? 'location' : null">Home</a>
       <a href="#about" (click)="menuOpen = false" [class.is-active]="activeSection === 'about'" [attr.aria-current]="activeSection === 'about' ? 'location' : null">About</a>
-      <a href="#skills" (click)="menuOpen = false" [class.is-active]="activeSection === 'skills'" [attr.aria-current]="activeSection === 'skills' ? 'location' : null">Tools</a>
       <a href="#projects" (click)="menuOpen = false" [class.is-active]="activeSection === 'projects'" [attr.aria-current]="activeSection === 'projects' ? 'location' : null">Work</a>
+      <a href="#skills" (click)="menuOpen = false" [class.is-active]="activeSection === 'skills'" [attr.aria-current]="activeSection === 'skills' ? 'location' : null">Tools</a>
       <a href="#contact" (click)="menuOpen = false" [class.is-active]="activeSection === 'contact'" [attr.aria-current]="activeSection === 'contact' ? 'location' : null">Contact</a>
     </div>
     <div class="nav-actions">
@@ -21,8 +21,8 @@
 </header>
 <main id="main" tabindex="-1">
   <app-hero></app-hero>
-  <app-projects></app-projects>
   <app-about></app-about>
+  <app-projects></app-projects>
   <app-skills></app-skills>
   <app-contact></app-contact>
 </main>

@@ -5,8 +5,10 @@ describe('ProjectCardComponent', () => {
   let component: ProjectCardComponent;
   let fixture: ComponentFixture<ProjectCardComponent>;
   let gallery: HTMLDivElement;
+  let motionPreference: jasmine.Spy;
 
   beforeEach(async () => {
+    motionPreference = spyOn(window, 'matchMedia').and.returnValue({ matches: true } as MediaQueryList);
     await TestBed.configureTestingModule({ declarations: [ProjectCardComponent] }).compileComponents();
     fixture = TestBed.createComponent(ProjectCardComponent);
     component = fixture.componentInstance;
@@ -87,5 +89,24 @@ describe('ProjectCardComponent', () => {
     gallery.dispatchEvent(event);
     expect(component.dragging).toBeFalse();
     expect(event.defaultPrevented).toBeFalse();
+  });
+
+  it('keeps the modal and scroll lock active until its return animation finishes', async () => {
+    motionPreference.and.returnValue({ matches: false } as MediaQueryList);
+    const dialog = fixture.nativeElement.querySelector('dialog');
+    let finish!: () => void;
+    const finished = new Promise<void>(resolve => finish = resolve);
+    const animation = { finished, cancel: jasmine.createSpy('cancel') };
+    spyOn(dialog, 'animate').and.returnValue(animation as unknown as Animation);
+    component.closeProject();
+    expect(dialog.open).toBeTrue();
+    expect(document.body.style.overflow).toBe('hidden');
+    component.closeProject();
+    expect(dialog.animate).toHaveBeenCalledTimes(1);
+    finish();
+    await finished;
+    expect(dialog.open).toBeFalse();
+    expect(document.body.style.overflow).not.toBe('hidden');
+    expect(document.activeElement).toBe(fixture.nativeElement.querySelector('.project-preview'));
   });
 });

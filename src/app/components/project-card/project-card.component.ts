@@ -28,21 +28,60 @@ export class ProjectCardComponent implements OnDestroy {
   @ViewChild('projectDialog') projectDialog!: ElementRef<HTMLDialogElement>;
   @ViewChild('projectTrigger') projectTrigger!: ElementRef<HTMLButtonElement>;
   private previousOverflow: string | null = null;
+  private dialogAnimation?: Animation;
+  private detailAnimations: Animation[] = [];
+  private closing = false;
+
+  private cardTransform(dialog: HTMLDialogElement): string {
+    const card = this.projectTrigger.nativeElement.querySelector('.project-cover')!.getBoundingClientRect();
+    const modal = dialog.getBoundingClientRect();
+    return `translate(${card.left - modal.left}px, ${card.top - modal.top}px) scale(${card.width / modal.width}, ${card.height / modal.height})`;
+  }
 
   openProject(): void {
     if (this.projectDialog.nativeElement.open) { return; }
     this.previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     this.projectDialog.nativeElement.showModal();
+    const dialog = this.projectDialog.nativeElement;
+    dialog.scrollTop = 0;
+    this.currentSlide = 0;
+    this.gallery?.nativeElement.scrollTo({ left: 0, behavior: 'auto' });
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { return; }
+    this.dialogAnimation = dialog.animate([
+      { transform: this.cardTransform(dialog), opacity: .85, borderRadius: '8px' },
+      { transform: 'translate(0, 0) scale(1, 1)', opacity: 1, borderRadius: '12px' }
+    ], { duration: 580, easing: 'cubic-bezier(.16,1,.3,1)' });
+    this.detailAnimations = Array.from(dialog.querySelectorAll<HTMLElement>('.dialog-header, .project-body')).map(element =>
+      element.animate([{ opacity: 0, transform: 'translateY(12px)' }, { opacity: 1, transform: 'none' }],
+        { duration: 320, delay: 160, fill: 'backwards', easing: 'ease-out' }));
   }
 
   closeProject(): void {
+    const dialog = this.projectDialog.nativeElement;
+    if (!dialog.open || this.closing) { return; }
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { this.finishClose(); return; }
+    const currentTransform = getComputedStyle(dialog).transform;
+    this.dialogAnimation?.cancel();
+    this.detailAnimations.forEach(animation => animation.cancel());
+    this.closing = true;
+    this.dialogAnimation = dialog.animate([
+      { transform: currentTransform, opacity: 1 },
+      { transform: this.cardTransform(dialog), opacity: 0, borderRadius: '8px' }
+    ], { duration: 360, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards' });
+    this.dialogAnimation.finished.then(() => this.finishClose()).catch(() => {});
+  }
+
+  private finishClose(): void {
     this.projectDialog.nativeElement.close();
     this.onDialogClose();
     this.projectTrigger.nativeElement.focus({ preventScroll: true });
   }
 
   onDialogClose(): void {
+    this.dialogAnimation?.cancel();
+    this.detailAnimations.forEach(animation => animation.cancel());
+    this.closing = false;
     if (this.previousOverflow === null) { return; }
     document.body.style.overflow = this.previousOverflow;
     this.previousOverflow = null;
@@ -58,6 +97,8 @@ export class ProjectCardComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.dialogAnimation?.cancel();
+    this.detailAnimations.forEach(animation => animation.cancel());
     if (this.projectDialog?.nativeElement.open) { this.projectDialog.nativeElement.close(); }
     this.onDialogClose();
   }

@@ -9,7 +9,7 @@
 </article>
 
 <dialog #projectDialog class="project-dialog" [attr.aria-label]="name + ' project details'" (cancel)="$event.preventDefault(); closeProject()" (close)="onDialogClose()" (click)="onBackdropClick($event)">
-  <header class="dialog-header"><span>{{ name }}</span><button type="button" class="dialog-close" (click)="closeProject()" aria-label="Close project details" autofocus><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></header>
+  <header class="dialog-header"><div class="dialog-brand"><img [src]="logo" alt="" width="24" height="24"><span>{{ name }}</span></div><div class="dialog-header-actions"><span class="image-position" *ngIf="screenshots.length">{{ currentSlide + 1 }} / {{ screenshots.length }}</span><button type="button" class="dialog-close" (click)="closeProject()" aria-label="Close project details" autofocus><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div></header>
   <div class="project-media" *ngIf="screenshots.length">
     <div #gallery class="project-gallery" [class.is-dragging]="dragging" tabindex="0"
       role="region" aria-roledescription="carousel" [attr.aria-label]="name + ' screenshots. Swipe, drag, or use arrow keys to browse.'"
@@ -23,18 +23,22 @@
     <span class="sr-only" aria-live="polite" aria-atomic="true">{{ name }}: screenshot {{ currentSlide + 1 }} of {{ screenshots.length }}</span>
   </div>
   <div class="project-body">
+    <div class="project-overview">
     <div class="project-heading">
       <div class="project-brand">
         <img [src]="logo" alt="" class="project-logo" loading="lazy" width="32" height="32" />
         <h3>{{ name }}</h3>
       </div>
-      <a *ngIf="liveLink" [href]="liveLink" target="_blank" rel="noreferrer" class="project-visit" [attr.aria-label]="'Visit ' + name">↗</a>
     </div>
     <p class="project-description">{{ description }}</p>
+    </div>
+    <aside class="project-meta" aria-label="Project technologies and links">
+    <h4>Built with</h4>
     <ul class="project-tech" aria-label="Technologies"><li *ngFor="let tech of techStack">{{ tech }}</li></ul>
     <div class="project-actions" *ngIf="liveLink || githubLink">
-      <a *ngIf="liveLink" [href]="liveLink" target="_blank" rel="noreferrer">Visit website <span aria-hidden="true">↗</span></a>
-      <a *ngIf="githubLink" [href]="githubLink" target="_blank" rel="noreferrer">Source code <span aria-hidden="true">↗</span></a>
+      <a *ngIf="liveLink" [href]="liveLink" target="_blank" rel="noreferrer" class="project-live">Visit website <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a>
+      <a *ngIf="githubLink" [href]="githubLink" target="_blank" rel="noreferrer">Source code <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m8 5-7 7 7 7m8-14 7 7-7 7m-3-17-2 20"/></svg></a>
     </div>
+    </aside>
   </div>
 </dialog>
