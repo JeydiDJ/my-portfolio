@@ -1,0 +1,11 @@
+.hero-terminal { margin-bottom: 18px; color: var(--text); font-family: 'Cascadia Code', 'SFMono-Regular', Consolas, monospace; }
+.terminal-line { display: flex; align-items: center; min-height: 1.5em; font-size: clamp(18px, 2.2vw, 26px); font-weight: 650; line-height: 1.5; }
+.terminal-text { display: inline-block; overflow: hidden; white-space: nowrap; box-sizing: content-box; border-right: 2px solid var(--accent); }
+.terminal-line:first-child .terminal-text { width: 18ch; animation: terminalType 1.2s steps(18, end) .45s both, firstCursorOut .01s 1.8s forwards; }
+.terminal-line:nth-child(2) { animation: terminalLineIn .01s 1.8s both; }
+.terminal-line:nth-child(2) .terminal-text { width: 19ch; animation: terminalType 1.3s steps(19, end) 1.8s both, terminalCursor .85s step-end infinite; }
+@keyframes terminalType { from { width: 0; } }
+@keyframes firstCursorOut { to { border-color: transparent; } }
+@keyframes terminalLineIn { from { visibility: hidden; } to { visibility: visible; } }
+@keyframes terminalCursor { 50% { border-color: transparent; } }
+@media (prefers-reduced-motion: reduce) { .terminal-line:first-child .terminal-text { border-color: transparent; } }
