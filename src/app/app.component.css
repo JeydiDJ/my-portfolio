@@ -8,8 +8,10 @@
 .nav-links a:hover, .nav-links a.is-active { color: var(--accent); }
 .nav-actions { gap: 18px; }
 .theme-toggle, .menu-toggle { display: grid; place-items: center; background: none; border: 1px solid var(--border); border-radius: 6px; width: 40px; height: 40px; }
+.theme-toggle { border: 0; }
 .theme-toggle:hover, .menu-toggle:hover { background: var(--accent-soft); }
 .nav-contact { min-height: 42px; padding: 9px 18px; }
+.nav-contact svg { width: 18px; height: 18px; flex-shrink: 0; }
 .menu-toggle { display: none; }
 .site-footer { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-block: 30px; border-top: 1px solid var(--border); }
 .site-footer p, .site-footer > a:last-child { font-size: 12px; color: var(--muted); margin: 0; }

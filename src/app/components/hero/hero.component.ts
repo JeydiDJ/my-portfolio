@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./hero.component.scss']
 })
 export class HeroComponent {
-
+  technologies = [
+    { name: 'Scheer PAS', icon: 'scheer-pas-icon.png' },
+    { name: 'MagicDraw', icon: 'magicdraw-icon.png' },
+    { name: 'REST APIs', icon: 'rest-api-icon.svg' },
+    { name: 'Docker', icon: 'docker-icon.png' },
+    { name: 'React', icon: 'reactjs-icon.svg' },
+    { name: 'Next.js', icon: 'nextjs-icon.svg' },
+    { name: 'Python', icon: 'python-icon.svg' }
+  ];
 }
