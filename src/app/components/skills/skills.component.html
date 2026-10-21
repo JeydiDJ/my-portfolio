@@ -5,19 +5,36 @@
       <p>From full-stack applications to enterprise APIs, integrations, and production support.</p>
     </div>
     <div class="skills-grid">
-      <section *ngFor="let category of skillCategories; let categoryIndex = index" class="skill-category">
-        <h3 appScrollAnimate [revealDelay]="categoryIndex * 75"><span class="category-dot" [style.background]="category.color" aria-hidden="true"></span>{{ category.name }}</h3>
-        <div class="skill-list">
-          <article *ngFor="let skill of category.skills; let skillIndex = index" class="tool-card" appScrollAnimate [revealDelay]="(skillIndex % 3) * 60 + categoryIndex * 50">
-            <span class="tool-icon">
-              <img *ngIf="techIconMap[skill.name]" [src]="'assets/tech-icons/' + techIconMap[skill.name]" alt="" width="32" height="32" loading="lazy">
-              <svg *ngIf="(skill.name === 'PostgreSQL' || skill.name === 'SQL')" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><ellipse cx="16" cy="7" rx="10" ry="4"/><path d="M6 7v18c0 5 20 5 20 0V7M6 16c0 5 20 5 20 0"/></svg>
-              <span *ngIf="!techIconMap[skill.name] && skill.name !== 'PostgreSQL' && skill.name !== 'SQL'" aria-hidden="true">{{ fallbackIcon(skill.name) }}</span>
-            </span>
-            <div class="tool-copy"><h4>{{ skill.name }}</h4><p>{{ skill.description }}</p></div>
-          </article>
+      <section *ngFor="let category of skillCategories; let categoryIndex = index" class="skill-category" appScrollAnimate [revealDelay]="categoryIndex * 90" [attr.aria-labelledby]="'tool-category-' + categoryIndex">
+        <header class="category-heading"><span class="category-number" aria-hidden="true">0{{ categoryIndex + 1 }}</span><h3 [id]="'tool-category-' + categoryIndex">{{ category.name }}</h3><span class="tool-count">{{ category.skills.length }} tools</span></header>
+        <div class="tool-grid" [attr.aria-label]="category.name + ' tools'">
+          <button *ngFor="let skill of category.skills; let skillIndex = index" type="button" class="tool-tile"
+            [class.is-selected]="selectedTools[categoryIndex] === skillIndex" [style.--tool-order]="skillIndex"
+            [attr.aria-pressed]="selectedTools[categoryIndex] === skillIndex"
+            [attr.aria-describedby]="'tool-detail-' + categoryIndex"
+            [attr.tabindex]="selectedTools[categoryIndex] === skillIndex ? 0 : -1"
+            (mouseenter)="selectTool(categoryIndex, skillIndex)" (focus)="selectTool(categoryIndex, skillIndex)"
+            (click)="selectTool(categoryIndex, skillIndex)" (keydown)="onToolKeydown($event, categoryIndex, skillIndex)">
+            <span class="tool-icon"><ng-container *ngTemplateOutlet="toolIcon; context: { $implicit: skill }"></ng-container></span>
+            <span class="tool-name">{{ skill.name }}</span>
+          </button>
+        </div>
+        <div class="tool-detail" [id]="'tool-detail-' + categoryIndex">
+          <ng-container *ngFor="let skill of category.skills; let skillIndex = index">
+            <div *ngIf="selectedTools[categoryIndex] === skillIndex" class="tool-spotlight">
+              <span class="spotlight-icon" aria-hidden="true"><ng-container *ngTemplateOutlet="toolIcon; context: { $implicit: skill }"></ng-container></span>
+              <div><h4>{{ skill.name }}</h4><p>{{ skill.description }}</p></div>
+            </div>
+          </ng-container>
         </div>
       </section>
     </div>
+    <p class="toolkit-hint">Explore a tool to see where it fits into my work.</p>
   </div>
 </section>
+
+<ng-template #toolIcon let-skill>
+  <img *ngIf="techIconMap[skill.name]" [src]="'assets/tech-icons/' + techIconMap[skill.name]" alt="" width="40" height="40" loading="lazy">
+  <svg *ngIf="skill.name === 'PostgreSQL' || skill.name === 'SQL'" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><ellipse cx="16" cy="7" rx="10" ry="4"/><path d="M6 7v18c0 5 20 5 20 0V7M6 16c0 5 20 5 20 0"/></svg>
+  <span *ngIf="!techIconMap[skill.name] && skill.name !== 'PostgreSQL' && skill.name !== 'SQL'" class="tool-monogram" aria-hidden="true">{{ fallbackIcon(skill.name) }}</span>
+</ng-template>

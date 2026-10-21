@@ -3,10 +3,28 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-skills',
   templateUrl: './skills.component.html',
-  styleUrls: ['./skills.component.scss']
+  styleUrls: ['./skills.component.scss', './skills-motion.scss']
 })
 export class SkillsComponent {
+  selectedTools = [4, 5, 1, 0];
+
+  selectTool(category: number, skill: number): void {
+    this.selectedTools[category] = skill;
+  }
+
+  onToolKeydown(event: KeyboardEvent, category: number, index: number): void {
+    if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key)) { return; }
+    event.preventDefault();
+    const grid = (event.currentTarget as HTMLElement).parentElement!;
+    const columns = getComputedStyle(grid).gridTemplateColumns.split(' ').length;
+    const length = this.skillCategories[category].skills.length;
+    const steps: Record<string, number> = { ArrowLeft: -1, ArrowRight: 1, ArrowUp: -columns, ArrowDown: columns };
+    const next = event.key === 'Home' ? 0 : event.key === 'End' ? length - 1 : (index + steps[event.key] + length) % length;
+    grid.querySelectorAll<HTMLButtonElement>('button')[next].focus();
+  }
+
   techIconMap: Record<string, string> = {
+    'REST APIs': 'rest-api-icon.svg',
     'Scheer PAS': 'scheer-pas-icon.png',
     MagicDraw: 'magicdraw-icon.png',
     Docker: 'docker-icon.png',
@@ -27,7 +45,7 @@ export class SkillsComponent {
         { name: 'TypeScript', description: 'Typed application development' },
         { name: 'HTML5', description: 'Semantic web structure' },
         { name: 'CSS3', description: 'Responsive styling & layouts' },
-        { name: 'React', description: 'Component-based interfaces' },
+        { name: 'React', description: 'Build component-based interfaces for web apps and dashboards.' },
         { name: 'Next.js', description: 'Full-stack React framework' },
         { name: 'Angular', description: 'Web application framework' },
         { name: 'Vue.js', description: 'Progressive UI framework' },
@@ -42,7 +60,7 @@ export class SkillsComponent {
         { name: 'Django', description: 'Python web framework' },
         { name: 'SQL', description: 'Queries & database design' },
         { name: 'PostgreSQL', description: 'Relational databases' },
-        { name: 'Supabase', description: 'Postgres & backend services' },
+        { name: 'Supabase', description: 'Connect applications to Postgres databases, authentication, and backend services.' },
         { name: 'Firebase', description: 'Firestore & authentication' },
         { name: 'MongoDB', description: 'Document databases' }
       ]
@@ -50,8 +68,8 @@ export class SkillsComponent {
     {
       name: 'Enterprise integration', color: 'var(--accent)',
       skills: [
-        { name: 'Scheer PAS', description: 'API service deployment & support' },
-        { name: 'MagicDraw', description: 'xUML API service development' },
+        { name: 'Scheer PAS', description: 'Deploy xUML API services and support enterprise integration environments.' },
+        { name: 'MagicDraw', description: 'Model and develop xUML API services for deployment to Scheer PAS.' },
         { name: 'xUML', description: 'Executable API service models' },
         { name: 'E2E Builder', description: 'Integration workflow development' },
         { name: 'REST APIs', description: 'API development & integration' },
@@ -62,7 +80,7 @@ export class SkillsComponent {
     {
       name: 'Platforms & delivery', color: 'var(--accent)',
       skills: [
-        { name: 'Docker', description: 'Client PAS environments & troubleshooting' },
+        { name: 'Docker', description: 'Manage client Scheer PAS containers and troubleshoot logs, service health, and connectivity.' },
         { name: 'Docker Compose', description: 'Scheer PAS container management' },
         { name: 'Ubuntu/Linux', description: 'Logs & service health checks' },
         { name: 'Git', description: 'Version control' },
