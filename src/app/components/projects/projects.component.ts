@@ -19,6 +19,7 @@ export class ProjectsComponent implements OnDestroy {
   private startY = 0;
   private distance = 0;
   private clickTimer?: ReturnType<typeof setTimeout>;
+  private shuffleAnimations: Animation[] = [];
 
   offset(index: number): number {
     const length = this.projects.length;
@@ -26,7 +27,43 @@ export class ProjectsComponent implements OnDestroy {
   }
 
   select(index: number): void {
-    this.selected = (index + this.projects.length) % this.projects.length;
+    const next = (index + this.projects.length) % this.projects.length;
+    if (next === this.selected) { return; }
+    const previous = this.selected;
+    const direction = this.offset(next) < 0 ? -1 : 1;
+    const elements = this.cards.toArray().map(card => card.projectTrigger.nativeElement.closest('app-project-card') as HTMLElement);
+    const before = elements.map(element => {
+      const style = getComputedStyle(element);
+      return { transform: style.transform, filter: style.filter, opacity: style.opacity, zIndex: style.zIndex };
+    });
+    this.shuffleAnimations.forEach(animation => animation.cancel());
+    this.shuffleAnimations = [];
+    elements.forEach(element => element.style.transition = 'none');
+    this.selected = next;
+    this.changeDetector.detectChanges();
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { return; }
+
+    this.shuffleAnimations = elements.map((element, i) => {
+      const target = getComputedStyle(element);
+      const end = { transform: target.transform, filter: target.filter, opacity: target.opacity, zIndex: target.zIndex };
+      let frames: Keyframe[] = [before[i], end];
+      if (i === previous) {
+        frames = [
+          { ...before[i], offset: 0, zIndex: 20, visibility: 'visible' },
+          { offset: .36, transform: `translateX(calc(-50% - ${direction} * var(--step) * 1.25)) translateY(-58px) translateZ(130px) rotateY(${-direction * 48}deg) rotateZ(${-direction * 13}deg) scale(1.02)`, zIndex: 20, filter: 'brightness(.92)', opacity: 1, visibility: 'visible' },
+          { offset: .64, transform: `${end.transform} translateY(-24px) rotateY(${direction * 18}deg)`, zIndex: 7, opacity: 1, visibility: 'visible' },
+          { ...end, offset: 1 }
+        ];
+      } else if (i === next) {
+        frames = [
+          { ...before[i], offset: 0, zIndex: 9, visibility: 'visible' },
+          { offset: .4, transform: `translateX(calc(-50% + ${direction} * var(--step) * .25)) translateY(18px) translateZ(-70px) rotateY(${direction * 20}deg) rotateZ(${direction * 4}deg) scale(.94)`, zIndex: 10, opacity: 1, visibility: 'visible' },
+          { offset: .76, transform: `translateX(-50%) translateY(-9px) translateZ(45px) rotateY(${-direction * 5}deg) scale(1.01)`, zIndex: 12, filter: 'brightness(1)', opacity: 1, visibility: 'visible' },
+          { ...end, offset: 1 }
+        ];
+      }
+      return element.animate(frames, { duration: 920, easing: 'cubic-bezier(.22,.65,.3,1)' });
+    });
   }
 
   onKeydown(event: KeyboardEvent): void {
@@ -76,5 +113,8 @@ export class ProjectsComponent implements OnDestroy {
     this.clickTimer = setTimeout(() => this.suppressClick = false, 350);
   }
 
-  ngOnDestroy(): void { clearTimeout(this.clickTimer); }
+  ngOnDestroy(): void {
+    clearTimeout(this.clickTimer);
+    this.shuffleAnimations.forEach(animation => animation.cancel());
+  }
 }

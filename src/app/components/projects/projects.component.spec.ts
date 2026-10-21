@@ -68,5 +68,30 @@ describe('ProjectsComponent', () => {
     expect(fixture.nativeElement.querySelectorAll('dialog[open]').length).toBe(0);
   });
 
+  it('cancels an unfinished shuffle when navigating again and on teardown', () => {
+    spyOn(window, 'matchMedia').and.returnValue({ matches: false } as MediaQueryList);
+    const animations: { cancel: jasmine.Spy }[] = [];
+    spyOn(HTMLElement.prototype, 'animate').and.callFake(() => {
+      const animation = { cancel: jasmine.createSpy('cancel') };
+      animations.push(animation);
+      return animation as unknown as Animation;
+    });
+    component.select(4);
+    const firstShuffle = animations.slice();
+    component.select(5);
+    expect(firstShuffle.length).toBeGreaterThan(0);
+    firstShuffle.forEach(animation => expect(animation.cancel).toHaveBeenCalled());
+    fixture.destroy();
+    animations.forEach(animation => expect(animation.cancel).toHaveBeenCalled());
+  });
+
+  it('changes projects without shuffle motion when reduced motion is requested', () => {
+    spyOn(window, 'matchMedia').and.returnValue({ matches: true } as MediaQueryList);
+    const animate = spyOn(HTMLElement.prototype, 'animate');
+    component.select(4);
+    expect(component.selected).toBe(4);
+    expect(animate).not.toHaveBeenCalled();
+  });
+
   afterEach(() => fixture.destroy());
 });
