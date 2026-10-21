@@ -1,9 +1,9 @@
-import { Component, ElementRef, Input, OnDestroy, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnDestroy, Output, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-project-card',
   templateUrl: './project-card.component.html',
-  styleUrls: ['./project-card.component.scss', './project-dialog.scss']
+  styleUrls: ['./project-card.component.scss', './project-dialog.scss', './project-carousel.scss']
 })
 export class ProjectCardComponent implements OnDestroy {
   @Input() name = '';
@@ -13,6 +13,17 @@ export class ProjectCardComponent implements OnDestroy {
   @Input() screenshots: string[] = [];
   @Input() liveLink = '';
   @Input() githubLink = '';
+  @Input() carousel = false;
+  @Input() active = true;
+  @Input() previewTabIndex = 0;
+  @Input() suppressClick = false;
+  @Output() selectProject = new EventEmitter<void>();
+
+  activateProject(): void {
+    if (this.suppressClick) { return; }
+    if (this.carousel && !this.active) { this.selectProject.emit(); return; }
+    this.openProject();
+  }
   @ViewChild('gallery') gallery?: ElementRef<HTMLDivElement>;
   @ViewChild('projectDialog') projectDialog!: ElementRef<HTMLDialogElement>;
   @ViewChild('projectTrigger') projectTrigger!: ElementRef<HTMLButtonElement>;

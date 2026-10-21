@@ -1,0 +1,112 @@
+export const PROJECTS = [
+  {
+    name: 'TVET Dashboard',
+    logo: 'assets/project-icons/tvet-logo.png',
+    description: 'The TVET Dashboard is an internal TESDA system for monitoring training operations, reviewing institutional and program data, validating uploads, handling reconciliation, and generating reports through one secure dashboard.',
+    techStack: ['Next.js','React','Tailwind','HTML','CSS','TypeScript','Python','Supabase'],
+    screenshots: [
+          'assets/tvet-pics/tvet1.png',
+          'assets/tvet-pics/tvet1.1.png',
+          'assets/tvet-pics/tvet2.png',
+          'assets/tvet-pics/tvet3.png',
+          'assets/tvet-pics/tvet4.png',
+          'assets/tvet-pics/tvet5.png',
+          'assets/tvet-pics/tvetdb.png'
+        ],
+    liveLink: 'https://tvet-dashboard.vercel.app/'
+  },
+  {
+    name: 'PHinder',
+    logo: 'assets/project-icons/phinder-logo.png',
+    description: 'Community-driven PWA to help locate missing persons in Pampanga. Interactive Mapbox map with verified reports and real-time updates.',
+    techStack: ['Vue.js','HTML','CSS','Javascript', 'Firebase', 'Mapbox'],
+    screenshots: [
+          'assets/phinder-pics/phinder1.png',
+          'assets/phinder-pics/phinder2.png',
+          'assets/phinder-pics/phinder3.png',
+          'assets/phinder-pics/phinder4.png',
+          'assets/phinder-pics/phinder5.png',
+          'assets/phinder-pics/phinder6.png',
+          'assets/phinder-pics/phinder7.png',
+          'assets/phinder-pics/phinder8.png'
+        ],
+    liveLink: 'https://missing-persons-tracker.web.app/',
+    githubLink: 'https://github.com/JeydiDJ/phinder'
+  },
+  {
+    name: 'TaskDone',
+    logo: 'assets/project-icons/taskdone-logo.png',
+    description: 'Modern task management PWA with visual progress views and mobile-first workflows designed to help users stay organized and focused.',
+    techStack: ['Angular','HTML','Tailwind','TypeScript','MongoDB'],
+    screenshots: [
+          'assets/taskdone-pics/taskdone1.png',
+          'assets/taskdone-pics/taskdone2.png',
+          'assets/taskdone-pics/taskdone3.png',
+          'assets/taskdone-pics/taskdone4.png',
+          'assets/taskdone-pics/taskdone5.png',
+          'assets/taskdone-pics/taskdone6.png',
+          'assets/taskdone-pics/taskdone7.png',
+          'assets/taskdone-pics/taskdone8.png',
+          'assets/taskdone-pics/taskdone9.png',
+          'assets/taskdone-pics/taskdone10.png',
+          'assets/taskdone-pics/taskdone11.png',
+          'assets/taskdone-pics/taskdone12.png',
+          'assets/taskdone-pics/taskdone13.png'
+        ],
+    liveLink: 'https://taskdone.digital',
+    githubLink: 'https://github.com/JeydiDJ/TaskDone/tree/main'
+  },
+  {
+    name: 'TILES & MORE',
+    logo: 'assets/project-icons/tilesandmore-logo.png',
+    description: 'Commissioned by a returning client to rebuild their Wix website with Next.js and React. Combines a public showroom, searchable product catalog, galleries, and quote requests with a private, authenticated admin workspace. The Supabase-backed CRM manages accounts, contacts, sales opportunities, activity, and attachments, alongside catalog management, reporting, accounting, and a CRM calendar.',
+    techStack: ['Next.js','React','TypeScript','Tailwind','Supabase','EmailJS','Vercel'],
+    screenshots: [
+          'assets/tilesandmore-pics/tilesandmore1.png',
+          'assets/tilesandmore-pics/tilesandmore2.png',
+          'assets/tilesandmore-pics/tilesandmore3.png',
+          'assets/tilesandmore-pics/tilesandmore4.png',
+          'assets/tilesandmore-pics/tilesandmore5.png',
+          'assets/tilesandmore-pics/tilesandmore6.png',
+          'assets/tilesandmore-pics/tilesandmore7.png',
+          'assets/tilesandmore-pics/tilesandmore8.png'
+        ],
+    liveLink: 'https://tiles-and-more.vercel.app/'
+  },
+  {
+    name: 'NearBuy',
+    logo: 'assets/project-icons/nearbuy-logo.png',
+    description: 'Neighborhood marketplace platform connecting local buyers and sellers through listings, authentication, and real-time data powered by Supabase.',
+    techStack: ['React','HTML','Tailwind','Javascript','Supabase'],
+    screenshots: [
+          'assets/nearbuy-pics/nearbuy1.png',
+          'assets/nearbuy-pics/nearbuy2.png',
+          'assets/nearbuy-pics/nearbuy3.png',
+          'assets/nearbuy-pics/nearbuy4.png',
+          'assets/nearbuy-pics/nearbuy5.png',
+          'assets/nearbuy-pics/nearbuy6.png',
+          'assets/nearbuy-pics/nearbuy7.png'
+        ],
+    liveLink: 'https://neighborhood-marketplace.vercel.app/',
+    githubLink: 'https://github.com/JeydiDJ/neighborhood-marketplace'
+  },
+  {
+    name: 'Kane & Kaori',
+    logo: 'assets/project-icons/kaneandkaori-logo.png',
+    description: 'Full-stack e-commerce website for a startup perfume brand with dynamic listings, checkout, and a clean luxury-oriented storefront experience.',
+    techStack: ['Nextjs','React','HTML','Tailwind','TypeScript','Supabase'],
+    screenshots: [
+          'assets/kaneandkaori-pics/kaneandkaori1.png',
+          'assets/kaneandkaori-pics/kaneandkaori2.png',
+          'assets/kaneandkaori-pics/kaneandkaori3.png',
+          'assets/kaneandkaori-pics/kaneandkaori4.png',
+          'assets/kaneandkaori-pics/kaneandkaori5.png',
+          'assets/kaneandkaori-pics/kaneandkaori6.png',
+          'assets/kaneandkaori-pics/kaneandkaori7.png',
+          'assets/kaneandkaori-pics/kaneandkaori8.png',
+          'assets/kaneandkaori-pics/kaneandkaori9.png'
+        ],
+    liveLink: 'https://kaneandkaori.vercel.app/',
+    githubLink: 'https://github.com/JeydiDJ/kaneandkaori'
+  }
+];

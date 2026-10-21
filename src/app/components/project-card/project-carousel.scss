@@ -1,0 +1,4 @@
+.carousel-preview .project-summary { display: none; }
+.carousel-preview:not(.is-selected) .project-overlay { display: none; }
+.carousel-preview .project-cover > img { aspect-ratio: 16 / 10; }
+.carousel-preview .project-cover { box-shadow: 0 14px 30px #14291c18; }

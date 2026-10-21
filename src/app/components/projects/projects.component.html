@@ -2,127 +2,29 @@
   <div class="section-shell">
     <div class="section-heading" appScrollAnimate>
       <h2>A few things I've built<span aria-hidden="true">.</span></h2>
-      <p>
-        Real problems, thoughtful solutions. A selection of web apps, business systems, and client work.
-      </p>
+      <p>Real problems, thoughtful solutions. Explore a selection of web apps, business systems, and client work.</p>
     </div>
-
-    <div class="projects-list">
-      <app-project-card appScrollAnimate [revealDelay]="0"
-        [name]="'TVET Dashboard'"
-        [logo]="'assets/project-icons/tvet-logo.png'"
-        [description]="'The TVET Dashboard is an internal TESDA system for monitoring training operations, reviewing institutional and program data, validating uploads, handling reconciliation, and generating reports through one secure dashboard.'"
-        [techStack]="['Next.js','React','Tailwind','HTML','CSS','TypeScript','Python','Supabase']"
-        [screenshots]="[
-          'assets/tvet-pics/tvet1.png',
-          'assets/tvet-pics/tvet1.1.png',
-          'assets/tvet-pics/tvet2.png',
-          'assets/tvet-pics/tvet3.png',
-          'assets/tvet-pics/tvet4.png',
-          'assets/tvet-pics/tvet5.png',
-          'assets/tvet-pics/tvetdb.png'
-        ]"
-        [liveLink]="'https://tvet-dashboard.vercel.app/'"
-      ></app-project-card>
-
-      <app-project-card appScrollAnimate [revealDelay]="130"
-        [name]="'PHinder'"
-        [logo]="'assets/project-icons/phinder-logo.png'"
-        [description]="'Community-driven PWA to help locate missing persons in Pampanga. Interactive Mapbox map with verified reports and real-time updates.'"
-        [techStack]="['Vue.js','HTML','CSS','Javascript', 'Firebase', 'Mapbox']"
-        [screenshots]="[
-          'assets/phinder-pics/phinder1.png',
-          'assets/phinder-pics/phinder2.png',
-          'assets/phinder-pics/phinder3.png',
-          'assets/phinder-pics/phinder4.png',
-          'assets/phinder-pics/phinder5.png',
-          'assets/phinder-pics/phinder6.png',
-          'assets/phinder-pics/phinder7.png',
-          'assets/phinder-pics/phinder8.png'
-        ]"
-        [liveLink]="'https://missing-persons-tracker.web.app/'"
-        [githubLink]="'https://github.com/JeydiDJ/phinder'"
-      ></app-project-card>
-
-      <app-project-card appScrollAnimate [revealDelay]="0"
-        [name]="'TaskDone'"
-        [logo]="'assets/project-icons/taskdone-logo.png'"
-        [description]="'Modern task management PWA with visual progress views and mobile-first workflows designed to help users stay organized and focused.'"
-        [techStack]="['Angular','HTML','Tailwind','TypeScript','MongoDB']"
-        [screenshots]="[
-          'assets/taskdone-pics/taskdone1.png',
-          'assets/taskdone-pics/taskdone2.png',
-          'assets/taskdone-pics/taskdone3.png',
-          'assets/taskdone-pics/taskdone4.png',
-          'assets/taskdone-pics/taskdone5.png',
-          'assets/taskdone-pics/taskdone6.png',
-          'assets/taskdone-pics/taskdone7.png',
-          'assets/taskdone-pics/taskdone8.png',
-          'assets/taskdone-pics/taskdone9.png',
-          'assets/taskdone-pics/taskdone10.png',
-          'assets/taskdone-pics/taskdone11.png',
-          'assets/taskdone-pics/taskdone12.png',
-          'assets/taskdone-pics/taskdone13.png'
-        ]"
-        [liveLink]="'https://taskdone.digital'"
-        [githubLink]="'https://github.com/JeydiDJ/TaskDone/tree/main'"
-      ></app-project-card>
-
-      <app-project-card appScrollAnimate [revealDelay]="130"
-        [name]="'TILES & MORE'"
-        [logo]="'assets/project-icons/tilesandmore-logo.png'"
-        [description]="'Commissioned by a returning client to rebuild their Wix website with Next.js and React. Combines a public showroom, searchable product catalog, galleries, and quote requests with a private, authenticated admin workspace. The Supabase-backed CRM manages accounts, contacts, sales opportunities, activity, and attachments, alongside catalog management, reporting, accounting, and a CRM calendar.'"
-        [techStack]="['Next.js','React','TypeScript','Tailwind','Supabase','EmailJS','Vercel']"
-        [screenshots]="[
-          'assets/tilesandmore-pics/tilesandmore1.png',
-          'assets/tilesandmore-pics/tilesandmore2.png',
-          'assets/tilesandmore-pics/tilesandmore3.png',
-          'assets/tilesandmore-pics/tilesandmore4.png',
-          'assets/tilesandmore-pics/tilesandmore5.png',
-          'assets/tilesandmore-pics/tilesandmore6.png',
-          'assets/tilesandmore-pics/tilesandmore7.png',
-          'assets/tilesandmore-pics/tilesandmore8.png'
-        ]"
-        [liveLink]="'https://tiles-and-more.vercel.app/'"
-      ></app-project-card>
-
-      <app-project-card appScrollAnimate [revealDelay]="0"
-        [name]="'NearBuy'"
-        [logo]="'assets/project-icons/nearbuy-logo.png'"
-        [description]="'Neighborhood marketplace platform connecting local buyers and sellers through listings, authentication, and real-time data powered by Supabase.'"
-        [techStack]="['React','HTML','Tailwind','Javascript','Supabase']"
-        [screenshots]="[
-          'assets/nearbuy-pics/nearbuy1.png',
-          'assets/nearbuy-pics/nearbuy2.png',
-          'assets/nearbuy-pics/nearbuy3.png',
-          'assets/nearbuy-pics/nearbuy4.png',
-          'assets/nearbuy-pics/nearbuy5.png',
-          'assets/nearbuy-pics/nearbuy6.png',
-          'assets/nearbuy-pics/nearbuy7.png'
-        ]"
-        [liveLink]="'https://neighborhood-marketplace.vercel.app/'"
-        [githubLink]="'https://github.com/JeydiDJ/neighborhood-marketplace'"
-      ></app-project-card>
-
-      <app-project-card appScrollAnimate [revealDelay]="130"
-        [name]="'Kane & Kaori'"
-        [logo]="'assets/project-icons/kaneandkaori-logo.png'"
-        [description]="'Full-stack e-commerce website for a startup perfume brand with dynamic listings, checkout, and a clean luxury-oriented storefront experience.'"
-        [techStack]="['Nextjs','React','HTML','Tailwind','TypeScript','Supabase']"
-        [screenshots]="[
-          'assets/kaneandkaori-pics/kaneandkaori1.png',
-          'assets/kaneandkaori-pics/kaneandkaori2.png',
-          'assets/kaneandkaori-pics/kaneandkaori3.png',
-          'assets/kaneandkaori-pics/kaneandkaori4.png',
-          'assets/kaneandkaori-pics/kaneandkaori5.png',
-          'assets/kaneandkaori-pics/kaneandkaori6.png',
-          'assets/kaneandkaori-pics/kaneandkaori7.png',
-          'assets/kaneandkaori-pics/kaneandkaori8.png',
-          'assets/kaneandkaori-pics/kaneandkaori9.png'
-        ]"
-        [liveLink]="'https://kaneandkaori.vercel.app/'"
-        [githubLink]="'https://github.com/JeydiDJ/kaneandkaori'"
-      ></app-project-card>
+    <div class="projects-carousel" role="region" aria-roledescription="carousel" aria-label="Selected projects" tabindex="0"
+      [class.is-dragging]="dragging" (keydown)="onKeydown($event)"
+      (pointerdown)="startDrag($event)" (pointermove)="moveDrag($event)"
+      (pointerup)="endDrag($event)" (pointercancel)="endDrag($event)">
+      <app-project-card *ngFor="let project of projects; let i = index" class="showcase-card"
+        [class.is-center]="offset(i) === 0" [class.is-hidden]="offset(i) < -2 || offset(i) > 2"
+        [style.--offset]="offset(i)" [style.--distance]="offset(i) < 0 ? -offset(i) : offset(i)"
+        [style.z-index]="10 - (offset(i) < 0 ? -offset(i) : offset(i))"
+        [attr.aria-hidden]="offset(i) < -2 || offset(i) > 2 ? 'true' : null"
+        [name]="project.name" [logo]="project.logo" [description]="project.description"
+        [techStack]="project.techStack" [screenshots]="project.screenshots"
+        [liveLink]="project.liveLink" [githubLink]="project.githubLink || ''"
+        [carousel]="true" [active]="i === selected" [suppressClick]="suppressClick"
+        [previewTabIndex]="i === selected ? 0 : -1" (selectProject)="select(i)">
+      </app-project-card>
     </div>
+    <div class="showcase-caption">
+      <button class="browse-project" type="button" (click)="select(selected - 1)" aria-label="Previous project"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6"/></svg></button>
+      <div class="selected-project" aria-live="polite" aria-atomic="true"><p class="project-position">0{{ selected + 1 }} <span>/ 0{{ projects.length }}</span></p><h3>{{ projects[selected].name }}</h3><p class="selected-stack">{{ projects[selected].techStack.slice(0, 4).join(' · ') }}</p></div>
+      <button class="browse-project" type="button" (click)="select(selected + 1)" aria-label="Next project"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+    </div>
+    <div class="project-picker" aria-label="Choose a project"><button *ngFor="let project of projects; let i = index" type="button" (click)="select(i)" [class.is-active]="selected === i" [attr.aria-label]="'Show ' + project.name" [attr.aria-current]="selected === i ? 'true' : null"><span></span></button></div>
   </div>
 </section>

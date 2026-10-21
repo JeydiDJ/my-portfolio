@@ -1,7 +1,7 @@
 <article class="project-card">
-  <button #projectTrigger class="project-preview" type="button" (click)="openProject()" aria-haspopup="dialog" [attr.aria-label]="'See more about ' + name">
+  <button #projectTrigger class="project-preview" [class.carousel-preview]="carousel" [class.is-selected]="active" type="button" (click)="activateProject()" [attr.tabindex]="previewTabIndex" [attr.aria-haspopup]="active ? 'dialog' : null" [attr.aria-label]="(active ? 'See more about ' : 'Show ') + name">
     <div class="project-cover">
-      <img *ngIf="screenshots.length" [src]="screenshots[0]" alt="" loading="lazy" width="1440" height="900">
+      <img *ngIf="screenshots.length" [src]="screenshots[0]" alt="" loading="lazy" width="1440" height="900" draggable="false">
       <span class="project-overlay"><span class="project-prompt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>See more</span></span>
     </div>
     <div class="project-summary"><div class="project-brand"><img [src]="logo" alt="" class="project-logo" loading="lazy" width="32" height="32"><h3>{{ name }}</h3></div><span class="project-category">{{ techStack.slice(0, 3).join(' · ') }}</span></div>
