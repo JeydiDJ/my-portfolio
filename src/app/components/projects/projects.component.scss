@@ -4,7 +4,7 @@
 .section-heading h2::after, .section-heading p { margin-inline: auto; }
 .projects-carousel { --step: clamp(100px, 17vw, 205px); position: relative; height: clamp(250px, 43vw, 490px); width: min(1360px, calc(100vw - 16px)); left: 50%; transform: translateX(-50%); margin-top: 50px; perspective: 1400px; touch-action: pan-y pinch-zoom; cursor: grab; }
 .projects-carousel.is-dragging { cursor: grabbing; }
-.showcase-card { position: absolute; top: 16px; left: 50%; width: min(62vw, 700px); transform: translateX(calc(-50% + var(--offset) * var(--step))) translateY(calc(var(--distance) * 19px)) rotate(calc(var(--offset) * 4deg)) scale(calc(1 - var(--distance) * .13)); filter: brightness(calc(1 - var(--distance) * .13)); opacity: 1; transition: transform .8s cubic-bezier(.2,.75,.2,1), filter .6s, opacity .5s; transform-origin: center 70%; }
+.showcase-card { position: absolute; top: 16px; left: 50%; width: min(62vw, 700px); transform: translateX(calc(-50% + var(--offset) * var(--step))) translateY(calc(var(--distance) * 19px)) rotate(calc(var(--offset) * 4deg)) scale(calc(1 - var(--distance) * .13)); filter: brightness(calc(1 - var(--distance) * .13)); opacity: 1; transform-origin: center 70%; }
 .showcase-card.is-center { filter: none; }
 .showcase-card.is-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
 .showcase-caption { display: flex; align-items: center; justify-content: center; gap: 44px; position: relative; margin-top: 20px; }

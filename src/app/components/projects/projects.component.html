@@ -5,7 +5,7 @@
       <p>Real problems, thoughtful solutions. Explore a selection of web apps, business systems, and client work.</p>
     </div>
     <div class="projects-carousel" role="region" aria-roledescription="carousel" aria-label="Selected projects" tabindex="0"
-      [class.is-dragging]="dragging" (keydown)="onKeydown($event)"
+      [class.is-dragging]="dragging" [class.is-shuffling]="shuffling" (keydown)="onKeydown($event)"
       (pointerdown)="startDrag($event)" (pointermove)="moveDrag($event)"
       (pointerup)="endDrag($event)" (pointercancel)="endDrag($event)">
       <app-project-card *ngFor="let project of projects; let i = index" class="showcase-card"
@@ -16,7 +16,7 @@
         [name]="project.name" [logo]="project.logo" [description]="project.description"
         [techStack]="project.techStack" [screenshots]="project.screenshots"
         [liveLink]="project.liveLink" [githubLink]="project.githubLink || ''"
-        [carousel]="true" [active]="i === selected" [suppressClick]="suppressClick"
+        [carousel]="true" [active]="i === selected" [suppressClick]="suppressClick || shuffling"
         [previewTabIndex]="i === selected ? 0 : -1" (selectProject)="select(i)">
       </app-project-card>
     </div>

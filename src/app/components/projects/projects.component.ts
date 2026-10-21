@@ -20,6 +20,9 @@ export class ProjectsComponent implements OnDestroy {
   private distance = 0;
   private clickTimer?: ReturnType<typeof setTimeout>;
   private shuffleAnimations: Animation[] = [];
+  shuffling = false;
+  private queuedSelection: number | null = null;
+  private destroyed = false;
 
   offset(index: number): number {
     const length = this.projects.length;
@@ -28,41 +31,60 @@ export class ProjectsComponent implements OnDestroy {
 
   select(index: number): void {
     const next = (index + this.projects.length) % this.projects.length;
+    if (this.shuffling) { this.queuedSelection = next; return; }
     if (next === this.selected) { return; }
     const previous = this.selected;
     const direction = this.offset(next) < 0 ? -1 : 1;
     const elements = this.cards.toArray().map(card => card.projectTrigger.nativeElement.closest('app-project-card') as HTMLElement);
-    const before = elements.map(element => {
-      const style = getComputedStyle(element);
-      return { transform: style.transform, filter: style.filter, opacity: style.opacity, zIndex: style.zIndex };
-    });
-    this.shuffleAnimations.forEach(animation => animation.cancel());
-    this.shuffleAnimations = [];
-    elements.forEach(element => element.style.transition = 'none');
+    const offsets = elements.map((_, i) => this.offset(i));
+    const width = elements[previous].offsetWidth;
+    const adjacent = elements[(previous + 1) % elements.length];
+    const step = new DOMMatrixReadOnly(getComputedStyle(adjacent).transform).m41 + width / 2;
     this.selected = next;
     this.changeDetector.detectChanges();
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { return; }
+    this.shuffling = true;
+    const ease = 'cubic-bezier(.4,0,.2,1)';
+    const pose = (offset: number): string =>
+      'translate3d(' + (-width / 2 + offset * step) + 'px,' + (Math.abs(offset) * 19) + 'px,0) rotate(' + (offset * 4) + 'deg) scale(' + (1 - Math.abs(offset) * .13) + ')';
 
     this.shuffleAnimations = elements.map((element, i) => {
-      const target = getComputedStyle(element);
-      const end = { transform: target.transform, filter: target.filter, opacity: target.opacity, zIndex: target.zIndex };
-      let frames: Keyframe[] = [before[i], end];
+      const from = offsets[i];
+      const to = this.offset(i);
+      const end: Keyframe = { transform: pose(to), opacity: Math.abs(to) > 2 ? 0 : 1, filter: 'brightness(' + (1 - Math.abs(to) * .13) + ')', zIndex: 10 - Math.abs(to) };
+      let frames: Keyframe[] = [
+        { transform: pose(from), opacity: Math.abs(from) > 2 ? 0 : 1, filter: 'brightness(' + (1 - Math.abs(from) * .13) + ')', zIndex: 10 - Math.abs(from), easing: ease },
+        end
+      ];
       if (i === previous) {
+        const outside = 'translate3d(' + (-width / 2 - direction * width * .9) + 'px,8px,0) rotate(' + (-direction * 5) + 'deg) scale(.98)';
         frames = [
-          { ...before[i], offset: 0, zIndex: 20, visibility: 'visible' },
-          { offset: .36, transform: `translateX(calc(-50% - ${direction} * var(--step) * 1.25)) translateY(-58px) translateZ(130px) rotateY(${-direction * 48}deg) rotateZ(${-direction * 13}deg) scale(1.02)`, zIndex: 20, filter: 'brightness(.92)', opacity: 1, visibility: 'visible' },
-          { offset: .64, transform: `${end.transform} translateY(-24px) rotateY(${direction * 18}deg)`, zIndex: 7, opacity: 1, visibility: 'visible' },
-          { ...end, offset: 1 }
+          { transform: pose(0), opacity: 1, filter: 'brightness(1)', zIndex: 20, visibility: 'visible', offset: 0, easing: ease },
+          { transform: outside, opacity: 1, filter: 'brightness(.97)', zIndex: 20, visibility: 'visible', offset: .44 },
+          { transform: outside, opacity: 1, filter: 'brightness(.97)', zIndex: 10 - Math.abs(to), visibility: 'visible', offset: .45, easing: ease },
+          { ...end, visibility: 'visible', offset: 1 }
         ];
       } else if (i === next) {
         frames = [
-          { ...before[i], offset: 0, zIndex: 9, visibility: 'visible' },
-          { offset: .4, transform: `translateX(calc(-50% + ${direction} * var(--step) * .25)) translateY(18px) translateZ(-70px) rotateY(${direction * 20}deg) rotateZ(${direction * 4}deg) scale(.94)`, zIndex: 10, opacity: 1, visibility: 'visible' },
-          { offset: .76, transform: `translateX(-50%) translateY(-9px) translateZ(45px) rotateY(${-direction * 5}deg) scale(1.01)`, zIndex: 12, filter: 'brightness(1)', opacity: 1, visibility: 'visible' },
-          { ...end, offset: 1 }
+          { ...frames[0], opacity: 1, zIndex: 10, visibility: 'visible', offset: 0, easing: ease },
+          { transform: pose(0), opacity: 1, filter: 'brightness(1)', zIndex: 10, visibility: 'visible', offset: .58 },
+          { ...end, visibility: 'visible', offset: 1 }
         ];
+      } else if (Math.abs(from) > 2 || Math.abs(to) > 2) {
+        // Recycle edge cards behind the deck instead of sweeping them across its face.
+        const transform = pose(Math.abs(to) > 2 ? from : to);
+        frames = [{ ...frames[0], transform, zIndex: 1, easing: ease }, { ...end, transform, zIndex: 1 }];
       }
-      return element.animate(frames, { duration: 920, easing: 'cubic-bezier(.22,.65,.3,1)' });
+      return element.animate(frames, { duration: 840, easing: 'linear' });
+    });
+    Promise.allSettled(this.shuffleAnimations.map(animation => animation.finished)).then(() => {
+      if (this.destroyed) { return; }
+      this.shuffleAnimations = [];
+      this.shuffling = false;
+      const queued = this.queuedSelection;
+      this.queuedSelection = null;
+      if (queued !== null) { this.select(queued); }
+      this.changeDetector.detectChanges();
     });
   }
 
@@ -114,6 +136,7 @@ export class ProjectsComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.destroyed = true;
     clearTimeout(this.clickTimer);
     this.shuffleAnimations.forEach(animation => animation.cancel());
   }

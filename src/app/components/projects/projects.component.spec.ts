@@ -7,8 +7,10 @@ import { ProjectCardComponent } from '../project-card/project-card.component';
 describe('ProjectsComponent', () => {
   let component: ProjectsComponent;
   let fixture: ComponentFixture<ProjectsComponent>;
+  let motionPreference: jasmine.Spy;
 
   beforeEach(async () => {
+    motionPreference = spyOn(window, 'matchMedia').and.returnValue({ matches: true } as MediaQueryList);
     await TestBed.configureTestingModule({
       declarations: [ ScrollAnimateDirective, ProjectsComponent, ProjectCardComponent ]
     })
@@ -68,25 +70,31 @@ describe('ProjectsComponent', () => {
     expect(fixture.nativeElement.querySelectorAll('dialog[open]').length).toBe(0);
   });
 
-  it('cancels an unfinished shuffle when navigating again and on teardown', () => {
-    spyOn(window, 'matchMedia').and.returnValue({ matches: false } as MediaQueryList);
-    const animations: { cancel: jasmine.Spy }[] = [];
+  it('queues rapid navigation so the active sideways shuffle is not interrupted', async () => {
+    motionPreference.and.returnValue({ matches: false } as MediaQueryList);
+    const animations: { cancel: jasmine.Spy; finished: Promise<void> }[] = [];
+    const finish: (() => void)[] = [];
     spyOn(HTMLElement.prototype, 'animate').and.callFake(() => {
-      const animation = { cancel: jasmine.createSpy('cancel') };
+      const animation = { cancel: jasmine.createSpy('cancel'), finished: new Promise<void>(resolve => finish.push(resolve)) };
       animations.push(animation);
       return animation as unknown as Animation;
     });
     component.select(4);
     const firstShuffle = animations.slice();
     component.select(5);
+    expect(component.selected).toBe(4);
     expect(firstShuffle.length).toBeGreaterThan(0);
-    firstShuffle.forEach(animation => expect(animation.cancel).toHaveBeenCalled());
+    firstShuffle.forEach(animation => expect(animation.cancel).not.toHaveBeenCalled());
+    finish.slice().forEach(resolve => resolve());
+    await Promise.all(firstShuffle.map(animation => animation.finished));
+    await Promise.resolve();
+    expect(component.selected).toBe(5);
     fixture.destroy();
-    animations.forEach(animation => expect(animation.cancel).toHaveBeenCalled());
+    animations.slice(firstShuffle.length).forEach(animation => expect(animation.cancel).toHaveBeenCalled());
   });
 
   it('changes projects without shuffle motion when reduced motion is requested', () => {
-    spyOn(window, 'matchMedia').and.returnValue({ matches: true } as MediaQueryList);
+    motionPreference.and.returnValue({ matches: true } as MediaQueryList);
     const animate = spyOn(HTMLElement.prototype, 'animate');
     component.select(4);
     expect(component.selected).toBe(4);
