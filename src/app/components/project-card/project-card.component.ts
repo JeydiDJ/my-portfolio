@@ -1,11 +1,11 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnDestroy, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-project-card',
   templateUrl: './project-card.component.html',
-  styleUrls: ['./project-card.component.scss']
+  styleUrls: ['./project-card.component.scss', './project-dialog.scss']
 })
-export class ProjectCardComponent {
+export class ProjectCardComponent implements OnDestroy {
   @Input() name = '';
   @Input() logo = '';
   @Input() description = '';
@@ -14,6 +14,42 @@ export class ProjectCardComponent {
   @Input() liveLink = '';
   @Input() githubLink = '';
   @ViewChild('gallery') gallery?: ElementRef<HTMLDivElement>;
+  @ViewChild('projectDialog') projectDialog!: ElementRef<HTMLDialogElement>;
+  @ViewChild('projectTrigger') projectTrigger!: ElementRef<HTMLButtonElement>;
+  private previousOverflow: string | null = null;
+
+  openProject(): void {
+    if (this.projectDialog.nativeElement.open) { return; }
+    this.previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    this.projectDialog.nativeElement.showModal();
+  }
+
+  closeProject(): void {
+    this.projectDialog.nativeElement.close();
+    this.onDialogClose();
+    this.projectTrigger.nativeElement.focus({ preventScroll: true });
+  }
+
+  onDialogClose(): void {
+    if (this.previousOverflow === null) { return; }
+    document.body.style.overflow = this.previousOverflow;
+    this.previousOverflow = null;
+  }
+
+  onBackdropClick(event: MouseEvent): void {
+    const dialog = this.projectDialog.nativeElement;
+    if (event.target !== dialog) { return; }
+    const rect = dialog.getBoundingClientRect();
+    if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) {
+      this.closeProject();
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.projectDialog?.nativeElement.open) { this.projectDialog.nativeElement.close(); }
+    this.onDialogClose();
+  }
 
   currentSlide = 0;
   dragging = false;

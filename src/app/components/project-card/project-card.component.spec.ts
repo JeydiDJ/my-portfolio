@@ -13,18 +13,39 @@ describe('ProjectCardComponent', () => {
     component.name = 'Sample project';
     component.screenshots = ['assets/jd.jpg', 'assets/jd.jpg', 'assets/jd.jpg'];
     fixture.detectChanges();
+    fixture.nativeElement.querySelector('.project-preview').click();
     gallery = fixture.nativeElement.querySelector('.project-gallery');
     Object.defineProperty(gallery, 'clientWidth', { value: 400, configurable: true });
     Object.defineProperty(gallery, 'scrollLeft', { value: 0, writable: true, configurable: true });
     spyOn(gallery, 'scrollTo');
   });
 
-  it('makes every screenshot available without expanding the project', () => {
+  afterEach(() => fixture.destroy());
+
+  it('opens project details with all screenshots and locks background scrolling', () => {
+    expect(fixture.nativeElement.querySelector('dialog').open).toBeTrue();
+    expect(document.body.style.overflow).toBe('hidden');
     expect(gallery.querySelectorAll('.project-slide').length).toBe(3);
     expect(fixture.nativeElement.textContent).not.toContain('Explore project');
     expect(fixture.nativeElement.querySelector('.gallery-navigation')).toBeNull();
     expect(fixture.nativeElement.querySelector('.gallery-pagination')).toBeNull();
     expect(fixture.nativeElement.textContent).not.toContain('Drag to explore');
+  });
+
+  it('closes with the close button and restores focus and background scrolling', () => {
+    fixture.nativeElement.querySelector('.dialog-close').click();
+    expect(fixture.nativeElement.querySelector('dialog').open).toBeFalse();
+    expect(document.body.style.overflow).not.toBe('hidden');
+    expect(document.activeElement).toBe(fixture.nativeElement.querySelector('.project-preview'));
+  });
+
+  it('dismisses on Escape and cleans up scrolling when destroyed while open', () => {
+    const dialog = fixture.nativeElement.querySelector('dialog');
+    dialog.dispatchEvent(new Event('cancel', { cancelable: true }));
+    expect(dialog.open).toBeFalse();
+    component.openProject();
+    fixture.destroy();
+    expect(document.body.style.overflow).not.toBe('hidden');
   });
 
   it('supports keyboard navigation and wraps at the final screenshot', () => {
