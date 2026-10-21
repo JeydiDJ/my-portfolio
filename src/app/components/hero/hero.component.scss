@@ -16,8 +16,11 @@ h1 .word-clip + .word-clip { margin-left: .18em; }
 .portrait-caption { display: flex; justify-content: space-between; gap: 12px; padding-top: 16px; font-size: 11px; color: var(--muted); }
 .portrait-caption > span { font-weight: 700; color: var(--text); }
 .portrait-caption a:hover { color: var(--accent); }
+.portrait-caption a { display: inline-flex; align-items: center; gap: 6px; }
+.portrait-caption svg { width: 14px; height: 14px; flex-shrink: 0; }
 .hero-bottom { display: flex; justify-content: space-between; gap: 24px; padding-block: 24px; border-top: 1px solid var(--border); color: var(--muted); font-size: 12px; }
-.hero-bottom a { display: inline-flex; gap: 20px; }
+.hero-bottom a { display: inline-flex; align-items: center; gap: 12px; }
+.hero-bottom svg { width: 18px; height: 18px; flex-shrink: 0; }
 @media (max-width: 1000px) { .hero-grid { gap: 32px; } .portrait-frame img { height: 400px; } }
 @media (max-width: 760px) {
   .hero-section { padding-top: 40px; }

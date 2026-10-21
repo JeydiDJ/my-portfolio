@@ -3,11 +3,17 @@ import { AfterViewInit, Component, HostListener, OnDestroy } from '@angular/core
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css', './mobile-nav.css']
 })
 export class AppComponent implements AfterViewInit, OnDestroy {
   title = 'my-portfolio';
   menuOpen = false;
+  @HostListener('document:keydown.escape')
+  closeMenu(): void {
+    if (!this.menuOpen) { return; }
+    this.menuOpen = false;
+    document.querySelector<HTMLButtonElement>('.menu-toggle')?.focus({ preventScroll: true });
+  }
   darkMode = false;
   year = new Date().getFullYear();
   activeSection = 'top';

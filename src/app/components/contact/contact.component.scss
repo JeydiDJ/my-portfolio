@@ -4,6 +4,9 @@
 .contact-email:hover { text-decoration: underline; text-underline-offset: 5px; }
 .contact-links { display: flex; flex-wrap: wrap; gap: 24px; font-size: 12px; font-weight: 700; }
 .contact-links a:hover { color: var(--accent); }
+.contact-links a { display: inline-flex; align-items: center; gap: 8px; }
+.contact-links svg { width: 17px; height: 17px; }
+.contact-section svg { flex-shrink: 0; }
 .contact-copy .contact-location { font-size: 11px; margin-top: 32px; }
 .contact-form { display: grid; gap: 22px; padding-top: 6px; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }

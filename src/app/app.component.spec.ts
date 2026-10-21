@@ -36,6 +36,22 @@ describe('AppComponent', () => {
     expect(button.getAttribute('aria-expanded')).toBe('false');
   });
 
+  it('closes the mobile navigation from its backdrop or Escape', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const button = fixture.nativeElement.querySelector('.menu-toggle') as HTMLButtonElement;
+    button.click();
+    fixture.detectChanges();
+    fixture.nativeElement.querySelector('.menu-backdrop').click();
+    fixture.detectChanges();
+    expect(fixture.componentInstance.menuOpen).toBeFalse();
+    button.click();
+    fixture.detectChanges();
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+    fixture.detectChanges();
+    expect(button.getAttribute('aria-expanded')).toBe('false');
+  });
+
   it('switches and remembers the color theme', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();

@@ -4,3 +4,4 @@
 .carousel-preview .project-cover { box-shadow: 0 14px 30px #14291c18; }
 :host-context(.is-shuffling) .project-overlay { opacity: 0; }
 :host-context(.is-shuffling) .project-cover > img { transform: none; filter: none; }
+@media (max-width: 760px), (hover: none), (pointer: coarse) { .carousel-preview .project-overlay { display: none; } }
