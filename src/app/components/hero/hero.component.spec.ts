@@ -42,7 +42,7 @@ describe('HeroComponent', () => {
     spyOn(window, 'matchMedia').and.returnValue({ matches: true } as MediaQueryList);
     const hero = new HeroComponent();
     hero.ngOnInit();
-    expect(hero.roleText).toBe('Software engineer / Systems integration');
+    expect(hero.roleText).toBe('Software engineer / Systems integration / Full Stack Developer');
     hero.ngOnDestroy();
   });
 });

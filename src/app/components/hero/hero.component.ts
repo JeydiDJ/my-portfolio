@@ -6,7 +6,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
   styleUrls: ['./hero.component.scss', './hero-terminal.scss']
 })
 export class HeroComponent implements OnInit, OnDestroy {
-  private readonly roles = ['Software engineer', 'Systems integration'];
+  private readonly roles = ['Software engineer', 'Systems integration', 'Full Stack Developer'];
   roleText = this.roles[0];
   private roleIndex = 0;
   private roleTimer?: ReturnType<typeof setTimeout>;
