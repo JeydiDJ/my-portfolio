@@ -1,11 +1,6 @@
-.hero-terminal { margin-bottom: 18px; color: var(--text); font-family: 'Cascadia Code', 'SFMono-Regular', Consolas, monospace; }
-.terminal-line { display: flex; align-items: center; min-height: 1.5em; font-size: clamp(18px, 2.2vw, 26px); font-weight: 650; line-height: 1.5; }
-.terminal-text { display: inline-block; overflow: hidden; white-space: nowrap; box-sizing: content-box; border-right: 2px solid var(--accent); }
-.terminal-line:first-child .terminal-text { width: 18ch; animation: terminalType 1.2s steps(18, end) .45s both, firstCursorOut .01s 1.8s forwards; }
-.terminal-line:nth-child(2) { animation: terminalLineIn .01s 1.8s both; }
-.terminal-line:nth-child(2) .terminal-text { width: 19ch; animation: terminalType 1.3s steps(19, end) 1.8s both, terminalCursor .85s step-end infinite; }
-@keyframes terminalType { from { width: 0; } }
-@keyframes firstCursorOut { to { border-color: transparent; } }
-@keyframes terminalLineIn { from { visibility: hidden; } to { visibility: visible; } }
-@keyframes terminalCursor { 50% { border-color: transparent; } }
-@media (prefers-reduced-motion: reduce) { .terminal-line:first-child .terminal-text { border-color: transparent; } }
+.hero-terminal { margin-bottom: 18px; min-height: 1.5em; color: var(--text); font-family: 'Cascadia Code', 'SFMono-Regular', Consolas, monospace; font-size: clamp(18px, 2.2vw, 26px); font-weight: 650; line-height: 1.5; }
+.terminal-output { display: flex; align-items: center; min-height: 1.5em; }
+.terminal-text { white-space: nowrap; }
+.terminal-cursor { display: inline-block; flex: 0 0 2px; width: 2px; height: 1.1em; margin-left: 4px; background: var(--accent); animation: terminalBlink .9s step-end infinite; }
+@keyframes terminalBlink { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .hero-terminal { font-size: clamp(14px, 1.6vw, 20px); } .terminal-text { white-space: normal; } .terminal-cursor { animation: none; } }
