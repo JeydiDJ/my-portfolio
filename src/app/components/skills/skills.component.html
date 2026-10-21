@@ -35,6 +35,5 @@
 
 <ng-template #toolIcon let-skill>
   <img *ngIf="techIconMap[skill.name]" [src]="'assets/tech-icons/' + techIconMap[skill.name]" alt="" width="40" height="40" loading="lazy">
-  <svg *ngIf="skill.name === 'PostgreSQL' || skill.name === 'SQL'" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><ellipse cx="16" cy="7" rx="10" ry="4"/><path d="M6 7v18c0 5 20 5 20 0V7M6 16c0 5 20 5 20 0"/></svg>
-  <span *ngIf="!techIconMap[skill.name] && skill.name !== 'PostgreSQL' && skill.name !== 'SQL'" class="tool-monogram" aria-hidden="true">{{ fallbackIcon(skill.name) }}</span>
+  <span *ngIf="!techIconMap[skill.name]" class="tool-monogram" aria-hidden="true">{{ fallbackIcon(skill.name) }}</span>
 </ng-template>

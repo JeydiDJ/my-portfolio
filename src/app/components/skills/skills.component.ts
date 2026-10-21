@@ -24,6 +24,8 @@ export class SkillsComponent {
   }
 
   techIconMap: Record<string, string> = {
+    SQL: 'sql-icon.png',
+    PostgreSQL: 'postgresql-icon.png',
     'REST APIs': 'rest-api-icon.svg',
     'Scheer PAS': 'scheer-pas-icon.png',
     MagicDraw: 'magicdraw-icon.png',
