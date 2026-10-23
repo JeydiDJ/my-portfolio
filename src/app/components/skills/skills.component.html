@@ -6,7 +6,7 @@
     </div>
     <div class="skills-grid">
       <section *ngFor="let category of skillCategories; let categoryIndex = index" class="skill-category" appScrollAnimate [revealDelay]="categoryIndex * 90" [attr.aria-labelledby]="'tool-category-' + categoryIndex">
-        <header class="category-heading"><span class="category-number" aria-hidden="true">0{{ categoryIndex + 1 }}</span><h3 [id]="'tool-category-' + categoryIndex">{{ category.name }}</h3><span class="tool-count">{{ category.skills.length }} tools</span></header>
+        <header class="category-heading"><app-motion-icon class="category-motion-icon" [name]="categoryMotionIcons[categoryIndex]" aria-hidden="true"></app-motion-icon><h3 [id]="'tool-category-' + categoryIndex">{{ category.name }}</h3><span class="tool-count">{{ category.skills.length }} tools</span></header>
         <div class="tool-grid" [attr.aria-label]="category.name + ' tools'">
           <button *ngFor="let skill of category.skills; let skillIndex = index" type="button" class="tool-tile"
             [class.is-selected]="selectedTools[categoryIndex] === skillIndex" [style.--tool-order]="skillIndex"
@@ -34,6 +34,9 @@
 </section>
 
 <ng-template #toolIcon let-skill>
+  <app-motion-icon *ngIf="motionIconMap[skill.name]; else brandToolIcon" [name]="motionIconMap[skill.name]" aria-hidden="true"></app-motion-icon>
+  <ng-template #brandToolIcon>
   <img *ngIf="techIconMap[skill.name]" [src]="'assets/tech-icons/' + techIconMap[skill.name]" alt="" width="40" height="40" loading="lazy">
   <span *ngIf="!techIconMap[skill.name]" class="tool-monogram" aria-hidden="true">{{ fallbackIcon(skill.name) }}</span>
+  </ng-template>
 </ng-template>

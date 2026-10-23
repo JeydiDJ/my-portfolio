@@ -10,6 +10,9 @@ import { ContactComponent } from './components/contact/contact.component';
 import { ProjectCardComponent } from './components/project-card/project-card.component';
 import { AboutComponent } from './components/about/about.component';
 import { ScrollAnimateDirective } from './scroll-animate.directive';
+import { PortfolioMotionDirective } from './portfolio-motion.directive';
+import { MotionIconComponent } from './components/motion-icon/motion-icon.component';
+import { IntegrationFlowComponent } from './components/integration-flow/integration-flow.component';
 
 @NgModule({
   declarations: [
@@ -20,10 +23,13 @@ import { ScrollAnimateDirective } from './scroll-animate.directive';
     ContactComponent,
     ProjectCardComponent,
     AboutComponent,
-    ScrollAnimateDirective
+    ScrollAnimateDirective,
+    PortfolioMotionDirective
   ],
   imports: [
     BrowserModule,
+    MotionIconComponent,
+    IntegrationFlowComponent,
     AppRoutingModule
   ],
   providers: [],

@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProjectsComponent } from './projects.component';
 import { ProjectCardComponent } from '../project-card/project-card.component';
+import { gsap } from 'gsap';
 
 describe('ProjectsComponent', () => {
   let component: ProjectsComponent;
@@ -72,33 +73,51 @@ describe('ProjectsComponent', () => {
 
   it('queues rapid navigation so the active sideways shuffle is not interrupted', async () => {
     motionPreference.and.returnValue({ matches: false } as MediaQueryList);
-    const animations: { cancel: jasmine.Spy; finished: Promise<void> }[] = [];
-    const finish: (() => void)[] = [];
-    spyOn(HTMLElement.prototype, 'animate').and.callFake(() => {
-      const animation = { cancel: jasmine.createSpy('cancel'), finished: new Promise<void>(resolve => finish.push(resolve)) };
-      animations.push(animation);
-      return animation as unknown as Animation;
+    const timelines: gsap.core.Timeline[] = [];
+    const createTimeline = gsap.timeline.bind(gsap);
+    spyOn(gsap, 'timeline').and.callFake(vars => {
+      const timeline = createTimeline(vars).pause();
+      timelines.push(timeline);
+      return timeline;
     });
     component.select(4);
-    const firstShuffle = animations.slice();
     component.select(5);
     expect(component.selected).toBe(4);
-    expect(firstShuffle.length).toBeGreaterThan(0);
-    firstShuffle.forEach(animation => expect(animation.cancel).not.toHaveBeenCalled());
-    finish.slice().forEach(resolve => resolve());
-    await Promise.all(firstShuffle.map(animation => animation.finished));
-    await Promise.resolve();
+    expect(timelines.length).toBe(1);
+    timelines[0].progress(1);
     expect(component.selected).toBe(5);
+    timelines[1].progress(1);
+    const selectedCard = component.cards.get(5)!.projectTrigger.nativeElement.closest('app-project-card') as HTMLElement;
+    expect(selectedCard.style.zIndex).toBe('10');
+    component.select(0);
+    const kill = spyOn(timelines[2], 'kill').and.callThrough();
     fixture.destroy();
-    animations.slice(firstShuffle.length).forEach(animation => expect(animation.cancel).toHaveBeenCalled());
+    expect(kill).toHaveBeenCalled();
   });
 
   it('changes projects without shuffle motion when reduced motion is requested', () => {
     motionPreference.and.returnValue({ matches: true } as MediaQueryList);
-    const animate = spyOn(HTMLElement.prototype, 'animate');
+    const animate = spyOn(gsap, 'timeline');
     component.select(4);
     expect(component.selected).toBe(4);
     expect(animate).not.toHaveBeenCalled();
+  });
+
+  it('advances the scroll sequence once per step and reverses with scrolling', () => {
+    component.onDeckScroll(.2);
+    expect(component.selected).toBe(4);
+    component.onDeckScroll(.22);
+    expect(component.selected).toBe(4);
+    component.onDeckScroll(.99);
+    expect(component.selected).toBe(2);
+    component.onDeckScroll(0);
+    expect(component.selected).toBe(3);
+  });
+
+  it('keeps the selected project stable while its modal is open', () => {
+    component.cards.get(3)!.openProject();
+    component.onDeckScroll(.8);
+    expect(component.selected).toBe(3);
   });
 
   afterEach(() => fixture.destroy());

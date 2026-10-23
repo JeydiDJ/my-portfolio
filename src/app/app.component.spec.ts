@@ -23,6 +23,24 @@ describe('AppComponent', () => {
     expect(fixture.nativeElement.querySelectorAll('.nav-links a').length).toBe(5);
   });
 
+  it('navigates to the start of a pinned project sequence', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const spacer = document.createElement('div');
+    spacer.className = 'pin-spacer';
+    const section = document.createElement('section');
+    section.id = 'projects';
+    spacer.appendChild(section);
+    fixture.nativeElement.querySelector('main').appendChild(spacer);
+    spyOn(spacer, 'getBoundingClientRect').and.returnValue({ top: 450 } as DOMRect);
+    const scroll = spyOn(window, 'scrollTo');
+    const headerHeight = document.querySelector('.site-header')!.getBoundingClientRect().height || 88;
+    const expectedTop = Math.max(0, window.scrollY + 450 - headerHeight);
+    fixture.nativeElement.querySelector('a[href="#projects"]').click();
+    expect(scroll).toHaveBeenCalled();
+    expect((scroll.calls.mostRecent().args[0] as unknown as ScrollToOptions).top).toBe(expectedTop);
+  });
+
   it('toggles the mobile menu and its accessible state', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();

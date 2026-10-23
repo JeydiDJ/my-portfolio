@@ -126,7 +126,17 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     event.preventDefault();
     this.cancelScrollToTop();
     this.menuOpen = false;
-    section.scrollIntoView({ block: 'start' });
+    const pinnedScene = section.closest<HTMLElement>('.pin-spacer');
+    if (pinnedScene) {
+      // A pinned section is translated after its sequence; navigate to its original start.
+      const headerHeight = document.querySelector('.site-header')?.getBoundingClientRect().height || 88;
+      window.scrollTo({
+        top: Math.max(0, window.scrollY + pinnedScene.getBoundingClientRect().top - headerHeight),
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+      });
+    } else {
+      section.scrollIntoView({ block: 'start' });
+    }
     if (id === 'main') { section.focus({ preventScroll: true }); }
     window.history.replaceState(null, '', `#${id}`);
   }

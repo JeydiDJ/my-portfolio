@@ -1,0 +1,30 @@
+:host { display: block; margin-block: 0 48px; }
+.integration-flow { padding-block: 30px 36px; border-block: 1px solid var(--border); }
+.flow-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+.flow-heading h3 { font-size: clamp(20px, 2.5vw, 28px); font-weight: 800; letter-spacing: -.8px; margin: 0; }
+.flow-heading > p { font-size: 12px; color: var(--muted); margin: 0; }
+.flow-diagram { position: relative; margin-top: 32px; }
+.flow-stages { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; list-style: none; padding: 0; margin: 0; }
+.flow-stage { position: relative; z-index: 1; text-align: center; min-width: 0; }
+.flow-logo { display: grid; place-items: center; width: 80px; height: 80px; margin: 0 auto 18px; background: var(--bg); border: 1px solid var(--border); border-radius: 12px; }
+.flow-logo img { width: 44px; height: 44px; object-fit: contain; }
+.flow-step { display: block; font-size: 11px; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
+.flow-stage h4 { font-size: 18px; font-weight: 800; letter-spacing: -.4px; margin: 0 0 8px; }
+.flow-stage p { max-width: 26ch; margin: 0 auto; color: var(--muted); font-size: 12px; line-height: 1.7; }
+.flow-rail { position: absolute; pointer-events: none; overflow: visible; }
+.flow-horizontal { left: 16.666%; top: 20px; width: 66.666%; height: 40px; }
+.flow-vertical { display: none; }
+.flow-track, .flow-route { fill: none; stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+.flow-track { stroke: var(--border); }
+.flow-route { stroke: var(--accent); opacity: .55; }
+.flow-packet { fill: var(--accent); opacity: 0; }
+@media (max-width: 680px) {
+  .flow-heading { display: block; }
+  .flow-heading > p { margin-top: 8px; }
+  .flow-stages { grid-template-columns: 1fr; gap: 32px; }
+  .flow-stage { display: flex; align-items: center; gap: 22px; text-align: left; }
+  .flow-logo { flex: 0 0 80px; margin: 0; }
+  .flow-stage p { margin: 0; max-width: 30ch; }
+  .flow-horizontal { display: none; }
+  .flow-vertical { display: block; top: 40px; bottom: 40px; left: 20px; width: 40px; height: calc(100% - 80px); }
+}

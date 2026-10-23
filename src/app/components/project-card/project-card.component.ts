@@ -1,4 +1,5 @@
-import { Component, ElementRef, EventEmitter, Input, OnDestroy, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, NgZone, OnDestroy, Output, ViewChild } from '@angular/core';
+import { gsap } from 'gsap';
 
 @Component({
   selector: 'app-project-card',
@@ -6,6 +7,7 @@ import { Component, ElementRef, EventEmitter, Input, OnDestroy, Output, ViewChil
   styleUrls: ['./project-card.component.scss', './project-dialog.scss', './project-carousel.scss']
 })
 export class ProjectCardComponent implements OnDestroy {
+  constructor(private zone: NgZone) {}
   @Input() name = '';
   @Input() logo = '';
   @Input() description = '';
@@ -28,8 +30,7 @@ export class ProjectCardComponent implements OnDestroy {
   @ViewChild('projectDialog') projectDialog!: ElementRef<HTMLDialogElement>;
   @ViewChild('projectTrigger') projectTrigger!: ElementRef<HTMLButtonElement>;
   private previousOverflow: string | null = null;
-  private dialogAnimation?: Animation;
-  private detailAnimations: Animation[] = [];
+  private dialogTimeline?: gsap.core.Timeline;
   private closing = false;
 
   private cardTransform(dialog: HTMLDialogElement): string {
@@ -48,13 +49,17 @@ export class ProjectCardComponent implements OnDestroy {
     this.currentSlide = 0;
     this.gallery?.nativeElement.scrollTo({ left: 0, behavior: 'auto' });
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { return; }
-    this.dialogAnimation = dialog.animate([
-      { transform: this.cardTransform(dialog), opacity: .85, borderRadius: '8px' },
-      { transform: 'translate(0, 0) scale(1, 1)', opacity: 1, borderRadius: '12px' }
-    ], { duration: 580, easing: 'cubic-bezier(.16,1,.3,1)' });
-    this.detailAnimations = Array.from(dialog.querySelectorAll<HTMLElement>('.dialog-header, .project-body')).map(element =>
-      element.animate([{ opacity: 0, transform: 'translateY(12px)' }, { opacity: 1, transform: 'none' }],
-        { duration: 320, delay: 160, fill: 'backwards', easing: 'ease-out' }));
+    const start = this.cardTransform(dialog);
+    this.zone.runOutsideAngular(() => {
+      this.dialogTimeline = gsap.timeline()
+        .fromTo(dialog, { transform: start, opacity: .85, borderRadius: '8px' }, {
+          transform: 'translate(0, 0) scale(1, 1)', opacity: 1, borderRadius: '12px',
+          duration: .58, ease: 'power3.out', clearProps: 'transform,opacity,borderRadius'
+        })
+        .fromTo(dialog.querySelectorAll('.dialog-header, .project-body'), { opacity: 0, y: 12 }, {
+          opacity: 1, y: 0, duration: .32, stagger: .06, ease: 'power2.out', clearProps: 'opacity,transform'
+        }, .16);
+    });
   }
 
   closeProject(): void {
@@ -62,14 +67,18 @@ export class ProjectCardComponent implements OnDestroy {
     if (!dialog.open || this.closing) { return; }
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { this.finishClose(); return; }
     const currentTransform = getComputedStyle(dialog).transform;
-    this.dialogAnimation?.cancel();
-    this.detailAnimations.forEach(animation => animation.cancel());
+    const currentOpacity = getComputedStyle(dialog).opacity;
+    this.dialogTimeline?.kill();
+    // Measure resting bounds even when closing during the entrance.
+    gsap.set(dialog, { clearProps: 'transform' });
+    const destination = this.cardTransform(dialog);
     this.closing = true;
-    this.dialogAnimation = dialog.animate([
-      { transform: currentTransform, opacity: 1 },
-      { transform: this.cardTransform(dialog), opacity: 0, borderRadius: '8px' }
-    ], { duration: 360, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards' });
-    this.dialogAnimation.finished.then(() => this.finishClose()).catch(() => {});
+    this.zone.runOutsideAngular(() => {
+      this.dialogTimeline = gsap.timeline({ onComplete: () => this.zone.run(() => this.finishClose()) })
+        .fromTo(dialog, { transform: currentTransform, opacity: currentOpacity }, {
+          transform: destination, opacity: 0, borderRadius: '8px', duration: .36, ease: 'power2.inOut'
+        });
+    });
   }
 
   private finishClose(): void {
@@ -79,8 +88,13 @@ export class ProjectCardComponent implements OnDestroy {
   }
 
   onDialogClose(): void {
-    this.dialogAnimation?.cancel();
-    this.detailAnimations.forEach(animation => animation.cancel());
+    if (this.projectDialog?.nativeElement.open) { return; }
+    this.dialogTimeline?.kill();
+    const dialog = this.projectDialog?.nativeElement;
+    if (dialog) {
+      gsap.set(dialog, { clearProps: 'transform,opacity,borderRadius' });
+      gsap.set(dialog.querySelectorAll('.dialog-header, .project-body'), { clearProps: 'opacity,transform' });
+    }
     this.closing = false;
     if (this.previousOverflow === null) { return; }
     document.body.style.overflow = this.previousOverflow;
@@ -97,8 +111,7 @@ export class ProjectCardComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.dialogAnimation?.cancel();
-    this.detailAnimations.forEach(animation => animation.cancel());
+    this.dialogTimeline?.kill();
     if (this.projectDialog?.nativeElement.open) { this.projectDialog.nativeElement.close(); }
     this.onDialogClose();
   }

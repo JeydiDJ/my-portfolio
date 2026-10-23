@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProjectCardComponent } from './project-card.component';
+import { gsap } from 'gsap';
 
 describe('ProjectCardComponent', () => {
   let component: ProjectCardComponent;
@@ -94,17 +95,18 @@ describe('ProjectCardComponent', () => {
   it('keeps the modal and scroll lock active until its return animation finishes', async () => {
     motionPreference.and.returnValue({ matches: false } as MediaQueryList);
     const dialog = fixture.nativeElement.querySelector('dialog');
-    let finish!: () => void;
-    const finished = new Promise<void>(resolve => finish = resolve);
-    const animation = { finished, cancel: jasmine.createSpy('cancel') };
-    spyOn(dialog, 'animate').and.returnValue(animation as unknown as Animation);
+    let timeline!: gsap.core.Timeline;
+    const createTimeline = gsap.timeline.bind(gsap);
+    const animate = spyOn(gsap, 'timeline').and.callFake(vars => {
+      timeline = createTimeline(vars).pause();
+      return timeline;
+    });
     component.closeProject();
     expect(dialog.open).toBeTrue();
     expect(document.body.style.overflow).toBe('hidden');
     component.closeProject();
-    expect(dialog.animate).toHaveBeenCalledTimes(1);
-    finish();
-    await finished;
+    expect(animate).toHaveBeenCalledTimes(1);
+    timeline.progress(1);
     expect(dialog.open).toBeFalse();
     expect(document.body.style.overflow).not.toBe('hidden');
     expect(document.activeElement).toBe(fixture.nativeElement.querySelector('.project-preview'));

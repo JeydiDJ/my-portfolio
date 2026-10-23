@@ -1,0 +1,32 @@
+// GSAP replaces the earlier independent CSS loops with coordinated sequences.
+.studio-motion {
+  .word-clip > span, .hero-copy > p, .hero-actions, .hero-aside,
+  .portrait-frame, .portrait-frame img, .tool-tile, .tool-spotlight {
+    animation: none !important;
+  }
+  .button, .contact-email, .project-preview { transition-property: background-color, color, border-color; }
+  .button:hover, .button:active { transform: none; }
+  .portrait-frame { isolation: isolate; }
+  .tool-spotlight { overflow: hidden; }
+}
+
+@media (min-width: 1000px) and (min-height: 680px) {
+  #projects.scroll-showcase {
+    height: calc(100svh - 88px);
+    min-height: 592px;
+    padding-block: 24px 12px;
+    display: flex;
+    align-items: center;
+    .section-heading { margin-bottom: 0; }
+    .section-heading h2 { font-size: clamp(30px, 3vw, 44px); }
+    .section-heading h2::after { margin-top: 10px; }
+    .section-heading p { font-size: 12px; margin-top: 12px; max-width: 720px; }
+    .projects-carousel { height: calc(100svh - 370px); max-height: 460px; min-height: 292px; margin-top: 12px; }
+    .showcase-card { width: min(56vw, calc((100svh - 390px) * 1.6), 700px); }
+    .showcase-caption { margin-top: 8px; }
+    .selected-project h3 { font-size: 25px; margin-bottom: 6px; }
+    .project-position { margin-bottom: 6px; }
+    .project-picker { margin-top: 4px; }
+    .project-picker span { transform-origin: left; }
+  }
+}

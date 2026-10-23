@@ -1,16 +1,37 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, NgZone, OnDestroy } from '@angular/core';
+import { gsap } from 'gsap';
 
 @Component({
   selector: 'app-skills',
   templateUrl: './skills.component.html',
   styleUrls: ['./skills.component.scss', './skills-motion.scss']
 })
-export class SkillsComponent {
+export class SkillsComponent implements OnDestroy {
+  categoryMotionIcons = ['code', 'database', 'server', 'server'];
+  motionIconMap: Record<string, string> = { xUML: 'code', 'E2E Builder': 'server', 'REST APIs': 'code' };
+  private detailAnimations = new Map<number, gsap.core.Timeline>();
+  constructor(private host: ElementRef<HTMLElement>, private changeDetector: ChangeDetectorRef, private zone: NgZone) {}
   selectedTools = [4, 5, 1, 0];
 
   selectTool(category: number, skill: number): void {
+    if (this.selectedTools[category] === skill) { return; }
+    this.detailAnimations.get(category)?.kill();
     this.selectedTools[category] = skill;
+    this.changeDetector.detectChanges();
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { return; }
+    const detail = this.host.nativeElement.querySelectorAll('.tool-spotlight')[category];
+    if (!detail) { return; }
+    this.zone.runOutsideAngular(() => {
+      const timeline = gsap.timeline()
+        .fromTo(detail.querySelector('.spotlight-icon'), { opacity: 0, scale: .7, rotation: -12 },
+          { opacity: 1, scale: 1, rotation: 0, duration: .55, ease: 'back.out(1.4)', clearProps: 'opacity,transform' })
+        .fromTo(detail.querySelectorAll('h4, p'), { opacity: 0, y: 12 },
+          { opacity: 1, y: 0, duration: .4, stagger: .06, ease: 'power3.out', clearProps: 'opacity,transform' }, .05);
+      this.detailAnimations.set(category, timeline);
+    });
   }
+
+  ngOnDestroy(): void { this.detailAnimations.forEach(animation => animation.kill()); }
 
   onToolKeydown(event: KeyboardEvent, category: number, index: number): void {
     if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key)) { return; }
