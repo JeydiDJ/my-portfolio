@@ -1,6 +1,5 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, NgZone, OnDestroy, QueryList, ViewChildren } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, NgZone, OnDestroy, QueryList, ViewChildren } from '@angular/core';
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { PROJECTS } from './projects.data';
 import { ProjectCardComponent } from '../project-card/project-card.component';
 
@@ -9,7 +8,7 @@ import { ProjectCardComponent } from '../project-card/project-card.component';
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.scss']
 })
-export class ProjectsComponent implements AfterViewInit, OnDestroy {
+export class ProjectsComponent implements OnDestroy {
   @ViewChildren(ProjectCardComponent) cards!: QueryList<ProjectCardComponent>;
   constructor(private changeDetector: ChangeDetectorRef, private zone: NgZone, private host: ElementRef<HTMLElement>) {}
   projects = PROJECTS;
@@ -25,51 +24,14 @@ export class ProjectsComponent implements AfterViewInit, OnDestroy {
   shuffling = false;
   private queuedSelection: number | null = null;
   private destroyed = false;
-  private scrollMedia?: gsap.MatchMedia;
-  private scrollScene?: ScrollTrigger;
-  private scrollStep = 0;
-  private scrollOrigin = 3;
-
-  ngAfterViewInit(): void {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { return; }
-    gsap.registerPlugin(ScrollTrigger);
-    this.zone.runOutsideAngular(() => {
-      this.scrollMedia = gsap.matchMedia();
-      this.scrollMedia.add('(min-width: 1000px) and (min-height: 680px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)', () => {
-        const section = this.host.nativeElement.querySelector<HTMLElement>('#projects')!;
-        section.classList.add('scroll-showcase');
-        this.scrollOrigin = this.selected;
-        this.scrollStep = 0;
-        this.scrollScene = ScrollTrigger.create({
-          trigger: section, start: 'top 88px', end: () => '+=' + Math.max(1500, window.innerHeight * 2.4),
-          pin: true, anticipatePin: 1, invalidateOnRefresh: true,
-          onUpdate: scene => this.onDeckScroll(scene.progress)
-        });
-        return () => {
-          section.classList.remove('scroll-showcase');
-          this.scrollScene = undefined;
-        };
-      });
-    });
-  }
-
-  onDeckScroll(progress: number): void {
-    const step = Math.min(this.projects.length - 1, Math.floor(progress * this.projects.length));
-    if (step === this.scrollStep || this.host.nativeElement.querySelector('dialog[open]')) { return; }
-    this.scrollStep = step;
-    this.zone.run(() => this.select((this.scrollOrigin + step) % this.projects.length, true));
-  }
 
   offset(index: number): number {
     const length = this.projects.length;
     return ((index - this.selected + length + Math.floor(length / 2)) % length) - Math.floor(length / 2);
   }
 
-  select(index: number, fromScroll = false): void {
+  select(index: number): void {
     const next = (index + this.projects.length) % this.projects.length;
-    if (!fromScroll && this.scrollScene?.isActive) {
-      this.scrollOrigin = (next - this.scrollStep + this.projects.length) % this.projects.length;
-    }
     if (this.shuffling) { this.queuedSelection = next; return; }
     if (next === this.selected) { return; }
     const previous = this.selected;
@@ -96,7 +58,7 @@ export class ProjectsComponent implements AfterViewInit, OnDestroy {
       this.shuffling = false;
       const queued = this.queuedSelection;
       this.queuedSelection = null;
-      if (queued !== null) { this.select(queued, true); }
+      if (queued !== null) { this.select(queued); }
       this.changeDetector.detectChanges();
     }) });
     this.shuffleTimeline = timeline;
@@ -200,6 +162,5 @@ export class ProjectsComponent implements AfterViewInit, OnDestroy {
     this.destroyed = true;
     clearTimeout(this.clickTimer);
     this.shuffleTimeline?.kill();
-    this.scrollMedia?.revert();
   }
 }

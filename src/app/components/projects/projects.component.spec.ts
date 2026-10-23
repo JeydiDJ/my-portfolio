@@ -103,22 +103,6 @@ describe('ProjectsComponent', () => {
     expect(animate).not.toHaveBeenCalled();
   });
 
-  it('advances the scroll sequence once per step and reverses with scrolling', () => {
-    component.onDeckScroll(.2);
-    expect(component.selected).toBe(4);
-    component.onDeckScroll(.22);
-    expect(component.selected).toBe(4);
-    component.onDeckScroll(.99);
-    expect(component.selected).toBe(2);
-    component.onDeckScroll(0);
-    expect(component.selected).toBe(3);
-  });
-
-  it('keeps the selected project stable while its modal is open', () => {
-    component.cards.get(3)!.openProject();
-    component.onDeckScroll(.8);
-    expect(component.selected).toBe(3);
-  });
 
   afterEach(() => fixture.destroy());
 });
