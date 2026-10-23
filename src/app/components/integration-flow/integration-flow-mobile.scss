@@ -1,0 +1,20 @@
+@media (max-width: 900px) {
+  .flow-nodes { column-gap: 40px; }
+  .flow-node { flex-direction: column; align-items: flex-start; gap: 8px; padding: 12px; }
+}
+@media (max-width: 680px) {
+  .workflow-toggle { padding: 18px 16px; gap: 14px; }
+  .workflow-preview > span { width: 30px; height: 32px; margin-right: -12px; }
+  .workflow-preview img { width: 18px; height: 18px; }
+  .workflow-title { font-size: 14px; }
+  .workflow-title > span { font-size: 10px; }
+  .workflow-toggle-label { display: none; }
+  .workflow-plus { margin-left: auto; width: 18px; }
+  .flow-board { padding: 20px; }
+  .flow-nodes { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(3, minmax(108px, auto)); gap: 38px 26px; }
+  .flow-node { grid-row: var(--mobile-row); grid-column: var(--mobile-column); padding: 10px; }
+  .node-icons img { width: 23px; height: 25px; }
+  .node-technology { font-size: 11px; }
+  .node-role { font-size: 9px; }
+  .flow-inspector { min-height: 164px; padding: 18px 20px; }
+}

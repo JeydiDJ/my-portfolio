@@ -1,32 +1,38 @@
-:host { display: block; margin-block: 0 48px; }
-.integration-flow { padding-block: 30px 36px; border-block: 1px solid var(--border); }
-.flow-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
-.flow-heading h3 { font-size: clamp(20px, 2.5vw, 28px); font-weight: 800; letter-spacing: -.8px; margin: 0; }
-.flow-heading > p { font-size: 12px; color: var(--muted); margin: 0; }
-.flow-diagram { position: relative; margin-top: 32px; }
-.flow-stages { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; list-style: none; padding: 0; margin: 0; }
-.flow-stage { position: relative; z-index: 1; text-align: center; min-width: 0; }
-.flow-logo { display: grid; place-items: center; width: 80px; height: 80px; margin: 0 auto 18px; background: var(--bg); border: 1px solid var(--border); border-radius: 12px; }
-.flow-logo img { width: 44px; height: 44px; object-fit: contain; }
-.flow-logo.paired { display: flex; align-items: center; justify-content: center; gap: 6px; }
-.flow-logo.paired img { width: 28px; height: 32px; }
-.flow-step { display: block; font-size: 11px; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
-.flow-stage h4 { font-size: 18px; font-weight: 800; letter-spacing: -.4px; margin: 0 0 8px; }
-.flow-stage p { max-width: 26ch; margin: 0 auto; color: var(--muted); font-size: 12px; line-height: 1.7; }
-.flow-rail { position: absolute; pointer-events: none; overflow: visible; }
-.flow-horizontal { left: 16.666%; top: 20px; width: 66.666%; height: 40px; }
-.flow-vertical { display: none; }
-.flow-track, .flow-route { fill: none; stroke-width: 1.5; vector-effect: non-scaling-stroke; }
-.flow-track { stroke: var(--border); }
-.flow-route { stroke: var(--accent); opacity: .55; }
-.flow-packet { fill: var(--accent); opacity: 0; }
-@media (max-width: 680px) {
-  .flow-heading { display: block; }
-  .flow-heading > p { margin-top: 8px; }
-  .flow-stages { grid-template-columns: 1fr; gap: 32px; }
-  .flow-stage { display: flex; align-items: center; gap: 22px; text-align: left; }
-  .flow-logo { flex: 0 0 80px; margin: 0; }
-  .flow-stage p { margin: 0; max-width: 30ch; }
-  .flow-horizontal { display: none; }
-  .flow-vertical { display: block; top: 40px; bottom: 40px; left: 20px; width: 40px; height: calc(100% - 80px); }
-}
+:host { display: block; margin-bottom: 14px; }
+:host:last-of-type { margin-bottom: 40px; }
+.workflow { border: 1px solid var(--border); border-radius: 10px; background: var(--surface); overflow: hidden; }
+.workflow-heading { margin: 0; }
+.workflow-toggle { width: 100%; display: flex; align-items: center; gap: 20px; padding: 22px 24px; text-align: left; border: 0; background: none; }
+.workflow-toggle:hover { background: var(--bg-soft); }
+.workflow-toggle:focus-visible { outline-offset: -4px; }
+.workflow-preview { display: flex; padding-right: 0; flex-shrink: 0; }
+.workflow-preview > span { display: grid; place-items: center; width: 38px; height: 38px; margin-right: -10px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); }
+.workflow-preview > span:last-child { margin: 0; }
+.workflow-preview img { width: 22px; height: 22px; object-fit: contain; }
+.workflow-title { font-size: 17px; font-weight: 800; letter-spacing: -.4px; }
+.workflow-title > span { display: block; font-size: 12px; font-weight: 500; letter-spacing: 0; color: var(--muted); margin-top: 5px; line-height: 1.5; }
+.workflow-toggle-label { margin-left: auto; white-space: nowrap; color: var(--accent); font-size: 11px; font-weight: 700; }
+.workflow-plus { flex-shrink: 0; color: var(--accent); transition: transform .3s; }
+.is-expanded .workflow-plus { transform: rotate(45deg); }
+.workflow-panel { overflow: hidden; }
+.workflow-panel[hidden] { display: none; }
+.flow-board { position: relative; padding: 24px; border-top: 1px solid var(--border); background: var(--bg-soft); }
+.flow-nodes { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: repeat(3, minmax(80px, auto)); gap: 38px 64px; }
+.flow-node { grid-row: var(--row); grid-column: var(--column); position: relative; z-index: 1; display: flex; align-items: center; gap: 12px; min-width: 0; padding: 15px 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); text-align: left; transition: border-color .2s, background-color .2s; }
+.flow-node:hover, .flow-node.is-selected { border-color: var(--accent); }
+.flow-node.is-selected { background: var(--accent-soft); }
+.node-icons { display: flex; gap: 6px; align-items: center; flex-shrink: 0; color: var(--accent); }
+.node-icons img { width: 26px; height: 28px; object-fit: contain; }
+.node-copy { min-width: 0; }
+.node-role { display: block; color: var(--muted); font-size: 10px; margin-bottom: 5px; }
+.node-technology { display: block; font-size: 12px; font-weight: 750; line-height: 1.5; }
+.flow-canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; color: var(--accent); }
+.route-track, .route-active { fill: none; stroke-width: 1.5; }
+.route-track { stroke: var(--border); }
+.route-active { stroke: var(--accent); opacity: .2; transition: opacity .25s; }
+.route-highlight .route-active { opacity: .9; }
+.route-packet { fill: var(--accent); opacity: 0; }
+.flow-inspector { padding: 20px 24px; border-top: 1px solid var(--border); min-height: 125px; }
+.flow-inspector strong { font-size: 13px; }
+.flow-inspector p { margin: 6px 0; color: var(--muted); font-size: 12px; line-height: 1.7; max-width: 90ch; }
+.flow-inspector > span { font-size: 10px; color: var(--accent); }

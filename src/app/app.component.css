@@ -19,7 +19,7 @@
 .site-footer > a:last-child svg { width: 16px; height: 16px; }
 .skip-link { position: fixed; top: -100px; left: 20px; padding: 12px 20px; background: var(--surface); z-index: 30; }
 .skip-link:focus { top: 12px; }
-@media (max-width: 760px) {
+@media (max-width: 900px) {
   .site-nav { height: 72px; gap: 16px; }
   .site-nav .brand img { width: 64px; height: 42px; }
   .nav-links { display: none; position: absolute; top: 72px; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--border); padding: 16px 20px; gap: 4px; }

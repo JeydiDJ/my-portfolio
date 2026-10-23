@@ -2,7 +2,7 @@
 .menu-toggle path { transform-box: fill-box; transform-origin: center; transition: transform .3s cubic-bezier(.2,.8,.2,1); }
 .menu-toggle.is-open .menu-line-top { transform: translateY(4px) rotate(45deg); }
 .menu-toggle.is-open .menu-line-bottom { transform: translateY(-4px) rotate(-45deg); }
-@media (max-width: 760px) {
+@media (max-width: 900px) {
   .site-nav { gap: 12px; }
   .nav-actions { gap: 6px; }
   .theme-toggle, .menu-toggle { width: 44px; height: 44px; }

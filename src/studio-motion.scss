@@ -1,4 +1,8 @@
 // GSAP replaces the earlier independent CSS loops with coordinated sequences.
+.workflows-section { background: var(--bg-soft); border-block: 1px solid var(--border); }
+.workflows-section .section-heading { text-align: center; }
+.workflows-section .section-heading h2::after, .workflows-section .section-heading p { margin-inline: auto; }
+.workflows-section app-integration-flow:last-of-type { margin-bottom: 0; }
 .studio-motion {
   .word-clip > span, .hero-copy > p, .hero-actions, .hero-aside,
   .portrait-frame, .portrait-frame img, .tool-tile, .tool-spotlight {

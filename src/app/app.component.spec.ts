@@ -20,7 +20,7 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelector('nav').getAttribute('aria-label')).toBe('Main navigation');
-    expect(fixture.nativeElement.querySelectorAll('.nav-links a').length).toBe(5);
+    expect(fixture.nativeElement.querySelectorAll('.nav-links a').length).toBe(6);
   });
 
 
@@ -80,11 +80,11 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const main = fixture.nativeElement.querySelector('main') as HTMLElement;
-    ['top', 'projects', 'about', 'skills', 'contact'].forEach((id, i) => {
+    ['top', 'about', 'projects', 'skills', 'workflows', 'contact'].forEach((id, i) => {
       const section = document.createElement('section');
       section.id = id;
       main.appendChild(section);
-      spyOn(section, 'getBoundingClientRect').and.returnValue({ top: [-1500, -800, -100, 800, 1600][i] } as DOMRect);
+      spyOn(section, 'getBoundingClientRect').and.returnValue({ top: [-1500, -100, 800, 1600, 2200, 2800][i] } as DOMRect);
     });
     spyOnProperty(window, 'scrollY').and.returnValue(1500);
     spyOnProperty(window, 'innerHeight').and.returnValue(800);
@@ -139,6 +139,8 @@ describe('AppComponent', () => {
     const previousBehavior = document.documentElement.style.scrollBehavior;
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
+    spyOn(fixture.nativeElement.querySelector('#workflows'), 'getBoundingClientRect')
+      .and.returnValue({ top: 2000 } as DOMRect);
     fixture.componentInstance.scrollToTop();
     callback(performance.now() + 16);
     expect(window.scrollTo).toHaveBeenCalledWith(0, 0);

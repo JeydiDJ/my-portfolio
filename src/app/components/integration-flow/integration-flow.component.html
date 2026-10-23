@@ -1,19 +1,35 @@
-<section class="integration-flow" [attr.aria-label]="flow.label">
-  <div class="flow-heading"><h3>{{ flow.title }}</h3><p>{{ flow.description }}</p></div>
-  <div class="flow-diagram">
-    <svg class="flow-rail flow-horizontal" viewBox="0 0 1000 40" preserveAspectRatio="none" aria-hidden="true">
-      <path class="flow-track" d="M0 20H1000"/><path class="flow-route" d="M0 20H1000"/>
-      <circle class="flow-packet flow-packet-horizontal" cx="0" cy="20" r="4"/><circle class="flow-packet flow-packet-horizontal" cx="0" cy="20" r="4"/>
-    </svg>
-    <svg class="flow-rail flow-vertical" viewBox="0 0 40 600" preserveAspectRatio="none" aria-hidden="true">
-      <path class="flow-track" d="M20 0V600"/><path class="flow-route" d="M20 0V600"/>
-      <circle class="flow-packet flow-packet-vertical" cx="20" cy="0" r="4"/><circle class="flow-packet flow-packet-vertical" cx="20" cy="0" r="4"/>
-    </svg>
-    <ol class="flow-stages">
-      <li class="flow-stage" *ngFor="let stage of flow.stages">
-        <div class="flow-logo" [class.paired]="stage.icons.length > 1"><img *ngFor="let icon of stage.icons" [src]="'assets/tech-icons/' + icon" alt="" width="48" height="48" loading="lazy"></div>
-        <div class="flow-stage-copy"><span class="flow-step">{{ stage.step }}</span><h4>{{ stage.title }}</h4><p>{{ stage.description }}</p></div>
-      </li>
-    </ol>
+<section class="workflow" [class.is-expanded]="expanded" [attr.aria-label]="flow.title">
+  <h3 class="workflow-heading">
+    <button class="workflow-toggle" type="button" [attr.aria-expanded]="expanded" [attr.aria-controls]="variant + '-workflow-panel'" (click)="toggle()">
+      <span class="workflow-preview" aria-hidden="true"><span *ngFor="let node of flow.nodes.slice(0, 3)"><img [src]="'assets/tech-icons/' + node.icons[0]" alt="" width="22" height="22" loading="lazy"></span></span>
+      <span class="workflow-title">{{ flow.title }}<span>{{ flow.description }}</span></span>
+      <span class="workflow-toggle-label">{{ expanded ? 'Close map' : 'Explore map' }}</span>
+      <svg class="workflow-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14M12 5v14"/></svg>
+    </button>
+  </h3>
+  <div #panel class="workflow-panel" [id]="variant + '-workflow-panel'" [hidden]="!expanded && !transitioning" [attr.inert]="!expanded ? '' : null" [attr.aria-hidden]="!expanded">
+    <div #board class="flow-board">
+      <svg class="flow-canvas" [attr.viewBox]="viewBox" preserveAspectRatio="none" aria-hidden="true">
+        <defs><marker [id]="variant + '-route-arrow'" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="m2 1 7 4-7 4" fill="none" stroke="currentColor" stroke-width="1.5"/></marker></defs>
+        <g *ngFor="let route of routes" [class.route-highlight]="route.from === activeNode || route.to === activeNode">
+          <path class="route-track" [attr.d]="route.path"/>
+          <path class="route-active" [attr.d]="route.path" [attr.marker-end]="'url(#' + variant + '-route-arrow)'"/>
+          <circle class="route-packet" r="3.5" cx="0" cy="0"/>
+        </g>
+      </svg>
+      <div class="flow-nodes">
+        <button *ngFor="let node of flow.nodes; let index = index" type="button" class="flow-node" data-node
+          [class.is-selected]="activeNode === index" [attr.aria-pressed]="activeNode === index"
+          [attr.aria-describedby]="variant + '-workflow-detail'"
+          [style.--row]="node.row" [style.--column]="node.column" [style.--mobile-row]="node.mobileRow" [style.--mobile-column]="node.mobileColumn"
+          (click)="selectNode(index)" (focus)="selectNode(index)">
+          <span class="node-icons" aria-hidden="true"><img *ngFor="let icon of node.icons" [src]="'assets/tech-icons/' + icon" alt="" width="28" height="28" loading="lazy"><app-motion-icon *ngIf="!node.icons.length" name="server"></app-motion-icon></span>
+          <span class="node-copy"><span class="node-role">{{ node.title }}</span><span class="node-technology">{{ node.technology }}</span></span>
+        </button>
+      </div>
+    </div>
+    <div class="flow-inspector" [id]="variant + '-workflow-detail'" aria-live="polite" aria-atomic="true">
+      <strong>{{ selectedNode.title }}</strong><p>{{ selectedNode.description }}</p><span>{{ relationships }}</span>
+    </div>
   </div>
 </section>

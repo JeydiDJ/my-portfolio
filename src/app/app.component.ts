@@ -58,7 +58,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     const headerHeight = document.querySelector('.site-header')?.getBoundingClientRect().height || 88;
     const readingLine = headerHeight + Math.min(window.innerHeight * .2, 160);
     const sections = Array.from(document.querySelectorAll<HTMLElement>('main section[id]'))
-      .filter(section => ['top', 'projects', 'about', 'skills', 'contact'].includes(section.id));
+      .filter(section => ['top', 'about', 'projects', 'skills', 'workflows', 'contact'].includes(section.id));
     let current = 'top';
     sections.forEach(section => {
       if (section.getBoundingClientRect().top <= readingLine) { current = section.id; }

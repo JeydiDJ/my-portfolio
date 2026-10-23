@@ -7,6 +7,7 @@
       <a href="#about" (click)="menuOpen = false" [class.is-active]="activeSection === 'about'" [attr.aria-current]="activeSection === 'about' ? 'location' : null"><svg class="nav-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a8 8 0 0 0-16 0v2M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0"/></svg>About</a>
       <a href="#projects" (click)="menuOpen = false" [class.is-active]="activeSection === 'projects'" [attr.aria-current]="activeSection === 'projects' ? 'location' : null"><svg class="nav-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h18v14H3V7Zm5 0V3h8v4M3 12c5 3 13 3 18 0"/></svg>Work</a>
       <a href="#skills" (click)="menuOpen = false" [class.is-active]="activeSection === 'skills'" [attr.aria-current]="activeSection === 'skills' ? 'location' : null"><svg class="nav-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 5-7 7 7 7m8-14 7 7-7 7m-3-17-2 20"/></svg>Tools</a>
+      <a href="#workflows" (click)="menuOpen = false" [class.is-active]="activeSection === 'workflows'" [attr.aria-current]="activeSection === 'workflows' ? 'location' : null"><svg class="nav-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="6" height="6" rx="1"/><rect x="15" y="3" width="6" height="6" rx="1"/><rect x="9" y="15" width="6" height="6" rx="1"/><path d="M6 9v3h12V9m-6 3v3"/></svg>Workflows</a>
       <a href="#contact" (click)="menuOpen = false" [class.is-active]="activeSection === 'contact'" [attr.aria-current]="activeSection === 'contact' ? 'location' : null"><svg class="nav-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h18v14H3V5Zm0 1 9 7 9-7"/></svg>Contact</a>
     </div>
     <div class="nav-actions">
@@ -25,6 +26,16 @@
   <app-about></app-about>
   <app-projects></app-projects>
   <app-skills></app-skills>
+  <section id="workflows" class="site-section workflows-section" aria-labelledby="workflows-title">
+    <div class="section-shell">
+      <div class="section-heading" appScrollAnimate>
+        <h2 id="workflows-title">How I build and connect systems.</h2>
+        <p>Explore my full-stack development and enterprise integration workflows.</p>
+      </div>
+      <app-integration-flow variant="fullstack"></app-integration-flow>
+      <app-integration-flow></app-integration-flow>
+    </div>
+  </section>
   <app-contact></app-contact>
 </main>
 <footer class="site-footer section-shell">
